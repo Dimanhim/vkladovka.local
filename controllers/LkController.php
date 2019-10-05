@@ -8,12 +8,11 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\User;
 use app\models\ContactForm;
-use app\models\FormRegistration;
 
-class SiteController extends Controller
+class LkController extends Controller
 {
+    public $layout = 'lk';
     /**
      * {@inheritdoc}
      */
@@ -63,50 +62,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('my-stock');
     }
-    public function actionAsWork()
+    public function actionMyStock()
     {
-        return $this->render('as-work');
+        return $this->render('my-stock');
     }
-    public function actionFaq()
+    public function actionRoom()
     {
-        return $this->render('faq');
+        return $this->render('room');
     }
-    public function actionForUrLic()
-    {
-        return $this->render('for-ur-lic');
-    }
-    public function actionForUrLic2()
-    {
-        return $this->render('for-ur-lic2');
-    }
-    public function actionOrderService()
-    {
-        return $this->render('order-service');
-    }
-    public function actionRegistration()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-        $model = new FormRegistration();
-        if($model->load(\Yii::$app->request->post()) && $model->validate()){
-            $user = new User();
-            $user->fio = $model->fio;
-            $user->passport = $model->passport;
-            $user->adress = $model->adress;
-            $user->phone = $model->phone;
-            $user->email = $model->email;
-            $user->password = \Yii::$app->security->generatePasswordHash($model->password);
-            if($user->save()){
-                return $this->goHome();
-            }
-        }
-        return $this->render('registration', [
-            'model' => $model,
-        ]);
-    }
+
 
     /**
      * Login action.
