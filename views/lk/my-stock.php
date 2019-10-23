@@ -11,115 +11,22 @@ $this->title = 'Мой склад';
 </div>
 
 <div class="clearfix"></div>
-<div class="product-one col-md-3">
-    <div class="in-pr">
-        <img src="/images/item.jpg" alt="">
-        <b>Lorem ipsum.</b>
-        <div class="setting-pr">
-            <ul>
-                <li>Вернуть</li>
-                <li class="active">Передать другу</li>
-                <li>Сдать в аренду</li>
-                <li>Доверяю продать</li>
-            </ul>
+<?php for($i = 0; $i < 7; $i++) { ?>
+<div class="product-one col-4">
+    <div class="">
+        <div class="item-thing">
+            <img src="/img/item-1.jpg" alt="" />
+            <div class="back">
+                <ul class="small-item">
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing']) ?>">Просмотр</a></li>
+                    <li><a href="#">Вернуть вещь</a></li>
+                    <li><a href="#">Передать другу</a></li>
+                    <li><a href="#">Сдать в аренду</a></li>
+                    <li><a href="#">Продлить хранение</a></li>
+                    <li><a href="#">Доверяю продать</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
-<div class="product-one col-md-3">
-    <div class="in-pr">
-        <img src="/images/item.jpg" alt="">
-        <b>Lorem ipsum.</b>
-        <div class="setting-pr">
-            <ul>
-                <li>Вернуть</li>
-                <li class="active">Передать другу</li>
-                <li>Сдать в аренду</li>
-                <li>Доверяю продать</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="product-one col-md-3">
-    <div class="in-pr">
-        <img src="/images/item.jpg" alt="">
-        <b>Lorem ipsum.</b>
-        <div class="setting-pr">
-            <ul>
-                <li>Вернуть</li>
-                <li class="active">Передать другу</li>
-                <li>Сдать в аренду</li>
-                <li>Доверяю продать</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="product-one col-md-3">
-    <div class="in-pr">
-        <img src="/images/item.jpg" alt="">
-        <b>Lorem ipsum.</b>
-        <div class="setting-pr">
-            <ul>
-                <li>Вернуть</li>
-                <li class="active">Передать другу</li>
-                <li>Сдать в аренду</li>
-                <li>Доверяю продать</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="product-one col-md-3">
-    <div class="in-pr">
-        <img src="/images/item.jpg" alt="">
-        <b>Lorem ipsum.</b>
-        <div class="setting-pr">
-            <ul>
-                <li>Вернуть</li>
-                <li class="active">Передать другу</li>
-                <li>Сдать в аренду</li>
-                <li>Доверяю продать</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="product-one col-md-3">
-    <div class="in-pr">
-        <img src="/images/item.jpg" alt="">
-        <b>Lorem ipsum.</b>
-        <div class="setting-pr">
-            <ul>
-                <li>Вернуть</li>
-                <li class="active">Передать другу</li>
-                <li>Сдать в аренду</li>
-                <li>Доверяю продать</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="product-one col-md-3">
-    <div class="in-pr">
-        <img src="/images/item.jpg" alt="">
-        <b>Lorem ipsum.</b>
-        <div class="setting-pr">
-            <ul>
-                <li>Вернуть</li>
-                <li class="active">Передать другу</li>
-                <li>Сдать в аренду</li>
-                <li>Доверяю продать</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="product-one col-md-3">
-    <div class="in-pr">
-        <img src="/images/item.jpg" alt="">
-        <b>Lorem ipsum.</b>
-        <div class="setting-pr">
-            <ul>
-                <li>Вернуть</li>
-                <li class="active">Передать другу</li>
-                <li>Сдать в аренду</li>
-                <li>Доверяю продать</li>
-            </ul>
-        </div>
-    </div>
-</div>
+<?php } ?>

@@ -103,6 +103,16 @@ header .logo img {
 header a {
   color: #000;
 }
+header .header-links {
+  text-align: center;
+  margin-top: 5px;
+}
+header .header-links a {
+  color: #007bff;
+}
+header .header-links a:first-child {
+  margin-right: 10px;
+}
 
 header .cont-top, header .rsp-top {
   float: left;
@@ -136,6 +146,11 @@ header .cont-top a, header .rsp-top a {
 header .wp-go {
   float: right;
   line-height: 90px;
+}
+header .wp-go p {
+  margin-top: 10px;
+  line-height: 1;
+  font-size: 14px;
 }
 
 nav {
@@ -1053,8 +1068,8 @@ footer ul.net li a {
 }
 
 .page-two {
-  margin-top: 60px;
-  margin-bottom: 60px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .page-two h2 {
@@ -1311,6 +1326,7 @@ p strong {
 
 .product-one {
   text-align: center;
+  margin-bottom: 5px;
 }
 
 .product-one .setting-pr {
@@ -1328,6 +1344,13 @@ p strong {
   color: #fff;
   line-height: 30px;
   overflow: hidden;
+}
+.setting-pr a {
+  color: #fff;
+  text-decoration: none;
+}
+.setting-pr a:hover {
+  text-decoration: underline;
 }
 
 .product-one .setting-pr li.active {
@@ -1380,7 +1403,7 @@ p strong {
 }
 
 .rm-ul {
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 .rm-ul ul li {
@@ -1431,6 +1454,68 @@ p strong {
   color: #f00 !important;
   font-style: italic !important;
 }
+.main-img {
+  position: relative;
+  text-align: center;
+  margin: 0 auto 20px;
+  max-width: 500px;
+}
+.item-thing {
+  position: relative;
+}
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+}
+.back ul li a {
+  color: #fff;
+}
+.main-img img {
+  width: 100%;
+}
+.unvisible-block-user {
+  display: none;
+}
+.small-item a {
+  font-size: 14px;
+}
+.top-menu-button, .top-menu-media {
+  display: none;
+}
+.menu__icon {
+  width: 45px;
+  height: 35px;
+  position: relative;
+  cursor: pointer;
+}
+.menu__icon span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background: #333333;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+.menu__icon span:nth-child(1) {
+  top: 0px;
+}
+
+.menu__icon span:nth-child(2), .menu__icon span:nth-child(3) {
+  top: 13px;
+}
+
+.menu__icon span:nth-child(4) {
+  top: 26px;
+}
 
 @media (max-width: 1200px) {
   header .cont-top, header .rsp-top {
@@ -1445,6 +1530,38 @@ p strong {
 }
 
 @media (max-width: 991px) {
+  .sidebar h3 {
+    text-align: center;
+  }
+  header, .top-menu {
+    display: none;
+  }
+  .unvisible-block-user {
+    display: block;
+  }
+  .top-menu-button {
+    position: absolute;
+    display: block;
+    top: 55px;
+    right: 10px;
+    z-index: 10;
+  }
+  .top-menu-button ul {
+    position: absolute;
+    display: none;
+  }
+  .main-page-content .top-menu-media {
+    position: absolute;
+    top: 85px;
+    right: 0;
+    z-index: 20;
+    background: #222;
+    padding: 10px;
+    color: #fff;
+  }
+  .main-page-content .top-menu-media a {
+   color: #fff;
+  }
   .rm-ul ul li a {
     font-size: 14px;
     padding: 7px 5px;
@@ -1654,7 +1771,7 @@ p strong {
     z-index: 100;
     text-align: center;
   }
-  .room-bt-top a {
+  header .wp-go a {
     height: 45px;
     line-height: 40px !important;
     vertical-align: top;
@@ -1712,7 +1829,35 @@ p strong {
     position: absolute;
     top: 0;
     left: 0;
-    width: 85%;
+    width: 100%;
+  }
+  .room-pg h3 {
+    position: relative;
+    top: 0;
+    width: 100%;
+    margin-bottom: 15px;
+    left: 0;
+    font-size: 23px;
+  }
+  .sidebar ul {
+    margin-top: 15px;
+  }
+  .block-user {
+    display: none;
+  }
+  .room-bt-top {
+    top: 40px;
+    right: 20px;
+  }
+  .my-balance b {
+    float: none;
+  }
+  .unvisible-block-user a {
+    display: block;
+    margin: 0;
+    margin-bottom: 10px;
+    height: 10px;
+    color: #007bff !important;
   }
   .rm-ul ul li {
     width: 20%;

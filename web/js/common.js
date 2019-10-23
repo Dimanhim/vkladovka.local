@@ -173,5 +173,15 @@ $(document).ready(function(){
 	controlRoom();
 	$(".phone").inputmask({"mask": "+7 (999) 999-9999"});
 
+	//$("a.gal").fancybox();
+	$('.item-thing').on('click', function() {
+		//if($(window).width() > 991) {
+			$(this).find('.back').toggle('slide');
+		//}
+	});
+	$('.menu__icon').on('click', function() {
+		$('.top-menu-media').toggle();
+	});
+
 });
 

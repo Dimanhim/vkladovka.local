@@ -45,7 +45,7 @@ $this->title = 'Как это работает';
         </p>
         <div class="links-ul">
             <a href="<?= Yii::$app->urlManager->createUrl('site/faq#id50') ?>">Ознакомиться с правилами</a> <br>
-            <a href="reg.php">Перейти к регистрации</a> <br>
+            <a href="<?= Yii::$app->urlManager->createUrl('site/registration') ?>">Перейти к регистрации</a> <br>
             <a href="/">Вернуться на главную</a> <br>
         </div>
     </div>

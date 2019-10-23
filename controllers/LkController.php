@@ -72,6 +72,10 @@ class LkController extends Controller
     {
         return $this->render('room');
     }
+    public function actionThing()
+    {
+        return $this->render('thing');
+    }
 
 
     /**
@@ -134,5 +138,9 @@ class LkController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    public function actionMyStuff()
+    {
+        return $this->render('my-stuff');
     }
 }

@@ -29,6 +29,7 @@ AppAsset::register($this);
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
 </head>
 <body>
@@ -54,7 +55,15 @@ AppAsset::register($this);
                     </div>
                 </div>
                 <div class="wp-go room-bt-top">
-                    <a href="#" class="main-bt" data-toggle="modal" data-target="#modalLogin">Войти</a>
+                    <!-- <a href="#" class="main-bt" data-toggle="modal" data-target="#modalLogin">Войти</a>-->
+                    <div class="block-user">
+                        <p class="hello-user">
+                            Здравствуйте, Дмитрий!
+                        </p>
+                        <p class="header-links">
+                            <a href="#">Профиль</a><a href="#">Выход</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </header>
@@ -112,23 +121,49 @@ AppAsset::register($this);
                     <li><a href="#" class="quest">Продлить <span>хранение</span></a></li>
                 </ul>
             </div>
-
-            <h3>
-                Личный кабинет
-            </h3>
-            <div class="row">
-                <div class="col-md-3 sidebar">
-                    <div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>
-                    <ul>
-                        <li><a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Мой склад</a></li>
-                        <li><a href="#" class="quest">Мой банк</a></li>
-                        <li><a href="#" class="quest">Заказать хранение</a></li>
-                        <li><a href="#" class="quest">Арендовать вещь</a></li>
-                        <li><a href="#" class="quest">Заказать грузоперевозку</a></li>
-                        <li><a href="#" class="quest">Тара и упаковка</a></li>
-                    </ul>
+            <div class="top-menu-button">
+                <div class="menu__icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-                <div class="col-md-9 wp-prs">
+            </div>
+            <ul class="top-menu-media">
+                <div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>
+                <li><a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Мой склад</a></li>
+                <li><a href="#" class="quest">Мой банк</a></li>
+                <li><a href="#" class="quest">Заказать хранение</a></li>
+                <li><a href="#" class="quest">Арендовать вещь</a></li>
+                <li><a href="#" class="quest">Заказать грузоперевозку</a></li>
+                <li><a href="#" class="quest">Тара и упаковка</a></li>
+                <div class="unvisible-block-user">
+                    <p class="header-links">
+                        <a href="#">Профиль</a><a href="#">Выход</a>
+                    </p>
+                </div>
+            </ul>
+
+
+            <div class="row">
+                <div class="col-lg-3 sidebar">
+                    <h3>
+                        Личный кабинет
+                    </h3>
+                    <div class="top-menu">
+                        <div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>
+                        <ul>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Мой склад</a></li>
+                            <li><a href="#" class="quest">Мой банк</a></li>
+                            <li><a href="#" class="quest">Заказать хранение</a></li>
+                            <li><a href="#" class="quest">Арендовать вещь</a></li>
+                            <li><a href="#" class="quest">Заказать грузоперевозку</a></li>
+                            <li><a href="#" class="quest">Тара и упаковка</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-lg-9 wp-prs">
                     <div class="row">
                         <?= $content ?>
                     </div>
