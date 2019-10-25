@@ -16,7 +16,11 @@ $this->title = 'Мой склад';
     <div class="">
         <div class="item-thing">
             <img src="/img/item-1.jpg" alt="" />
-            <div class="back">
+            <div class="checkbox">
+                <input type="checkbox"<?php// if($i == 0) echo ' checked' ?> />
+            </div>
+            <div class="back"></div>
+            <div class="back-menu">
                 <ul class="small-item">
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing']) ?>">Просмотр</a></li>
                     <li><a href="#">Вернуть вещь</a></li>

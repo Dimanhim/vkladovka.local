@@ -174,14 +174,31 @@ $(document).ready(function(){
 	$(".phone").inputmask({"mask": "+7 (999) 999-9999"});
 
 	//$("a.gal").fancybox();
-	$('.item-thing').on('click', function() {
-		//if($(window).width() > 991) {
+	/*$('.item-thing').on('click', function() {
 			$(this).find('.back').toggle('slide');
-		//}
-	});
+	});*/
 	$('.menu__icon').on('click', function() {
 		$('.top-menu-media').toggle();
 	});
+	$('.checkbox input').on('change', function() {
+		if(isChecked() == 0) $('.room-nav-bottom').fadeOut();
+		else {
+			$('.room-nav-bottom').fadeOut();
+			$(this).parents('.item-thing').find('.back').toggle();
+			$('.room-nav-bottom').slideToggle();
+		}
+	});
+	function isChecked() {
+		var count = 0;
+		$('.checkbox input[type=checkbox]').each(function() {
+			if($(this).is(':checked')) count++;
+		});
+		return count;
+	}
+
+	if(isChecked() != 0) $('.room-nav-bottom').fadeIn();
+
+
 
 });
 

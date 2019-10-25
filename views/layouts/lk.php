@@ -112,6 +112,7 @@ AppAsset::register($this);
         </div>
 
         <div class="container page-two room-pg">
+            <!--
             <div class="rm-ul room-nav-top">
                 <ul>
                     <li><a href="#" class="quest">Вернуть <span>вещь</span></a></li>
@@ -121,6 +122,7 @@ AppAsset::register($this);
                     <li><a href="#" class="quest">Продлить <span>хранение</span></a></li>
                 </ul>
             </div>
+            -->
             <div class="top-menu-button">
                 <div class="menu__icon">
                     <span></span>
@@ -169,15 +171,7 @@ AppAsset::register($this);
                     </div>
                 </div>
             </div>
-            <div class="rm-ul bt-n room-nav-bottom">
-                <ul>
-                    <li><a href="#" class="quest">Вернуть <span>вещь</span></a></li>
-                    <li><a href="#" class="quest">Передать <span>другу</span></a></li>
-                    <li><a href="#" class="quest">Сдать <span>в аренду</span></a></li>
-                    <li><a href="#" class="quest">Доверяю <span>продать</span></a></li>
-                    <li><a href="#" class="quest">Продлить <span>хранение</span></a></li>
-                </ul>
-            </div>
+
         </div>
 
         <!-- Modal Login -->
@@ -196,8 +190,20 @@ AppAsset::register($this);
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="rm-ul bt-n room-nav-bottom">
+                <ul>
+                    <li><a href="#" class="quest">Вернуть <span>вещь</span></a></li>
+                    <li><a href="#" class="quest">Передать <span>другу</span></a></li>
+                    <li><a href="#" class="quest">Сдать <span>в аренду</span></a></li>
+                    <li><a href="#" class="quest">Доверяю <span>продать</span></a></li>
+                    <li><a href="#" class="quest">Продлить <span>хранение</span></a></li>
+                </ul>
+            </div>
+        </div>
 
     </div>
+
     <div class="page-footer footer-room">
         <footer class="container">
             <div class="row">
