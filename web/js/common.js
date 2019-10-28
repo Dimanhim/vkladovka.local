@@ -25,7 +25,7 @@ $(document).ready(function(){
 	//
 
 	var pl = $('.owl-pl');
-	
+
 	pl.owlCarousel({
 		loop:true,
 		items: 1
@@ -49,6 +49,7 @@ $(document).ready(function(){
 		items: 1,
 		autoHeight:true
 	});
+
 
 	// ****** CHAT ******
 

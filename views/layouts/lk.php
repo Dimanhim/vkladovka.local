@@ -119,7 +119,7 @@ AppAsset::register($this);
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-for-friend']) ?>" class="top-menu-btn">Передать <span>другу</span></a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-rent']) ?>" class="top-menu-btn">Сдать <span>в аренду</span></a></li>
                     <li><a href="#" class="top-menu-btn">Доверяю <span>продать</span></a></li>
-                    <li><a href="#" class="top-menu-btn">Продлить <span>хранение</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-extend']) ?>" class="top-menu-btn">Продлить <span>хранение</span></a></li>
                 </ul>
             </div>
 

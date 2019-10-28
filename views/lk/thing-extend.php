@@ -6,10 +6,10 @@ use yii\web\View;
 use yii\helpers\Url;
 use kartik\datetime\DateTimePicker;
 
-$this->title = 'Вернуть "вещь такая то"';
+$this->title = 'Продлить хранение "вещь такая то"';
 ?>
 <div class="col-md-12">
-    <h2 class="tac">Вернуть "Вещь такая-то"</h2>
+    <h2 class="tac">Продлить хранение "Вещь такая-то"</h2>
 </div>
 
 <div class="clearfix"></div>
@@ -49,48 +49,25 @@ $this->title = 'Вернуть "вещь такая то"';
                     <img src="/img/item-1.jpg" alt="" />
                 </td>
             </tr>
-            <tr>
+            <tr class="select-date-extend">
                 <td>
-                    Вернуть в течение:
-                </td>
-                <td>
-                    <select name="" id="select-date" class="form-control">
-                        <option value="">Выбрать...</option>
-                        <option value="">1 часа</option>
-                        <option value="">2-3 часов</option>
-                        <option value="">в течение дня</option>
-                        <option value="10">в другой день</option>
-                    </select>
-                    <p style="font-style: italic">Время доставки ежедневно с 8 до 20ч. За рамками это времени тариф+50%.</p>
-                </td>
-            </tr>
-            <tr class="select-date">
-                <td>
-                    Вернуть в течение:
+                    Продлить до:
                 </td>
                 <td>
                     <?= DateTimePicker::widget([
-                    'name' => 'check_issue_date',
-                    'value' => date('d-m-Y H:i'),
-                    'options' => ['placeholder' => 'Выберете дату ...'],
-                    'pluginOptions' => [
-                        'format' => 'dd-mm-yyyy h:i',
-                        'todayHighlight' => true
-                    ]
+                        'name' => 'check_issue_date',
+                        'value' => date('d-m-Y H:i'),
+                        'options' => ['placeholder' => 'Выберете дату ...'],
+                        'pluginOptions' => [
+                            'format' => 'dd-mm-yyyy h:i',
+                            'todayHighlight' => true
+                        ]
                     ]); ?>
                 </td>
             </tr>
             <tr>
                 <td>
-                    По адресу:
-                </td>
-                <td>
-                    <textarea name="" id="" cols="30" rows="4" class="form-control">Здесь по умолчанию будет адрес, указанный в договоре, можно менять</textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Цена за срочную доставку:
+                    Стоимость хранения:
                 </td>
                 <td>
                     <input type="text" name="price" class="form-control" placeholder="рублей" />
@@ -98,10 +75,11 @@ $this->title = 'Вернуть "вещь такая то"';
             </tr>
             <tr>
                 <td colspan="2">
-                    <button class="btn btn-primary">Вернуть вещь</button>
+                    <button class="btn btn-primary">Продлить хранение</button>
                 </td>
             </tr>
         </table>
     </div>
 </div>
+
 

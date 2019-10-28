@@ -1555,7 +1555,7 @@ p strong {
   z-index: 40;
 }
 .thing-photo img {
-  max-width: 100px;
+  max-width: 180px;
 }
 table.table select.form-control {
   height: auto !important;
@@ -1578,6 +1578,9 @@ table.table select.form-control {
 
 
 @media (max-width: 991px) {
+    .product-one-desktop {
+        display: none;
+    }
   .description {
     font-size: 14px;
   }

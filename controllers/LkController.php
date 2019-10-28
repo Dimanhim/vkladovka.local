@@ -84,6 +84,10 @@ class LkController extends Controller
     {
         return $this->render('thing-for-friend');
     }
+    public function actionThingExtend()
+    {
+        return $this->render('thing-extend');
+    }
 
 
     /**
