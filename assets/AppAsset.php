@@ -21,7 +21,9 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/libs.min.css',
-        'css/jquery.fancybox.min.css',
+        'css/bootstrap.min.css',
+        //'css/jquery.fancybox.min.css',
+        'css/bootstrap-datetimepicker3.min.css',
         'css/main.css',
     ];
     public $js = [
@@ -29,6 +31,7 @@ class AppAsset extends AssetBundle
         'js/jquery.fancybox.min.js',
         'js/inputmask.js',
         'js/jquery.inputmask.js',
+        'js/bootstrap-datetimepicker.min.js',
         'js/common.js',
 
     ];

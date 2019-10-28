@@ -174,20 +174,26 @@ $(document).ready(function(){
 	$(".phone").inputmask({"mask": "+7 (999) 999-9999"});
 
 	//$("a.gal").fancybox();
-	/*$('.item-thing').on('click', function() {
+	$('.item-single-thing').on('click', function() {
 			$(this).find('.back').toggle('slide');
-	});*/
+	});
 	$('.menu__icon').on('click', function() {
 		$('.top-menu-media').toggle();
 	});
+
 	$('.checkbox input').on('change', function() {
-		if(isChecked() == 0) $('.room-nav-bottom').fadeOut();
+		$(this).parents('.item-thing').find('.back').toggle();
+		/*if(isChecked() == 0) {
+			$(this).parents('.item-thing').find('.back').toggle();
+			$('.room-nav-bottom').fadeOut();
+		}
 		else {
 			$('.room-nav-bottom').fadeOut();
 			$(this).parents('.item-thing').find('.back').toggle();
 			$('.room-nav-bottom').slideToggle();
-		}
+		}*/
 	});
+
 	function isChecked() {
 		var count = 0;
 		$('.checkbox input[type=checkbox]').each(function() {
@@ -196,7 +202,16 @@ $(document).ready(function(){
 		return count;
 	}
 
-	if(isChecked() != 0) $('.room-nav-bottom').fadeIn();
+	//if(isChecked() != 0) $('.room-nav-bottom').fadeIn();
+	$('.top-menu-btn').on('click', function() {
+		if(isChecked() == 0) {
+			alert('Выберите вещь');
+			return false;
+		}
+	});
+	$('#select-date').on('change', function() {
+		if($(this).val() == 10) $('.select-date').fadeIn();
+	});
 
 
 

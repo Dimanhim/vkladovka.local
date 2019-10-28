@@ -72,9 +72,17 @@ class LkController extends Controller
     {
         return $this->render('room');
     }
-    public function actionThing()
+    public function actionThingRent()
     {
-        return $this->render('thing');
+        return $this->render('thing-rent');
+    }
+    public function actionThingReturn()
+    {
+        return $this->render('thing-return');
+    }
+    public function actionThingForFriend()
+    {
+        return $this->render('thing-for-friend');
     }
 
 

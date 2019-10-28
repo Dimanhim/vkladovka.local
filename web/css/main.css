@@ -1296,6 +1296,7 @@ p strong {
 
 .sidebar {
   padding-right: 30px;
+  margin-top: 30px;
 }
 
 .sidebar ul {
@@ -1422,9 +1423,14 @@ p strong {
 }
 
 .rm-ul ul li a:hover {
+  text-decoration: none;
   -webkit-transform: scale(1.03);
       -ms-transform: scale(1.03);
           transform: scale(1.03);
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  padding: 9px 14px;
+  border: 1px solid #000;
 }
 
 .room-pg .owl-carousel .owl-item img {
@@ -1464,6 +1470,10 @@ p strong {
 }
 .item-thing {
   position: relative;
+  margin-bottom: 30px;
+}
+.item-thing:hover {
+  opacity: 0.9;
 }
 .back {
   position: absolute;
@@ -1536,9 +1546,22 @@ p strong {
   top: 26px;
 }
 .room-nav-bottom {
-  display: none;
+  /*display: none;*/
   position: absolute;
   bottom: 0;
+}
+.description {
+  position: relative;
+  z-index: 40;
+}
+.thing-photo img {
+  max-width: 100px;
+}
+table.table select.form-control {
+  height: auto !important;
+}
+.select-date {
+  display: none;
 }
 
 @media (max-width: 1200px) {
@@ -1553,7 +1576,11 @@ p strong {
   }
 }
 
+
 @media (max-width: 991px) {
+  .description {
+    font-size: 14px;
+  }
   .sidebar h3 {
     text-align: center;
   }
@@ -1803,8 +1830,11 @@ p strong {
             border-radius: 0;
     width: 100%;
   }
-  .room-pg {
+  .room-nav-bottom {
     position: fixed;
+  }
+  .room-pg {
+    /*position: fixed;*/
     margin: 0 !important;
     padding-bottom: 45px;
     padding-top: 20px;
@@ -1994,5 +2024,10 @@ p strong {
   }
   .middle-links a {
     font-size: 18px;
+  }
+  @media (max-width: 470px) {
+    .description {
+      font-size: 12px;
+    }
   }
 }

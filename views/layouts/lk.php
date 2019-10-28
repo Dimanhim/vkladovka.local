@@ -112,17 +112,17 @@ AppAsset::register($this);
         </div>
 
         <div class="container page-two room-pg">
-            <!--
+
             <div class="rm-ul room-nav-top">
                 <ul>
-                    <li><a href="#" class="quest">Вернуть <span>вещь</span></a></li>
-                    <li><a href="#" class="quest">Передать <span>другу</span></a></li>
-                    <li><a href="#" class="quest">Сдать <span>в аренду</span></a></li>
-                    <li><a href="#" class="quest">Доверяю <span>продать</span></a></li>
-                    <li><a href="#" class="quest">Продлить <span>хранение</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-return']) ?>" class="top-menu-btn">Вернуть <span>вещь</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-for-friend']) ?>" class="top-menu-btn">Передать <span>другу</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-rent']) ?>" class="top-menu-btn">Сдать <span>в аренду</span></a></li>
+                    <li><a href="#" class="top-menu-btn">Доверяю <span>продать</span></a></li>
+                    <li><a href="#" class="top-menu-btn">Продлить <span>хранение</span></a></li>
                 </ul>
             </div>
-            -->
+
             <div class="top-menu-button">
                 <div class="menu__icon">
                     <span></span>
@@ -132,13 +132,8 @@ AppAsset::register($this);
                 </div>
             </div>
             <ul class="top-menu-media">
-                <div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>
+                <!--<div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>-->
                 <li><a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Мой склад</a></li>
-                <li><a href="#" class="quest">Мой банк</a></li>
-                <li><a href="#" class="quest">Заказать хранение</a></li>
-                <li><a href="#" class="quest">Арендовать вещь</a></li>
-                <li><a href="#" class="quest">Заказать грузоперевозку</a></li>
-                <li><a href="#" class="quest">Тара и упаковка</a></li>
                 <div class="unvisible-block-user">
                     <p class="header-links">
                         <a href="#">Профиль</a><a href="#">Выход</a>
@@ -153,14 +148,9 @@ AppAsset::register($this);
                         Личный кабинет
                     </h3>
                     <div class="top-menu">
-                        <div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>
+                        <!--<div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>-->
                         <ul>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Мой склад</a></li>
-                            <li><a href="#" class="quest">Мой банк</a></li>
-                            <li><a href="#" class="quest">Заказать хранение</a></li>
-                            <li><a href="#" class="quest">Арендовать вещь</a></li>
-                            <li><a href="#" class="quest">Заказать грузоперевозку</a></li>
-                            <li><a href="#" class="quest">Тара и упаковка</a></li>
                         </ul>
                     </div>
 
@@ -190,20 +180,20 @@ AppAsset::register($this);
                 </div>
             </div>
         </div>
+
         <div class="container">
             <div class="rm-ul bt-n room-nav-bottom">
                 <ul>
-                    <li><a href="#" class="quest">Вернуть <span>вещь</span></a></li>
-                    <li><a href="#" class="quest">Передать <span>другу</span></a></li>
-                    <li><a href="#" class="quest">Сдать <span>в аренду</span></a></li>
-                    <li><a href="#" class="quest">Доверяю <span>продать</span></a></li>
-                    <li><a href="#" class="quest">Продлить <span>хранение</span></a></li>
+                    <li><a href="#" class="">Мой банк</a></li>
+                    <li><a href="#" class="">Заказать хранение</a></li>
+                    <li><a href="#" class="">Арендовать вещь</a></li>
+                    <li><a href="#" class="">Заказать грузоперевозку</a></li>
+                    <li><a href="#" class="">Тара и упаковка</a></li>
                 </ul>
             </div>
         </div>
 
     </div>
-
     <div class="page-footer footer-room">
         <footer class="container">
             <div class="row">
@@ -242,6 +232,7 @@ AppAsset::register($this);
         </footer>
     </div>
 </div>
+
 <?php $this->endBody() ?>
 </body>
 </html>
