@@ -22,13 +22,13 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/libs.min.css',
         'css/bootstrap.min.css',
-        //'css/jquery.fancybox.min.css',
+        'css/jquery.fancybox.min.css',
         'css/bootstrap-datetimepicker3.min.css',
         'css/main.css',
     ];
     public $js = [
         'js/libs.min.js',
-        //'js/jquery.fancybox.min.js',
+        'js/jquery.fancybox.min.js',
         'js/owl.carousel.min.js',
         'js/inputmask.js',
         'js/jquery.inputmask.js',

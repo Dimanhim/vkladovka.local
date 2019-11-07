@@ -63,7 +63,7 @@ AppAsset::register($this);
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Как это работает</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic') ?>">Для юр. лиц</a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic2') ?>">Для юр. лиц 2???</a></li>
+                    <!--<li><a href="<?//= Yii::$app->urlManager->createUrl('site/for-ur-lic2') ?>">Для юр. лиц 2???</a></li>-->
                     <li><a href="#" class="quest">Новичок в Вкладовка?</a></li>
                 </ul>
             </div>

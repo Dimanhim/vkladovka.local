@@ -2,14 +2,24 @@
 
 /* @var $this yii\web\View */
 
-use kartik\datetime\DateTimePicker;
 use yii\web\View;
 use yii\helpers\Url;
+use kartik\datetime\DateTimePicker;
 
-$this->title = 'Передать другу "вещь такая то"';
+$this->title = 'Вернуть "вещь такая то"';
 ?>
+
+<!-- Хлебные крошки -->
+<ul class="bread-crumps">
+    <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
+    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/index']) ?>"> / Личный кабинет</a></li>
+    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-stock']) ?>"> / Мои вещи</a></li>
+    <li> / Вернуть "Вещь такая то"</li>
+</ul>
+<!-- Хлебные крошки -->
+
 <div class="col-md-12">
-    <h2 class="tac">Передать другу "Вещь такая-то"</h2>
+    <h2 class="tac">Вернуть "Вещь такая-то"</h2>
 </div>
 
 <div class="clearfix"></div>
@@ -51,7 +61,7 @@ $this->title = 'Передать другу "вещь такая то"';
             </tr>
             <tr>
                 <td>
-                    Передать в течение:
+                    Вернуть в течение:
                 </td>
                 <td>
                     <select name="" id="select-date" class="form-control">
@@ -70,32 +80,14 @@ $this->title = 'Передать другу "вещь такая то"';
                 </td>
                 <td>
                     <?= DateTimePicker::widget([
-                        'name' => 'check_issue_date',
-                        'value' => date('d-m-Y H:i'),
-                        'options' => ['placeholder' => 'Выберете дату ...'],
-                        'pluginOptions' => [
-                            'format' => 'dd-mm-yyyy h:i',
-                            'todayHighlight' => true
-                        ]
+                    'name' => 'check_issue_date',
+                    'value' => date('d-m-Y H:i'),
+                    'options' => ['placeholder' => 'Выберете дату ...'],
+                    'pluginOptions' => [
+                        'format' => 'dd-mm-yyyy h:i',
+                        'todayHighlight' => true
+                    ]
                     ]); ?>
-                </td>
-            </tr>
-            <tr>
-                <td>Имя:</td>
-                <td>
-                    <input type="text" name="name" class="form-control" placeholder="Имя" />
-                </td>
-            </tr>
-            <tr>
-                <td>Контактный телефон:</td>
-                <td>
-                    <input type="text" name="phone" class="phone form-control" />
-                </td>
-            </tr>
-            <tr>
-                <td>Особые пожелания:</td>
-                <td>
-                    <textarea name="" id="" cols="30" rows="4" class="form-control">Особые пожелания</textarea>
                 </td>
             </tr>
             <tr>
@@ -108,28 +100,15 @@ $this->title = 'Передать другу "вещь такая то"';
             </tr>
             <tr>
                 <td>
-                    Цена за доставку:
+                    Цена за срочную доставку:
                 </td>
                 <td>
                     <input type="text" name="price" class="form-control" placeholder="рублей" />
                 </td>
             </tr>
             <tr>
-                <td>
-                    Упаковать:
-                </td>
-                <td>
-                    <select name="" id="select-date" class="form-control">
-                        <option value="">Выбрать...</option>
-                        <option value="">В красивую упаковку</option>
-                        <option value="">В обычную упаковку</option>
-                        <option value="">Не упаковывать</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
                 <td colspan="2">
-                    <button class="btn btn-primary">Передать другу вещь</button>
+                    <button class="btn btn-primary">Вернуть вещь</button>
                 </td>
             </tr>
         </table>

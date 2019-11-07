@@ -202,18 +202,29 @@ $(document).ready(function(){
 		});
 		return count;
 	}
+	$('.trust-to-sell').on('click', function() {
+		alert('В настоящее время услуга находится в разработке');
+		return false;
+	});
 
 	//if(isChecked() != 0) $('.room-nav-bottom').fadeIn();
-	$('.top-menu-btn').on('click', function() {
+
+	$('.select-thing').on('click', function() {
 		if(isChecked() == 0) {
 			alert('Выберите вещь');
 			return false;
 		}
 	});
+
+
 	$('#select-date').on('change', function() {
 		if($(this).val() == 10) $('.select-date').fadeIn();
 	});
 
+	$('.gallery').fancybox();
+	$('.hide-textarea').on('click', function() {
+		$('.adress-textarea').toggle();
+	})
 
 
 });

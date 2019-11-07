@@ -7,6 +7,16 @@ use yii\helpers\Url;
 
 $this->title = 'Сдать в аренду "вещь такая то"';
 ?>
+
+<!-- Хлебные крошки -->
+<ul class="bread-crumps">
+    <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
+    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/index']) ?>"> / Личный кабинет</a></li>
+    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-stock']) ?>"> / Мои вещи</a></li>
+    <li> / Сдать в аренду "Вещь такая то"</li>
+</ul>
+<!-- Хлебные крошки -->
+
 <div class="col-md-12">
     <h2 class="tac">Сдать в аренду "Вещь такая-то"</h2>
 </div>

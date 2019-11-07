@@ -72,7 +72,7 @@ AppAsset::register($this);
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Как это работает</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic') ?>">Для юр. лиц</a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic2') ?>">Для юр. лиц 2???</a></li>
+                    <!--<li><a href="<?//= Yii::$app->urlManager->createUrl('site/for-ur-lic2') ?>">Для юр. лиц 2???</a></li>-->
                     <li><a href="#" class="quest">Новичок в Вкладовка?</a></li>
                 </ul>
             </div>
@@ -115,11 +115,11 @@ AppAsset::register($this);
 
             <div class="rm-ul room-nav-top">
                 <ul>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-return']) ?>" class="top-menu-btn">Вернуть <span>вещь</span></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-for-friend']) ?>" class="top-menu-btn">Передать <span>другу</span></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-rent']) ?>" class="top-menu-btn">Сдать <span>в аренду</span></a></li>
-                    <li><a href="#" class="top-menu-btn">Доверяю <span>продать</span></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-extend']) ?>" class="top-menu-btn">Продлить <span>хранение</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-return']) ?>" class="top-menu-btn select-thing">Вернуть <span>вещь</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-for-friend']) ?>" class="top-menu-btn select-thing">Передать <span>другу</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-rent']) ?>" class="top-menu-btn select-thing">Сдать <span>в аренду</span></a></li>
+                    <li><a href="#" class="top-menu-btn trust-to-sell">Доверяю <span>продать</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-extend']) ?>" class="top-menu-btn select-thing">Продлить <span>хранение</span></a></li>
                 </ul>
             </div>
 
@@ -151,6 +151,8 @@ AppAsset::register($this);
                         <!--<div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>-->
                         <ul>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Мой склад</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>">Арендовать вещь</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>">Заказать хранение</a></li>
                         </ul>
                     </div>
 
@@ -185,8 +187,8 @@ AppAsset::register($this);
             <div class="rm-ul bt-n room-nav-bottom">
                 <ul>
                     <li><a href="#" class="">Мой банк</a></li>
-                    <li><a href="#" class="">Заказать хранение</a></li>
-                    <li><a href="#" class="">Арендовать вещь</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>" class="">Заказать хранение</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>" class="">Арендовать вещь</a></li>
                     <li><a href="#" class="">Заказать грузоперевозку</a></li>
                     <li><a href="#" class="">Тара и упаковка</a></li>
                 </ul>
@@ -232,6 +234,7 @@ AppAsset::register($this);
         </footer>
     </div>
 </div>
+
 
 <?php $this->endBody() ?>
 </body>

@@ -1563,6 +1563,32 @@ table.table select.form-control {
 .select-date {
   display: none;
 }
+.cat-item {
+  margin-top: 20px;
+}
+.cat-img span, .cat-img a {
+  display: block;
+  text-align: center;
+}
+.search-category {
+  margin: 20px 0;
+}
+.bread-crumps {
+
+}
+.bread-crumps li {
+  display: inline-block;
+}
+.bread-crumps li a {
+
+}
+.size input.size-item {
+  display: inline;
+  width: auto;
+}
+.add-thing {
+  font-size: 35px;
+}
 
 @media (max-width: 1200px) {
   header .cont-top, header .rsp-top {

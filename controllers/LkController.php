@@ -60,6 +60,7 @@ class LkController extends Controller
      *
      * @return string
      */
+//---- МОИ ВЕЩИ
     public function actionIndex()
     {
         return $this->render('my-stock');
@@ -72,23 +73,48 @@ class LkController extends Controller
     {
         return $this->render('room');
     }
-    public function actionThingRent()
+    public function actionMyThing()
     {
-        return $this->render('thing-rent');
+        return $this->render('my-thing');
     }
-    public function actionThingReturn()
+    public function actionMyThingRent()
     {
-        return $this->render('thing-return');
+        return $this->render('my-thing-rent');
     }
-    public function actionThingForFriend()
+    public function actionMyThingReturn()
     {
-        return $this->render('thing-for-friend');
+        return $this->render('my-thing-return');
     }
-    public function actionThingExtend()
+    public function actionMyThingForFriend()
     {
-        return $this->render('thing-extend');
+        return $this->render('my-thing-for-friend');
+    }
+    public function actionMyThingExtend()
+    {
+        return $this->render('my-thing-extend');
     }
 
+//--- АРЕНДОВАТЬ ВЕЩЬ
+    public function actionToThingRent()
+    {
+        return $this->render('to-thing-rent');
+    }
+    public function actionToThings()
+    {
+        return $this->render('to-things');
+    }
+    public function actionToThingItem()
+    {
+        return $this->render('to-thing-item');
+    }
+
+//---- ЗАКАЗАТЬ ХРАНЕНИЕ
+    public function actionOrderStorage()
+    {
+        return $this->render('order-storage', [
+
+        ]);
+    }
 
     /**
      * Login action.

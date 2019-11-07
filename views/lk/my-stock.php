@@ -9,20 +9,29 @@ $this->title = 'Мой склад';
 <?php
     $items = 5;
 ?>
+
+<!-- Хлебные крошки -->
+<ul class="bread-crumps">
+    <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
+    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/index']) ?>"> / Личный кабинет</a></li>
+    <li> / Мои вещи</li>
+</ul>
+<!-- Хлебные крошки -->
+
     <div class="col-md-12">
         <h2 class="tac">Мои вещи</h2>
     </div>
 
     <div class="clearfix"></div>
 <?php for ($i = 1; $i < 8; $i++) { ?>
-    <div class="product-one col-4 product-one-desktop">
+    <div class="product-one col-4 product-one">
         <div class="">
             <div class="item-thing">
                 <div class="item-img">
                     <img src="/img/item-<?= $i ?>.jpg" alt=""/>
                 </div>
                 <div class="description">
-                    <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-rent']) ?>">Lorem ipsum dolor sit amet,
+                    <a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing']) ?>">Lorem ipsum dolor sit amet,
                         consectetur adipisicing elit.</a>
                 </div>
                 <div class="checkbox">
@@ -43,17 +52,18 @@ $this->title = 'Мой склад';
         </div>
     </div>
 <?php } ?>
+<!--
 <div class="owl-carousel owl-theme owl-top m-view">
-<?php for ($i = 1; $i < 8; $i++) { ?>
+<?php //for ($i = 1; $i < 8; $i++) { ?>
     <div>
         <div class="product-one col-12">
             <div class="">
                 <div class="item-thing">
                     <div class="item-img">
-                        <img src="/img/item-<?= $i ?>.jpg" alt=""/>
+                        <img src="/img/item-<?//= $i ?>.jpg" alt=""/>
                     </div>
                     <div class="description">
-                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-rent']) ?>">Lorem ipsum dolor sit amet,
+                        <a href="<?//= Yii::$app->urlManager->createUrl(['lk/thing-rent']) ?>">Lorem ipsum dolor sit amet,
                             consectetur adipisicing elit.</a>
                     </div>
                     <div class="checkbox">
@@ -62,7 +72,7 @@ $this->title = 'Мой склад';
                     <div class="back"></div>
                     <div class="back-menu">
                         <ul class="small-item">
-                            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing-rent']) ?>">Просмотр</a></li>
+                            <li><a href="<?//= Yii::$app->urlManager->createUrl(['lk/thing-rent']) ?>">Просмотр</a></li>
                             <li><a href="#">Вернуть вещь</a></li>
                             <li><a href="#">Передать другу</a></li>
                             <li><a href="#">Сдать в аренду</a></li>
@@ -74,6 +84,7 @@ $this->title = 'Мой склад';
             </div>
         </div>
     </div>
-<?php } ?>
+<?php //} ?>
 </div>
+-->
 
