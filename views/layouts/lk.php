@@ -11,6 +11,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+$action = Yii::$app->controller->action->id;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -36,7 +37,6 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 <div class="main-wrapper">
     <div class="main-page-content">
-
         <div class="bars-m room-hid"><i class="fas fa-bars"></i><i class="fas fa-times"></i></div>
 
         <header class="room-header">
@@ -114,6 +114,7 @@ AppAsset::register($this);
         <div class="container page-two room-pg">
 
             <div class="rm-ul room-nav-top">
+                <?php if($action == "my-stock") { ?>
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-return']) ?>" class="top-menu-btn select-thing">Вернуть <span>вещь</span></a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-for-friend']) ?>" class="top-menu-btn select-thing">Передать <span>другу</span></a></li>
@@ -121,6 +122,16 @@ AppAsset::register($this);
                     <li><a href="#" class="top-menu-btn trust-to-sell">Доверяю <span>продать</span></a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-extend']) ?>" class="top-menu-btn select-thing">Продлить <span>хранение</span></a></li>
                 </ul>
+                <?php } ?>
+                <?php if(preg_match("/bank/", $action)) { ?>
+                    <ul class="my-bank-menu">
+                        <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/bank-partner']) ?>" class="top-menu-btn<?php if($action == 'bank-partner') echo ' active' ?>">Партнерская программа</a></li>
+                        <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/bank-payments']) ?>" class="top-menu-btn<?php if($action == 'bank-payments') echo ' active' ?>">Платежи</a></li>
+                        <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/bank-history']) ?>" class="top-menu-btn<?php if($action == 'bank-history') echo ' active' ?>">История</a></li>
+                        <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-stock']) ?>" class="top-menu-btn">Вернуться в Мой склад</a></li>
+                    </ul>
+                <?php } ?>
+
             </div>
 
             <div class="top-menu-button">
@@ -133,7 +144,12 @@ AppAsset::register($this);
             </div>
             <ul class="top-menu-media">
                 <!--<div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>-->
+                <li><a href="<?= Yii::$app->urlManager->createUrl('lk/bank') ?>">Мой банк</a></li>
                 <li><a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Мой склад</a></li>
+                <li><a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>">Арендовать вещь</a></li>
+                <li><a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>">Заказать хранение</a></li>
+                <li><a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>">Заказать грузоперевозку</a></li>
+
                 <div class="unvisible-block-user">
                     <p class="header-links">
                         <a href="#">Профиль</a><a href="#">Выход</a>
@@ -150,9 +166,11 @@ AppAsset::register($this);
                     <div class="top-menu">
                         <!--<div class="my-balance">Мой баланс: <b>20.000 руб.</b></div>-->
                         <ul>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl('lk/bank') ?>">Мой банк</a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Мой склад</a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>">Арендовать вещь</a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>">Заказать хранение</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>">Заказать грузоперевозку</a></li>
                         </ul>
                     </div>
 
@@ -186,10 +204,10 @@ AppAsset::register($this);
         <div class="container">
             <div class="rm-ul bt-n room-nav-bottom">
                 <ul>
-                    <li><a href="#" class="">Мой банк</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('lk/bank') ?>" class="">Мой банк</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>" class="">Заказать хранение</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>" class="">Арендовать вещь</a></li>
-                    <li><a href="#" class="">Заказать грузоперевозку</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>" class="">Заказать грузоперевозку</a></li>
                     <li><a href="#" class="">Тара и упаковка</a></li>
                 </ul>
             </div>

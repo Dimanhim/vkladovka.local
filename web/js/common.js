@@ -182,8 +182,16 @@ $(document).ready(function(){
 		$('.top-menu-media').toggle();
 	});
 
-	$('.checkbox input').on('change', function() {
+	//$('.checkbox input').on('change', function() {
+	$('.checkbox').on('click', function() {
+		var checkbox = $(this).find('input[type=checkbox]');
+		var desc = $(this).parent('.item-thing').find('.description a');
+		if(checkbox.is(':checked')) checkbox.prop('checked', false);
+		else checkbox.prop('checked', true);
+		if(desc.hasClass('white-desc')) desc.removeClass('white-desc');
+		else desc.addClass('white-desc');
 		$(this).parents('.item-thing').find('.back').toggle();
+
 		/*if(isChecked() == 0) {
 			$(this).parents('.item-thing').find('.back').toggle();
 			$('.room-nav-bottom').fadeOut();
@@ -211,10 +219,14 @@ $(document).ready(function(){
 
 	$('.select-thing').on('click', function() {
 		if(isChecked() == 0) {
-			alert('Выберите вещь');
+			$('.error p').fadeIn();
+			setTimeout(displayError, 6000);
 			return false;
 		}
 	});
+	function displayError() {
+		$('.error p').fadeOut();
+	}
 
 
 	$('#select-date').on('change', function() {
@@ -224,7 +236,18 @@ $(document).ready(function(){
 	$('.gallery').fancybox();
 	$('.hide-textarea').on('click', function() {
 		$('.adress-textarea').toggle();
-	})
+	});
+	$('.my-thing-extend').on('click', function() {
+		$('#extend').modal();
+		return false;
+	});
+	$('.modal-btn').on('click', function() {
+		$('#thing-extend').modal();
+	});
+
+	$('.tariffs-return').on('click', function() {
+		$('#tariffs-return').modal();
+	});
 
 
 });

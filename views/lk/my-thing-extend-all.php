@@ -6,23 +6,20 @@ use yii\web\View;
 use yii\helpers\Url;
 use kartik\datetime\DateTimePicker;
 
-$this->title = 'Продлить хранение "вещь такая то"';
+$this->title = 'Продлить хранение всех вещей';
 ?>
-<?= $this->render('_payment', [
-        'message' => 'Продлить хранение "вещь такая-то"'
-]) ?>
+
 <!-- Хлебные крошки -->
 <ul class="bread-crumps">
     <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/index']) ?>"> / Личный кабинет</a></li>
     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-stock']) ?>"> / Мои вещи</a></li>
-    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing']) ?>"> / Вещь такая-то</a></li>
-    <li> / Продлить хранение "Вещь такая то"</li>
+    <li> / Продлить хранение всех вещей</li>
 </ul>
 <!-- Хлебные крошки -->
 
 <div class="col-md-12">
-    <h2 class="tac">Продлить хранение "Вещь такая-то"</h2>
+    <h2 class="tac">Продлить хранение всех вещей</h2>
 </div>
 
 <div class="clearfix"></div>
@@ -32,22 +29,6 @@ $this->title = 'Продлить хранение "вещь такая то"';
     </div>
     <div class="thing-actions">
         <table class="table">
-            <tr>
-                <td>
-                    Название:
-                </td>
-                <td>
-                    Вещь такая-то
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Фото:
-                </td>
-                <td class="thing-photo">
-                    <img src="/img/item-1.jpg" alt="" />
-                </td>
-            </tr>
             <tr class="select-date-extend">
                 <td>
                     Продлить до:
@@ -69,16 +50,17 @@ $this->title = 'Продлить хранение "вещь такая то"';
                     Стоимость хранения:
                 </td>
                 <td>
-                    <input type="text" name="price" class="form-control" placeholder="384 руб." disabled />
+                    <input type="text" name="price" class="form-control" placeholder="1446 руб." disabled />
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <button class="btn btn-primary modal-btn">Продлить хранение</button>
+                    <button class="btn btn-primary">Продлить хранение всех вещей</button>
                 </td>
             </tr>
         </table>
     </div>
 </div>
+
 
 

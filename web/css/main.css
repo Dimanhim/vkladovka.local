@@ -1421,6 +1421,9 @@ p strong {
   -webkit-border-radius: 5px;
           border-radius: 5px;
 }
+.rm-ul ul li a.active {
+  background: #ccc;
+}
 
 .rm-ul ul li a:hover {
   text-decoration: none;
@@ -1588,6 +1591,52 @@ table.table select.form-control {
 }
 .add-thing {
   font-size: 35px;
+}
+.bold h4, .bold ul li {
+  font-weight: bold;
+}
+.bold p {
+  font-style: italic;
+}
+.checkbox input[type=checkbox] {
+  display: none;
+}
+.white-desc {
+  color: #fff;
+}
+.white-desc:hover {
+  color: #fff;
+}
+.error {
+  height: 30px;
+}
+.error p {
+  display: none;
+  color: #f00;
+}
+.payments-description {
+  text-align: center;
+  background: #75e12c;
+  border: 1px solid #999;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 10px;
+}
+.balance-plus {
+  color: #539d21;
+}
+.balance-minus {
+  color: #f00;
+}
+.modal.show {
+  opacity: 1 !important;
+}
+.modal {
+  margin-top: 30px;
+}
+.modal-header {
+  margin-top: 40px;
 }
 
 @media (max-width: 1200px) {
@@ -1948,6 +1997,9 @@ table.table select.form-control {
     padding: 0;
     height: 45px;
     border-right: 1px solid #e6b82a;
+  }
+  .rm-ul ul.my-bank-menu li {
+    width: 25%;
   }
   .rm-ul ul li a {
     margin: 0;

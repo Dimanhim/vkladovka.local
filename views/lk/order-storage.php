@@ -8,7 +8,9 @@ use kartik\datetime\DateTimePicker;
 
 $this->title = 'Заказать хранение';
 ?>
-
+<?= $this->render('_payment', [
+    'message' => 'Заказать хранение'
+]) ?>
 <!-- Хлебные крошки -->
 <ul class="bread-crumps">
     <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
@@ -135,7 +137,7 @@ $this->title = 'Заказать хранение';
 
             <tr>
                 <td colspan="2">
-                    <button class="btn btn-primary">Заказать хранение</button>
+                    <button class="btn btn-primary modal-btn">Заказать хранение</button>
                 </td>
             </tr>
         </table>

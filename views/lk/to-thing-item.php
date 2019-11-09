@@ -7,7 +7,9 @@ use yii\helpers\Url;
 
 $this->title = 'Сдать в аренду "вещь такая то"';
 ?>
-
+<?= $this->render('_payment', [
+    'message' => 'Сдать в аренду "вещь такая то"'
+]) ?>
 <!-- Хлебные крошки -->
 <ul class="bread-crumps">
     <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
@@ -85,7 +87,7 @@ $this->title = 'Сдать в аренду "вещь такая то"';
             </tr>
             <tr>
                 <td colspan="2">
-                    <button class="btn btn-primary">Арендовать вещь</button>
+                    <button class="btn btn-primary modal-btn">Арендовать вещь</button>
                 </td>
             </tr>
         </table>

@@ -93,6 +93,10 @@ class LkController extends Controller
     {
         return $this->render('my-thing-extend');
     }
+    public function actionMyThingExtendAll()
+    {
+        return $this->render('my-thing-extend-all');
+    }
 
 //--- АРЕНДОВАТЬ ВЕЩЬ
     public function actionToThingRent()
@@ -112,6 +116,59 @@ class LkController extends Controller
     public function actionOrderStorage()
     {
         return $this->render('order-storage', [
+
+        ]);
+    }
+
+//---- ЗАКАЗАТЬ ПИКАП
+    public function actionOrderPickup()
+    {
+        return $this->render('order-pickup', [
+
+        ]);
+    }
+//---- МОЙ БАНК
+    public function actionBank()
+    {
+        return $this->render('bank', [
+
+        ]);
+    }
+    public function actionBankPartner()
+    {
+        return $this->render('bank-partner', [
+
+        ]);
+    }
+    public function actionBankPayments()
+    {
+        return $this->render('bank-payments', [
+
+        ]);
+    }
+    public function actionBankHistory()
+    {
+        return $this->render('bank-history', [
+
+        ]);
+    }
+//--- СТРАНИЦЫ ОПЛАТЫ
+    public function actionPaymentTinkoff()
+    {
+        return $this->render('payment-tinkoff', [
+
+        ]);
+    }
+    public function actionPaymentLk()
+    {
+        return $this->render('payment-lk', [
+
+        ]);
+    }
+//--- СООБЩЕНИЕ МЕНЕДЖЕРА
+    public function actionManagerMessage()
+    {
+        return $this->render('manager-message', [
 
         ]);
     }

@@ -17,8 +17,8 @@ class SefRule extends UrlRule
 	{
 		if($route == 'site/index') return '';
 		//if($route == 'site/search') return 'search.html?q='.$params['q'];
-        if($route == 'site/faq#2') return 'chasto-zadavaemye-voprosy.html#2';
-        if($route == 'site/faq#id50') return 'chasto-zadavaemye-voprosy.html#id50';
+        //if($route == 'site/faq#2') return 'chasto-zadavaemye-voprosy.html#2';
+        //if($route == 'site/faq#id50') return 'chasto-zadavaemye-voprosy.html#id50';
 		$link = $route;
 		if(count($params)) {
 			$link .= "?";

@@ -155,7 +155,7 @@ AppAsset::register($this);
                             <li><a href="#" class="quest">Правила аренды </a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('site/faq') ?>">Часто задаваемые вопросы</a></li>
                             <li><a href="#" class="quest">Отзывы/оставить </a></li>
-                            <li><a href="#" class="quest">Заказ на хранение</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/order-storage', 'id' => $id]) ?>">Заказ на хранение</a></li>
                             <li><a href="#" class="quest">Для партнеров по регионам/франшиза</a></li>
                         </ul>
                     </div>

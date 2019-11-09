@@ -19,7 +19,10 @@ $this->title = 'Мой склад';
 <!-- Хлебные крошки -->
 
     <div class="col-md-12">
-        <h2 class="tac">Мои вещи</h2>
+        <h2 class="tac" style="margin-bottom: 10px;">Мои вещи</h2>
+    </div>
+    <div class="col-md-12 error">
+        <p>Пожалуйста, выберете хотя бы одну вещь!</p>
     </div>
 
     <div class="clearfix"></div>
@@ -31,11 +34,10 @@ $this->title = 'Мой склад';
                     <img src="/img/item-<?= $i ?>.jpg" alt=""/>
                 </div>
                 <div class="description">
-                    <a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing']) ?>">Lorem ipsum dolor sit amet,
-                        consectetur adipisicing elit.</a>
+                    <a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing']) ?>">Вещь такая-то</a>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox"<?php // if($i == 0) echo ' checked' ?> />
+                    <input type="checkbox" />
                 </div>
                 <div class="back"></div>
                 <div class="back-menu">

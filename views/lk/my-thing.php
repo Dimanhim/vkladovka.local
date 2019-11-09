@@ -7,6 +7,22 @@ use yii\helpers\Url;
 
 $this->title = 'Вещь такая то';
 ?>
+<div class="modal fade" id="extend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Продлить хранение "Вещь такая-то"</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-extend']) ?>" class="btn btn-primary">Продлить только на эту вещь</a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-extend-all']) ?>" class="btn btn-default">Продлить на все вещи</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Хлебные крошки -->
 <ul class="bread-crumps">
@@ -23,22 +39,22 @@ $this->title = 'Вещь такая то';
 
 <div class="clearfix"></div>
 <div class="col-md-12">
-    <!--<div class="main-img">
+    <div>
+        <a href="<?= Yii::$app->urlManager->createUrl(['lk/my-stock']) ?>">Вернуться на склад</a>
+    </div>
+    <div class="main-img">
         <div class="item-single-thing">
             <img src="/img/item-1.jpg" alt="" />
             <div class="back">
                 <ul>
-                    <li><a href="<?//= Yii::$app->urlManager->createUrl(['lk/thing']) ?>" target="_blanc">Вернуть вещь</a></li>
-                    <li><a href="<?//= Yii::$app->urlManager->createUrl(['lk/thing']) ?>" target="_blanc">Передать другу</a></li>
-                    <li><a href="<?//= Yii::$app->urlManager->createUrl(['lk/thing']) ?>" target="_blanc">Сдать в аренду</a></li>
-                    <li><a href="<?//= Yii::$app->urlManager->createUrl(['lk/thing']) ?>" target="_blanc">Продлить хранение</a></li>
-                    <li><a href="<?//= Yii::$app->urlManager->createUrl(['lk/thing']) ?>" target="_blanc">Доверяю продать</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-return']) ?>">Вернуть вещь</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-for-friend']) ?>">Передать другу</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-rent']) ?>">Сдать в аренду</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/my-thing-extend']) ?>" class="my-thing-extend">Продлить хранение</a></li>
+                    <li><a href="#" class="top-menu-btn trust-to-sell">Доверяю продать</a></li>
                 </ul>
             </div>
         </div>
-    </div>-->
-    <div>
-        <a href="<?= Yii::$app->urlManager->createUrl(['lk/my-stock']) ?>">Вернуться на склад</a>
     </div>
     <div class="thing-actions">
         <table class="table">
@@ -48,14 +64,6 @@ $this->title = 'Вещь такая то';
                 </td>
                 <td>
                     Вещь такая-то
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Фото:
-                </td>
-                <td class="thing-photo">
-                    <img src="/img/item-1.jpg" alt="" />
                 </td>
             </tr>
         </table>
