@@ -4,11 +4,14 @@
 /* @var $content string */
 
 use app\widgets\Alert;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\models\User;
+use app\models\LoginForm;
 
 AppAsset::register($this);
 ?>
@@ -35,7 +38,6 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 <div class="main-wrapper">
     <div class="main-page-content">
-
         <div class="bars-m"><i class="fas fa-bars"></i><i class="fas fa-times"></i></div>
 
         <header>
@@ -54,7 +56,19 @@ AppAsset::register($this);
                     </div>
                 </div>
                 <div class="wp-go">
+                    <?php if(Yii::$app->user->isGuest) { ?>
                     <a href="#" class="main-bt" data-toggle="modal" data-target="#modalLogin">Войти</a>
+                    <?php } else { ?>
+                    <div class="welcome">
+                        <span class="glyphicon glyphicon-user"></span>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['lk/profile']) ?>" class="user-name">
+                                <?= User::findOne(Yii::$app->user->id)->fio ?>
+                            </a>
+                        <div class="logout">
+                            <a href="<?= Yii::$app->urlManager->createUrl(['site/logout']) ?>">Выход</a>
+                        </div>
+                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </header>
@@ -83,6 +97,9 @@ AppAsset::register($this);
                         </button>
                     </div>
                     <div class="modal-body">
+                        <div class="site-login">
+                            <?= \app\widgets\login\LoginWidget::widget()?>
+                        <!--
                         <form action="." class="form">
                             <label for="n1">Логин</label>
                             <input type="text" id="n1">
@@ -90,13 +107,15 @@ AppAsset::register($this);
                             <input type="text" id="n2">
                             <div class="row">
                                 <div class="col-md-6 link-reg">
-                                    <a href="<?= Yii::$app->urlManager->createUrl('site/registration') ?>">Регистрация</a>
+                                    <a href="<?//= Yii::$app->urlManager->createUrl('site/registration') ?>">Регистрация</a>
                                 </div>
                                 <div class="col-md-6 tar">
                                     <button class="main-bt">Войти</button>
                                 </div>
                             </div>
                         </form>
+                        -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -133,6 +152,12 @@ AppAsset::register($this);
               </div>
            </div>
         </div> -->
+        <?php if( Yii::$app->session->hasFlash('error') ): ?>
+            <p class="bg-info" style="padding: 10px; border-radius: 5px; color: #fff"><?php echo Yii::$app->session->getFlash('error'); ?></p>
+        <?php endif;?>
+        <?php if( Yii::$app->session->hasFlash('success') ): ?>
+            <p class="bg-info" style="padding: 10px; border-radius: 5px; color: #fff"><?php echo Yii::$app->session->getFlash('success'); ?></p>
+        <?php endif;?>
         <?= $content ?>
         <?= $this->render('_chat') ?>
     </div>

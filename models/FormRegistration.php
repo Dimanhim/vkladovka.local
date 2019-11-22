@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
+use app\models\User;
 
 /**
  * ContactForm is the model behind the contact form.
@@ -12,11 +13,12 @@ class FormRegistration extends Model
 {
     public $fio;
     public $passport;
-    public $adress;
+    public $address;
     public $phone;
     public $email;
     public $password;
     public $password_2;
+
 
     /**
      * @return array the validation rules.
@@ -25,11 +27,9 @@ class FormRegistration extends Model
     {
         return [
             [['fio', 'passport', 'phone', 'email', 'password', 'password_2'], 'required'],
-            //[['fio', 'passport', 'passport', 'phone', 'email', 'password', 'password_2'], 'safe'],
-            ['email', 'email'],
-            [['fio', 'passport', 'passport', 'phone', 'email', 'password', 'password_2'], 'string'],
-            //['password', 'validatePassword'],
-            //['password_2', 'validatePassword'],
+            ['email', 'unique', 'targetClass' => User::className(),  'message' => 'Этот E-mail уже занят'],
+            [['fio', 'passport', 'phone', 'address', 'email', 'password', 'password_2'], 'safe'],
+            ['password', 'validateUserPassword'],
         ];
     }
 
@@ -41,7 +41,7 @@ class FormRegistration extends Model
         return [
             'fio' => 'Фамилия, имя, отчество',
             'passport' => 'Паспорт',
-            'adress' => 'Проживание (по паспорту)',
+            'address' => 'Проживание (по паспорту)',
             'phone' => 'Номер телефона',
             'email' => 'Адрес электронной почты',
             'password' => 'Пароль',
@@ -79,5 +79,22 @@ class FormRegistration extends Model
             }
         }
     }
+    public function validateUserPassword($attribute)
+    {
+        if (strlen($this->password) < 8) {
+            $this->addError($attribute, 'Слишком короткий пароль, придумайте другой.');
+        }
+    }
+    public function sendEmailRegistration()
+    {
+        $subject = 'Vkladovka - Уведомление об успешной регистрации';
+        return Yii::$app->mailer->compose('registration', ['name' => $this->fio, 'email' => $this->email, 'password' => $this->password])
+            ->setFrom([Yii::$app->params['adminEmail'] => 'vKladovka'])
+            ->setTo($this->email)
+            ->setSubject($subject)
+            ->setTextBody(' ')
+            ->send();
+    }
+
 }
 

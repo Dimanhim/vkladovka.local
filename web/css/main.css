@@ -149,6 +149,25 @@ header .wp-go {
   float: right;
   line-height: 90px;
 }
+header .wp-go .welcome {
+   line-height: 30px;
+   position: relative;
+  margin-top: 21px;
+  min-width: 200px;
+}
+header .wp-go .welcome .logout {
+  position: absolute;
+  top: 26px;
+  left: 20px;
+  padding: 5px;
+}
+header .wp-go .welcome a {
+  color: #2a6496;
+  line-height: 20px;
+}
+header .wp-go .welcome .logout a {
+  font-size: 12px;
+}
 header .wp-go p {
   margin-top: 10px;
   line-height: 1;
@@ -1638,7 +1657,9 @@ table.table select.form-control {
 .modal-header {
   margin-top: 40px;
 }
-
+.help-block {
+  color: #f00;
+}
 @media (max-width: 1200px) {
   header .cont-top, header .rsp-top {
     padding-left: 45px;

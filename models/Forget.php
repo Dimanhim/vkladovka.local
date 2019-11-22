@@ -11,17 +11,12 @@ use yii\base\Model;
  * @property User|null $user This property is read-only.
  *
  */
-class LoginForm extends Model
+class Forget extends Model
 {
     public $fio;
-    public $passport;
-    public $phone;
     public $email;
     public $password;
     public $password_2;
-    public $role;
-    public $rememberMe = true;
-    private $_user = false;
 
 
     /**
@@ -30,13 +25,9 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            [['email'], 'required', 'message' => 'Введите E-mail'],
+            [['email'], 'required', 'message' => 'Введите E-mail, указанный при регистрации'],
             [['password'], 'required', 'message' => 'Введите пароль'],
-            // rememberMe must be a boolean value
-            [['rememberMe'], 'boolean'],
-            [['email', 'password'], 'string'],
-            // password is validated by validatePassword()
-            ['password', 'validatePassword'],
+            [['password_2'], 'required', 'message' => 'Введите пароль еще раз'],
         ];
     }
     public function attributeLabels() {
@@ -44,8 +35,6 @@ class LoginForm extends Model
             'email' => 'E-mail',
             'password' => 'Пароль',
             'password_2' => 'Пароль еще раз',
-            'rememberMe' => 'Запомнить меня',
-            'role' => 'Права',
         ];
     }
 
@@ -93,5 +82,15 @@ class LoginForm extends Model
         }
 
         return $this->_user;
+    }
+    public function sendEmailChangePassword()
+    {
+        $subject = 'Vkladovka - Уведомление о восстановлении пароля';
+        return Yii::$app->mailer->compose('password', ['name' => $this->fio, 'email' => $this->email, 'password' => $this->password])
+            ->setFrom([Yii::$app->params['adminEmail'] => 'vKladovka'])
+            ->setTo($this->email)
+            ->setSubject($subject)
+            ->setTextBody(' ')
+            ->send();
     }
 }

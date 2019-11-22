@@ -1,74 +1,44 @@
 <?php
 
 namespace app\models;
-use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
-class User extends ActiveRecord implements IdentityInterface
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    public $id;
+    public $fio;
+    public $email;
+    public $phone;
+    public $adress;
+    public $passport;
+    public $password;
     public $authKey;
     public $accessToken;
 
-    /*private static $users = [
+    private static $users = [
         '100' => [
             'id' => '100',
-            'fio' => 'admin',
-            'passport' => 'admin',
-            'address' => 'admin',
-            'phone' => '11111111111',
-            'email' => 'demo@demo.demo',
+            'username' => 'admin',
             'password' => 'admin',
             'authKey' => 'test100key',
             'accessToken' => '100-token',
         ],
         '101' => [
             'id' => '101',
-            'fio' => 'demo',
-            'passport' => 'demo',
-            'address' => 'admin',
-            'phone' => '11111111111',
-            'email' => 'demo@demo.demo',
+            'username' => 'demo',
             'password' => 'demo',
             'authKey' => 'test101key',
             'accessToken' => '101-token',
         ],
-    ];*/
+    ];
 
-    public function attributeLabels()
-    {
-        return [
-            'fio' => 'Фамилия, имя, отчество',
-            'passport' => 'Паспорт',
-            'address' => 'Проживание (по паспорту)',
-            'phone' => 'Номер телефона',
-            'email' => 'Адрес электронной почты',
-        ];
-    }
-    public function attributes()
-    {
-        return [
-            'id',
-            'fio',
-            'passport',
-            'password',
-            'address',
-            'phone',
-            'email',
-        ];
-    }
-
-    public static function tableName()
-    {
-        return 'user';
-    }
 
     /**
      * {@inheritdoc}
      */
     public static function findIdentity($id)
     {
-        return static::findOne($id);
-        //return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
     }
 
     /**
@@ -76,13 +46,13 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        /*foreach (self::$users as $user) {
+        foreach (self::$users as $user) {
             if ($user['accessToken'] === $token) {
                 return new static($user);
             }
         }
 
-        return null;*/
+        return null;
     }
 
     /**
@@ -93,14 +63,13 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['email' => $username]);
-        /*foreach (self::$users as $user) {
+        foreach (self::$users as $user) {
             if (strcasecmp($user['username'], $username) === 0) {
                 return new static($user);
             }
         }
 
-        return null;*/
+        return null;
     }
 
     /**
@@ -135,7 +104,6 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function validatePassword($password)
     {
-        return \Yii::$app->security->validatePassword($password, $this->password);
-        //return $this->password === $password;
+        return $this->password === $password;
     }
 }

@@ -13,9 +13,9 @@ $this->title = 'Вкладовка - новый способ владеть ве
     <div class="row m-hide">
         <div class="col-xl-3 col-lg-6">
             <div class="block-in">
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>"><img src="images/1.jpg" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>"><img src="images/1.jpg" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                         Храните <br>
                         свои вещи
                     </a>
@@ -23,14 +23,14 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 <p>
                     Мы тщательно упакуем, сфотографируем и сохраним Ваши вещи с осторожностью, чтобы Вы могли жить легче.
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>">Заказать хранение</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать хранение</a>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="block-in">
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>"><img src="images/2.jpg" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>"><img src="images/2.jpg" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">
                         Зарабатывайте <br>
                         на своих вещах
                     </a>
@@ -38,16 +38,16 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 <p>
                     Сдайте свои вещи в аренду, получайте за это деньги, обналичьте или потратьте на Вкладовка
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Начать получать $</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">Начать получать $</a>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="block-in">
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>">
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>">
                     <img src="images/3.jpg" alt="">
                 </a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>">
                         Арендуйте <br>
                         вещи
                     </a>
@@ -55,28 +55,28 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 <p>
                     Найдите интересующий Вас предмет, арендуйте и наслаждайтесь
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>">Арендовать вещь</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>">Арендовать вещь</a>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="block-in">
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>"><img src="images/4.jpg" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>"><img src="images/4.jpg" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>">Сопутствующие <br>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>">Сопутствующие <br>
                         услуги</a>
                 </h4>
                 <p>
                     Поможем в грузоперевозках и в упаковывании вещей при ремонте и переезде
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>">Заказать услугу</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>">Заказать услугу</a>
             </div>
         </div>
     </div>
     <div class="owl-carousel owl-theme owl-top m-view">
         <div>
-            <a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>"><img src="images/1.jpg" alt=""></a>
+            <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>"><img src="images/1.jpg" alt=""></a>
             <h4>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>">
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                     Храните <br>
                     свои вещи
                 </a>
@@ -84,12 +84,12 @@ $this->title = 'Вкладовка - новый способ владеть ве
             <p>
                 Мы тщательно упакуем, сфотографируем и сохраним Ваши вещи с осторожностью, чтобы Вы могли жить легче.
             </p>
-            <a href="<?= Yii::$app->urlManager->createUrl('lk/order-storage') ?>">Заказать хранение</a>
+            <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать хранение</a>
         </div>
         <div>
-            <a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>"><img src="images/2.jpg" alt=""></a>
+            <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>"><img src="images/2.jpg" alt=""></a>
             <h4>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">
+                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">
                     Зарабатывайте <br>
                     на своих вещах
                 </a>
@@ -97,12 +97,12 @@ $this->title = 'Вкладовка - новый способ владеть ве
             <p>
                 Сдайте свои вещи в аренду, получайте за это деньги, обналичьте или потратьте на Вкладовка
             </p>
-            <a href="<?= Yii::$app->urlManager->createUrl('lk/my-stock') ?>">Начать получать $</a>
+            <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">Начать получать $</a>
         </div>
         <div>
-            <a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>"><img src="images/3.jpg" alt=""></a>
+            <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>"><img src="images/3.jpg" alt=""></a>
             <h4>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>">
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>">
                     Арендуйте <br>
                     вещи
                 </a>
@@ -110,12 +110,12 @@ $this->title = 'Вкладовка - новый способ владеть ве
             <p>
                 Найдите интересующий Вас предмет, арендуйте и наслаждайтесь
             </p>
-            <a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>">Арендовать вещь</a>
+            <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>">Арендовать вещь</a>
         </div>
         <div>
-            <a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>"><img src="images/4.jpg" alt=""></a>
+            <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>"><img src="images/4.jpg" alt=""></a>
             <h4>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>">
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>">
                     Сопутствующие <br>
                     услуги
                 </a>
@@ -123,7 +123,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
             <p>
                 Поможем в грузоперевозках и в упаковывании вещей при ремонте и переезде
             </p>
-            <a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>">Заказать услугу</a>
+            <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>">Заказать услугу</a>
         </div>
     </div>
 </div>
@@ -373,7 +373,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
                             Оптимальные предложения
                         </a>
                     </p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk/order-pickup') ?>">Заказать грузоперевозку</a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>">Заказать грузоперевозку</a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -385,7 +385,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
                             Готовые решения
                         </a>
                     </p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk/to-thing-rent') ?>">Арендовать/купить</a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>">Арендовать/купить</a>
                 </div>
             </div>
         </div>

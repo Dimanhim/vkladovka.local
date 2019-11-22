@@ -8,7 +8,9 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\SignupForm;
 use app\models\User;
+use app\models\Forget;
 use app\models\ContactForm;
 use app\models\FormRegistration;
 
@@ -17,7 +19,7 @@ class SiteController extends Controller
     /**
      * {@inheritdoc}
      */
-    public function behaviors()
+    /*public function behaviors()
     {
         return [
             'access' => [
@@ -38,7 +40,7 @@ class SiteController extends Controller
                 ],
             ],
         ];
-    }
+    }*/
 
     /**
      * {@inheritdoc}
@@ -87,21 +89,32 @@ class SiteController extends Controller
     }
     public function actionRegistration()
     {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
         $model = new FormRegistration();
         if($model->load(\Yii::$app->request->post()) && $model->validate()){
             $user = new User();
             $user->fio = $model->fio;
             $user->passport = $model->passport;
-            $user->adress = $model->adress;
+            $user->address = $model->address;
             $user->phone = $model->phone;
             $user->email = $model->email;
-            $user->password = \Yii::$app->security->generatePasswordHash($model->password);
-            if($user->save()){
-                return $this->goHome();
+            $user->password = $model->password;
+            if($model->password == $model->password_2) {
+                $user->password = \Yii::$app->security->generatePasswordHash($model->password);
+                if($user->save()) {
+                    if($model->sendEmailRegistration()) {
+                        Yii::$app->session->setFlash('success', "Поздравляем! Вы успешно зарегистрировались в системе!");
+                        $login = new LoginForm();
+                        $login->email = $model->email;
+                        $login->password = $model->password;
+                        if($login->login()) return $this->goHome();
+                    }
+                };
             }
+            else {
+                Yii::$app->session->setFlash('error', "Пароли не совпадают!");
+                return $this->redirect('registration');
+            }
+
         }
         return $this->render('registration', [
             'model' => $model,
@@ -116,12 +129,20 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->goBack();
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->login()) {
+                Yii::$app->session->setFlash('success', "Вы успешно авторизовались!");
+                return $this->goBack();
+            }
+            else {
+                Yii::$app->session->setFlash('error', "Ошибка входа! Неверный логин или пароль");
+                return $this->redirect('login');
+            }
+
         }
 
         $model->password = '';
@@ -139,7 +160,36 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        return $this->goBack();
+    }
+    public function actionForget()
+    {
+        $model = new Forget();
+        if($model->load(Yii::$app->request->post())) {
+            $update = User::find()->where(['email' => $model->email]);
+            if($update->exists()) {
+                if($model->password == $model->password_2) {
+                    $update = $update->one();
+                    $update->password = \Yii::$app->security->generatePasswordHash($model->password);
+                    $model->email = $update->email;
+                    $model->fio = $update->fio;
+                    if($update->save() && $model->sendEmailChangePassword()) {
+                        Yii::$app->session->setFlash('success', 'Пароль успешно изменен и отправлен Вам на E-mail');
+                    }
+                }
+                else {
+                    Yii::$app->session->setFlash('error', 'Пароли не совпадают');
+                }
+            }
+            else {
+                Yii::$app->session->setFlash('error', 'Пользователя с указанным E-mail не существует в системе');
+            }
+
+
+        }
+        return $this->render('forget', [
+            'model' => $model,
+        ]);
     }
 
     /**

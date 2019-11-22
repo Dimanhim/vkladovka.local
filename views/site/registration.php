@@ -19,7 +19,7 @@ $this->title = 'Регистрация';
     <?php $form = ActiveForm::begin(['fieldConfig' => ['options' => ['tag' => false]], 'options' => ['class' => 'form-reg']]) ?>
     <?= $form->field($model, 'fio')->textInput(["required" => true]) ?>
     <?= $form->field($model, 'passport')->textarea(['placeholder' => "Паспорт серия номер, кем и когда выдан", "required" => true]) ?>
-    <?= $form->field($model, 'adress')->textarea(['placeholder' => "ОБЛАСТЬ (КРАЙ), г. ГОРОД, ул. УЛИЦА, 111", "required" => true]) ?>
+    <?= $form->field($model, 'address')->textarea(['placeholder' => "ОБЛАСТЬ (КРАЙ), г. ГОРОД, ул. УЛИЦА, 111", "required" => true]) ?>
     <?= $form->field($model, 'phone')->textInput(['placeholder' => "+7(999)999-9999", 'class' => 'form-control phone', "required" => true]) ?>
     <?= $form->field($model, 'email')->textInput(['placeholder' => "mail@mail.ru", "required" => true]) ?>
     <?= $form->field($model, 'password')->passwordInput(['placeholder' => "********", "required" => true]) ?>
@@ -33,32 +33,6 @@ $this->title = 'Регистрация';
     </div>
     <?= Html::submitButton('Зарегистрироваться', ['class' => "btn main-bt"]) ?>
     <?php ActiveForm::end() ?>
-    <!--
-    <form action="." class="form-reg">
-        <label for="n4">ФИО</label>
-        <input type="text" id="n4" class="form-control">
-        <label for="n4">Паспорт серия номер, кем и когда выдан</label>
-        <input type="text" id="n4" class="form-control">
-        <label for="n4">Проживание(по паспорту)</label>
-        <input type="text" id="n4" class="form-control">
-        <label for="n3">Телефон</label>
-        <input type="text" id="n3" class="form-control">
-        <label for="n4">Электронная почта</label>
-        <input type="text" id="n4" class="form-control">
-        <label for="n2">Пароль</label>
-        <input type="text" id="n2" class="form-control">
-        <label for="n2">Повторите пароль</label>
-        <input type="text" id="n2" class="form-control">
-        <a href="#" data-toggle="modal" data-target="#infoLn1" class="quest">В каких случаях можно не указывать свои личные данные-Фамилию и паспортные данные</a>
-        <div class="check-form">
-            <label for="n50"><input type="checkbox" id="n50" class="form-control" checked> Согласен и ознакомлен с <a href="#" class="quest">пользовательским соглашением</a></label>
-        </div>
-        <div class="check-form">
-            <label for="n51"><input type="checkbox" id="n51" class="form-control" checked> <a href="#" class="quest">Согласен на обработку персональных данных</a></label>
-        </div>
-        <button class="main-bt"> Зарегистрироваться</button>
-    </form>
-    -->
 </div>
 
 <!-- Modal Login -->

@@ -29,7 +29,7 @@ $(document).ready(function(){
 	pl.owlCarousel({
 		loop:true,
 		items: 1
-	})
+	});
 
 	$(".bt-pl.prev").on("click", function(){
 		pl.trigger('prev.owl.carousel');
@@ -243,6 +243,7 @@ $(document).ready(function(){
 	});
 	$('.modal-btn').on('click', function() {
 		$('#thing-extend').modal();
+		return false;
 	});
 
 	$('.tariffs-return').on('click', function() {
