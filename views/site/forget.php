@@ -27,7 +27,6 @@ $this->title = 'Восстановление пароля';
         <?= $form->field($model, 'email')->textInput(['autofocus' => true, 'placeholder' => 'Введите свой E-mail']) ?>
         <?= $form->field($model, 'password')->passwordInput() ?>
         <?= $form->field($model, 'password_2')->passwordInput() ?>
-        ]) ?>
 
         <div class="form-group">
             <div class="col-lg-12">
