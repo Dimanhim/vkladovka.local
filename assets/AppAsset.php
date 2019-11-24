@@ -20,11 +20,11 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/libs.min.css',
-        'css/bootstrap.min.css',
-        'css/jquery.fancybox.min.css',
-        'css/bootstrap-datetimepicker3.min.css',
-        'css/main.css',
+        //'css/libs.min.css',
+        //'css/bootstrap.min.css',
+        //'css/jquery.fancybox.min.css',
+        //'css/bootstrap-datetimepicker3.min.css',
+        //'css/main.css',
     ];
     public $js = [
         'js/libs.min.js',

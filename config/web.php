@@ -68,9 +68,11 @@ $config = [
     'modules' => [
         'lk' => [
             'class' => 'app\modules\lk\Module',
+            'layout' => 'main',
         ],
         'admin' => [
             'class' => 'app\modules\admin\Module',
+            'layout' => 'main',
         ],
     ],
     'params' => $params,

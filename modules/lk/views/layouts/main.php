@@ -26,6 +26,11 @@ $action = Yii::$app->controller->action->id;
     <title><?= Html::encode($this->title) ?></title>
     <!-- css -->
     <?php $this->head() ?>
+    <?php $this->registerCssFile('/css/libs.min.css') ?>
+    <?php $this->registerCssFile('/css/bootstrap.min.css') ?>
+    <?php $this->registerCssFile('/css/jquery.fancybox.min.css') ?>
+    <?php $this->registerCssFile('/css/bootstrap-datetimepicker3.min.css') ?>
+    <?php $this->registerCssFile('/css/main.css') ?>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -119,14 +124,21 @@ $action = Yii::$app->controller->action->id;
                 </div>
             </div>
         </div>
+<!-- Alert Flash -->
+        <?php if( Yii::$app->session->hasFlash('success') ): ?>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('success'); ?>
+            </div>
+        <?php endif;?>
+        <?php if( Yii::$app->session->hasFlash('error') ): ?>
+            <div class="alert alert-error alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('error'); ?>
+            </div>
+        <?php endif;?>
 
         <div class="container page-two room-pg">
-            <?php if( Yii::$app->session->hasFlash('error') ): ?>
-                <p class="bg-info" style="padding: 10px; border-radius: 5px; color: #fff"><?php echo Yii::$app->session->getFlash('error'); ?></p>
-            <?php endif;?>
-            <?php if( Yii::$app->session->hasFlash('success') ): ?>
-                <p class="bg-info" style="padding: 10px; border-radius: 5px; color: #fff"><?php echo Yii::$app->session->getFlash('success'); ?></p>
-            <?php endif;?>
             <div class="rm-ul room-nav-top">
                 <?php if($controller == "default") { ?>
                 <ul>
@@ -167,7 +179,7 @@ $action = Yii::$app->controller->action->id;
 
                 <div class="unvisible-block-user">
                     <p class="header-links">
-                        <a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>">Профиль</a>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/profile']) ?>">Профиль</a>
                         <a href="<?= Yii::$app->urlManager->createUrl(['site/logout', 'id' => $id]) ?>">Выход</a>
                     </p>
                 </div>

@@ -13,8 +13,6 @@ use app\models\ContactForm;
 
 class DefaultController extends Controller
 {
-    public $layout = 'main';
-
     public function beforeAction($action)
     {
         $user = Yii::$app->user;

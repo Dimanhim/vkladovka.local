@@ -12,8 +12,6 @@ use app\models\ContactForm;
 
 class BankController extends Controller
 {
-    public $layout = 'main';
-
     public function beforeAction($action)
     {
         $user = Yii::$app->user;

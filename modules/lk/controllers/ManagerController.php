@@ -12,8 +12,6 @@ use app\models\ContactForm;
 
 class ManagerController extends Controller
 {
-    public $layout = 'main';
-
     public function beforeAction($action)
     {
         $user = Yii::$app->user;

@@ -15,8 +15,6 @@ use app\models\FormRegistration;
 
 class ProfileController extends Controller
 {
-    public $layout = 'main';
-
     public function beforeAction($action)
     {
         $user = Yii::$app->user;

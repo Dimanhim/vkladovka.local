@@ -26,6 +26,12 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <!-- css -->
     <?php $this->head() ?>
+    <?php $this->registerCssFile('css/libs.min.css') ?>
+    <?php $this->registerCssFile('css/bootstrap.min.css') ?>
+    <?php $this->registerCssFile('css/jquery.fancybox.min.css') ?>
+    <?php $this->registerCssFile('css/bootstrap-datetimepicker3.min.css') ?>
+    <?php $this->registerCssFile('css/main.css') ?>
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,6 +83,8 @@ AppAsset::register($this);
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Как это работает</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic') ?>">Для юр. лиц</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('lk/profile') ?>" class="hidden-lg hidden-md">Профиль</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('site/logout') ?>" class="hidden-lg hidden-md">Выход</a></li>
                     <!--<li><a href="<?//= Yii::$app->urlManager->createUrl('site/for-ur-lic2') ?>">Для юр. лиц 2???</a></li>-->
                     <li><a href="#" class="quest">Новичок в Вкладовка?</a></li>
                 </ul>
@@ -152,12 +160,22 @@ AppAsset::register($this);
               </div>
            </div>
         </div> -->
-        <?php if( Yii::$app->session->hasFlash('error') ): ?>
-            <p class="bg-info" style="padding: 10px; border-radius: 5px; color: #fff"><?php echo Yii::$app->session->getFlash('error'); ?></p>
-        <?php endif;?>
+
+<!-- Alert Flash -->
         <?php if( Yii::$app->session->hasFlash('success') ): ?>
-            <p class="bg-info" style="padding: 10px; border-radius: 5px; color: #fff"><?php echo Yii::$app->session->getFlash('success'); ?></p>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('success'); ?>
+            </div>
         <?php endif;?>
+        <?php if( Yii::$app->session->hasFlash('error') ): ?>
+            <div class="alert alert-error alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('error'); ?>
+            </div>
+        <?php endif;?>
+
+
         <?= $content ?>
         <?= $this->render('_chat') ?>
     </div>

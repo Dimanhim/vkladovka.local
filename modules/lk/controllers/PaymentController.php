@@ -12,8 +12,6 @@ use app\models\ContactForm;
 
 class PaymentController extends Controller
 {
-    public $layout = 'main';
-
     public function beforeAction($action)
     {
         $user = Yii::$app->user;
