@@ -50,4 +50,10 @@ class PaymentController extends Controller
 
         ]);
     }
+    public function actionCurier()
+    {
+        return $this->render('curier', [
+
+        ]);
+    }
 }
