@@ -366,9 +366,9 @@ $this->title = 'Вкладовка - новый способ владеть ве
         <div class="row">
             <div class="col-md-4 offset-md-2">
                 <div class="block-in">
-                    <a href="#"><img src="images/11.jpg" alt=""></a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>"><img src="images/11.jpg" alt=""></a>
                     <p>
-                        <a href="#">
+                        <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>">
                             Помощь в грузоперевозках <br>
                             Оптимальные предложения
                         </a>

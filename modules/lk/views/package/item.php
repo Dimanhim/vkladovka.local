@@ -87,15 +87,8 @@ $this->render('_payment', [
                 <td>
                     <a href="#" class="modal-btn">Доставка</a>
                 </td>
-                <td>
+                <td colspan="2">
                     150 руб.
-                </td>
-                <td>
-                    <div class="select-quan">
-                        <a href="#" class="btn-plus"><span class="glyphicon glyphicon-plus"></span></a>
-                        <input type="text" class="quan-input" value="0" />
-                        <a href="#" class="btn-minus"><span class="glyphicon glyphicon-minus"></span></a>
-                    </div>
                 </td>
                 <td>
                     Для бесплатной доставки сумма заказа не менее 1000руб?

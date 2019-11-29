@@ -1725,6 +1725,9 @@ span.warning {
 .return-tr {
   display: none;
 }
+.modal-btn {
+  margin-bottom: 10px !important;
+}
 
 @media (max-width: 1200px) {
   header .cont-top, header .rsp-top {

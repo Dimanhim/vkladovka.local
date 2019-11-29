@@ -250,7 +250,7 @@ $(document).ready(function(){
 		$('#tariffs-return').modal();
 		return false;
 	});
-	$('.storage-description').on('click', function() {
+	$('.thing-actions').on('click', '.storage-description', function() {
 		$('#storage-description').modal();
 		return false;
 	});

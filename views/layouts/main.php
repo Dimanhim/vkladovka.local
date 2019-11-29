@@ -86,12 +86,12 @@ AppAsset::register($this);
                     <li><a href="<?= Yii::$app->urlManager->createUrl('lk/profile') ?>" class="hidden-lg hidden-md">Профиль</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/logout') ?>" class="hidden-lg hidden-md">Выход</a></li>
                     <!--<li><a href="<?//= Yii::$app->urlManager->createUrl('site/for-ur-lic2') ?>">Для юр. лиц 2???</a></li>-->
-                    <li><a href="#" class="quest">Новичок в Вкладовка?</a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Новичок в Вкладовка?</a></li>
                 </ul>
             </div>
         </nav>
         <div class="nav-m">
-            <a href="#">Новичок в Вкладовка?</a>
+            <a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Новичок в Вкладовка?</a>
         </div>
 
         <!-- Modal Login -->

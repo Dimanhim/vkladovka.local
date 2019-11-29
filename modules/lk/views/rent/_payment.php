@@ -8,8 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <a href="<?= Yii::$app->urlManager->createUrl(['lk/payment/balance']) ?>" class="btn btn-primary">Списать с баланса личного кабинета</a>
-                <a href="<?= Yii::$app->urlManager->createUrl(['lk/payment/tinkoff']) ?>" class="btn btn-default">Оплата картой</a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['lk/payment/balance']) ?>" class="btn btn-primary modal-btn">Списать с баланса личного кабинета</a><br />
+                <a href="<?= Yii::$app->urlManager->createUrl(['lk/payment/tinkoff']) ?>" class="btn btn-success modal-btn">Оплата картой</a><br />
+                <a href="<?= Yii::$app->urlManager->createUrl(['lk/payment/curier']) ?>" class="btn btn-default modal-btn">Оплата наличными курьеру</a>
             </div>
         </div>
     </div>

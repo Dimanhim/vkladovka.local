@@ -95,12 +95,6 @@ $items = 5;
                 </td>
             </tr>
             <tr>
-                <td>Имя:</td>
-                <td>
-                    <input type="text" name="name" class="form-control" placeholder="Имя" />
-                </td>
-            </tr>
-            <tr>
                 <td>Имя получателя:</td>
                 <td>
                     <input type="text" name="name" class="form-control" placeholder="Имя получателя" />
