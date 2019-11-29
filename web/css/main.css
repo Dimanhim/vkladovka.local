@@ -2,7 +2,9 @@ html,
 body {
   height: 100%;
 }
-
+.danger-span {
+  font-style: italic; color: #f00; display: block; padding: 10px
+}
 .main-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -45,6 +47,9 @@ ul {
 * {
   padding: 0;
   margin: 0;
+}
+.modal ul, .modal ol {
+  padding: 5px 20px;
 }
 
 .clear:after, header:after, nav ul:after, .global-chat-wp .glob-welcome-chat ul.adms-ul:after, .my-balance:after, .rm-ul ul:after {
@@ -1578,6 +1583,10 @@ p strong {
 }
 .thing-photo img {
   max-width: 180px;
+  margin-bottom: 10px;
+}
+.package-list li {
+  margin-bottom: 20px;
 }
 table.table select.form-control {
   height: auto !important;
@@ -1607,9 +1616,6 @@ table.table select.form-control {
 .size input.size-item {
   display: inline;
   width: auto;
-}
-.add-thing {
-  font-size: 35px;
 }
 .bold h4, .bold ul li {
   font-weight: bold;
@@ -1660,6 +1666,66 @@ table.table select.form-control {
 .help-block {
   color: #f00;
 }
+.append-to {
+  border-bottom: 3px solid #000;
+}
+.add-thing:hover, .add-thing:focus {
+  text-decoration: none;
+}
+.btn-operator {
+  position: fixed;
+  background: #5cb85c;
+  padding: 10px;
+  color: #fff;
+  border-color: #4cae4c;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  bottom: 10px;
+  z-index: 20;
+  text-align: center;
+}
+.description-block {
+  position: relative;
+  left: 25px;
+  padding: 20px;
+  background: #eee;
+  border: 1px solid #d2d2d2;
+}
+.description-block:before {
+  content: '!';
+  position: absolute;
+  top: -14px;
+  left: -25px;
+  color: #f00;
+  font-size: 62px;
+}
+span.warning {
+  font-size: 25px;
+  font-style: italic;
+  display: inline-block;
+  border: 1px solid #d2d2d2;
+  padding: 5px;
+}
+.select-quan {
+  border: 1px solid #d2d2d2;
+  padding: 5px;
+  display: inline;
+  position: relative;
+}
+.quan-input {
+  width: 30px;
+  height: 20px;
+  text-align: center;
+  border: 1px solid #d2d2d2;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.return-tr {
+  display: none;
+}
+
 @media (max-width: 1200px) {
   header .cont-top, header .rsp-top {
     padding-left: 45px;

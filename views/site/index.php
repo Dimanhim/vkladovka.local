@@ -28,9 +28,9 @@ $this->title = 'Вкладовка - новый способ владеть ве
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="block-in">
-                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>"><img src="images/2.jpg" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/thing/rent') ?>"><img src="images/2.jpg" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/thing/rent') ?>">
                         Зарабатывайте <br>
                         на своих вещах
                     </a>
@@ -38,7 +38,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 <p>
                     Сдайте свои вещи в аренду, получайте за это деньги, обналичьте или потратьте на Вкладовка
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">Начать получать $</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/thing/rent') ?>">Начать получать $</a>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">

@@ -41,6 +41,11 @@ $this->title = 'Заказать грузоперевозку';
                     </td>
                 </tr>
                 <tr>
+                    <td colspan="2">
+                        <a href="#" class="pickup-description">Посмотреть пример описания вещей</a>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         Когда удобно забрать:
                     </td>
@@ -64,10 +69,21 @@ $this->title = 'Заказать грузоперевозку';
                         <textarea name="2" id="" cols="30" rows="4" class="form-control"></textarea>
                     </td>
                 </tr>
+                <?php if(Yii::$app->user->isGuest) { ?>
                 <tr>
                     <td>
-                        Нужны грузчики <input type="checkbox" name="3" /><br />
-                        Есть лифт <input type="checkbox" name="5" />
+                        Контакты:
+                    </td>
+                    <td>
+                        <input name="2" class="form-control phone" placeholder="Телефон" /><br />
+                        <input name="2" class="form-control" placeholder="E-mail" />
+                    </td>
+                </tr>
+                <?php } ?>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="3" /> Нужны грузчики <br />
+                        <input type="checkbox" name="5" /> Есть лифт
                     </td>
                     <td class="bold">
                         <h4>Общие расценки:</h4>
@@ -81,7 +97,7 @@ $this->title = 'Заказать грузоперевозку';
                 </tr>
                 <tr>
                     <td>
-                        Согласен <input type="checkbox" name="4" />
+                        <input type="checkbox" name="4" /> Согласен
                     </td>
                     <td>
                         <!-- Поменять на button -->

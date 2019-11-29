@@ -30,49 +30,12 @@ $this->title = 'Заказать хранение';
     </div>
     <div class="thing-actions">
         <table class="table">
-            <tr>
-                <td>
-                    Название:
-                </td>
-                <td>
-                    <input type="text" class="form-control" placeholder="Не более двух слов" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Категория вещи:
-                </td>
-                <td>
-                    <select name="" class="form-control">
-                        <option value="">Выбрать...</option>
-                        <option value="">Стандартный предмет</option>
-                        <option value="">Крупный предмет</option>
-                        <option value="">Закрытый контейнер</option>
-                        <option value="">Мебель</option>
-                    </select>
-                </td>
-            </tr>
+
+            <?= $this->render('_item') ?>
+
             <tr class="size">
                 <td>
-                    Примерные габариты:
-                </td>
-                <td>
-                    <input type="text" class="form-control size-item" placeholder="Длина" />
-                    <input type="text" class="form-control size-item" placeholder="Высота" />
-                    <input type="text" class="form-control size-item" placeholder="Ширина" />
-                </td>
-            </tr>
-            <tr class="size">
-                <td>
-                    Примерный вес:
-                </td>
-                <td>
-                    <input type="text" class="form-control size-item" placeholder="килограммов..." />
-                </td>
-            </tr>
-            <tr class="size">
-                <td>
-                    Добавить вещь <a href="#" class="add-thing">+</a> (доработать)
+                    Добавить вещь <a href="#" class="add-thing"><span class="glyphicon glyphicon-plus"></span></a>
                 </td>
                 <td>
                 </td>
@@ -124,10 +87,10 @@ $this->title = 'Заказать хранение';
                 <td>
                     Оплата
                     <div>
-                        <input type="radio" name="" id="" value="" checked /> Картой
+                        <input type="radio" name="name" id="" value="" checked /> Картой
                     </div>
                     <div>
-                        <input type="radio" name="" id="" value="" /> Наличными или картой курьеру
+                        <input type="radio" name="name" id="" value="" /> Наличными или картой курьеру
                     </div>
                 </td>
             </tr>
@@ -139,5 +102,6 @@ $this->title = 'Заказать хранение';
         </table>
     </div>
 </div>
+
 
 

@@ -248,6 +248,86 @@ $(document).ready(function(){
 
 	$('.tariffs-return').on('click', function() {
 		$('#tariffs-return').modal();
+		return false;
+	});
+	$('.storage-description').on('click', function() {
+		$('#storage-description').modal();
+		return false;
+	});
+	$('.pickup-description').on('click', function() {
+		$('#pickup-description').modal();
+		return false;
+	});
+
+	$('.call-to-operator').on('click', function() {
+		$('.modal').modal('hide');
+		$('#call-to-operator').modal();
+		return false;
+	});
+	$('.add-thing').on('click', function() {
+		$.post("storage/append-thing", function(data) {
+			var element = $('.append-to').last();
+			$(element).after(data);
+		});
+		countAppendItems();
+		return false;
+	});
+
+
+
+	function countAppendItems()
+	{
+		if($('.append-to').length > 1) $('#call-operator').modal('show');
+	}
+	countAppendItems();
+
+	$('.btn-plus span').on('click', function() {
+		var input = $(this).parents('.select-quan').find('input.quan-input');
+		var count = Number(input.val());
+		input.val(count+1);
+		return false;
+	});
+	$('.btn-minus span').on('click', function() {
+		var input = $(this).parents('.select-quan').find('input.quan-input');
+		var count = Number(input.val());
+		if(count != 0) input.val(count-1);
+		return false;
+	});
+	$('.thing-item-link').on('mouseover', function() {
+		var id = $(this).data('thing-item');
+		$('a.thing-item-img[data-thing-item=' + id + ']').css('opacity', '0.9').find('img').css('boxShadow', '2px 2px 5px #f00, -2px -2px 5px #f00');
+	});
+	$('.thing-item-link').on('mouseout', function() {
+		var id = $(this).data('thing-item');
+		$('a.thing-item-img[data-thing-item=' + id + ']').css('opacity', '1').find('img').css('boxShadow', 'none');
+	});
+
+	$('#select-date').on('change', function() {
+		$('.return-tr').fadeOut();
+		var tariffs = new Map([
+			[1, 800],
+			[2, 400],
+			[3, 200],
+			[999, 400]
+		]);
+		var select = Number($('#select-date').val());
+		var thing_item_link = $('.thing-item-link')
+		var count = Number(thing_item_link.length);
+		if(select != 10) {
+			if(count > 2) {
+				if(select == 2) {
+					tariffs.set(2, 350);
+				}
+				$('#return-price').val((tariffs.get(select) * count) + ' руб.');
+			}
+			else {
+				$('#return-price').val(tariffs.get(select) + ' руб.');
+			}
+		}
+		else {
+			$('#return-price').val('Стоимость возврата расчитывается индивидуально');
+			$('.return-tr').fadeIn();
+		}
 	});
 
 

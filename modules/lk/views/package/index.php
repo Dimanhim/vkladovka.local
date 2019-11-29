@@ -28,10 +28,10 @@ $this->title = 'Тара и упаковка';
     </div>
     <div class="thing-actions">
         <h3>Выберите нужное:</h3>
-        <ul>
-            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/package/tara']) ?>">Тара</a></li>
-            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/package/package']) ?>">Упаковка</a></li>
-            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/package/other']) ?>">Прочие расходники</a></li>
+        <ul class="package-list">
+            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/package/tara']) ?>" class="btn btn-primary">Тара</a></li>
+            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/package/package']) ?>" class="btn btn-primary">Упаковка</a></li>
+            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/package/other']) ?>" class="btn btn-primary">Прочие расходники</a></li>
         </ul>
     </div>
 </div>

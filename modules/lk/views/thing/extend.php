@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use kartik\datetime\DateTimePicker;
 
 $this->title = 'Продлить хранение "вещь такая то"';
+$items = 5;
 ?>
 <?= $this->render('_payment', [
         'message' => 'Продлить хранение "вещь такая-то"'
@@ -36,17 +37,35 @@ $this->title = 'Продлить хранение "вещь такая то"';
                 <td>
                     Название:
                 </td>
-                <td>
-                    Вещь такая-то
-                </td>
+                <?php if($_GET['all']) { ?>
+                    <td>
+                        <?php for($i = 1; $i < $items + 1; $i++) { ?>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing']) ?>" class="thing-item-link" data-thing-item="<?= $i ?>">Вещь такая-то <?= $i ?></a><br />
+                        <?php } ?>
+                    </td>
+                <?php } else { ?>
+                    <td>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing']) ?>">Вещь такая-то</a>
+                    </td>
+                <?php } ?>
             </tr>
             <tr>
                 <td>
                     Фото:
                 </td>
-                <td class="thing-photo">
-                    <img src="/img/item-1.jpg" alt="" />
-                </td>
+                <?php if($_GET['all']) { ?>
+                    <td class="thing-photo">
+                        <?php for($i = 1; $i < $items + 1; $i++) { ?>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing']) ?>" class="thing-item-img" data-thing-item="<?= $i ?>">
+                                <img src="/img/item-<?= $i ?>.jpg" alt="" />
+                            </a>,
+                        <?php } ?>
+                    </td>
+                <?php } else { ?>
+                    <td class="thing-photo">
+                        <img src="/img/item-1.jpg" alt="" />
+                    </td>
+                <?php } ?>
             </tr>
             <tr class="select-date-extend">
                 <td>

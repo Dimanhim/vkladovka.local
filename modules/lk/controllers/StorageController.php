@@ -44,4 +44,8 @@ class StorageController extends Controller
 
         ]);
     }
+    public function actionAppendThing()
+    {
+        return $this->renderPartial('_item');
+    }
 }

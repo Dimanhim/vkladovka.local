@@ -16,6 +16,7 @@ use app\models\FormRegistration;
 
 class SiteController extends Controller
 {
+    public $layout = 'main';
     /**
      * {@inheritdoc}
      */

@@ -17,22 +17,7 @@ $this->title = 'Вещь такая то';
 </ul>
 <!-- Хлебные крошки -->
 
-<div class="modal fade" id="extend" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Продлить хранение "Вещь такая-то"</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/extend']) ?>" class="btn btn-primary">Продлить только на эту вещь</a>
-                <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/extend-all']) ?>" class="btn btn-default">Продлить на все вещи</a>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <div class="col-md-12">
     <h2 class="tac">Вещь такая-то</h2>

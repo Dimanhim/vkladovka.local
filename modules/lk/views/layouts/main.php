@@ -42,6 +42,7 @@ $action = Yii::$app->controller->action->id;
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?= $this->render('_modals') ?>
 <div class="main-wrapper">
     <div class="main-page-content">
         <div class="bars-m room-hid"><i class="fas fa-bars"></i><i class="fas fa-times"></i></div>
@@ -71,6 +72,9 @@ $action = Yii::$app->controller->action->id;
                             <a href="#">Профиль</a><a href="#">Выход</a>
                         </p>
                     </div>-->
+                    <?php if(Yii::$app->user->isGuest) { ?>
+                        <a href="#" class="main-bt" data-toggle="modal" data-target="#modalLogin">Войти</a>
+                    <?php } else { ?>
                     <div class="welcome">
                         <span class="glyphicon glyphicon-user"></span>
                         <a href="<?= Yii::$app->urlManager->createUrl(['lk/profile']) ?>" class="user-name"> <?= User::findOne(Yii::$app->user->id)->fio ?></a>
@@ -78,6 +82,7 @@ $action = Yii::$app->controller->action->id;
                             <a href="<?= Yii::$app->urlManager->createUrl(['site/logout']) ?>">Выход</a>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
         </header>
@@ -106,24 +111,14 @@ $action = Yii::$app->controller->action->id;
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="." class="form">
-                            <label for="n1">Логин</label>
-                            <input type="text" id="n1">
-                            <label for="n2">Пароль</label>
-                            <input type="text" id="n2">
-                            <div class="row">
-                                <div class="col-md-6 link-reg">
-                                    <a href="<?= Yii::$app->urlManager->createUrl('site/registration') ?>">Регистрация</a>
-                                </div>
-                                <div class="col-md-6 tar">
-                                    <button class="main-bt">Войти</button>
-                                </div>
-                            </div>
-                        </form>
+                        <div class="site-login">
+                            <?= \app\widgets\login\LoginWidget::widget()?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 <!-- Alert Flash -->
         <?php if( Yii::$app->session->hasFlash('success') ): ?>
             <div class="alert alert-success alert-dismissible" role="alert">
@@ -176,13 +171,16 @@ $action = Yii::$app->controller->action->id;
                 <li><a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать хранение</a></li>
                 <li><a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>">Заказать грузоперевозку</a></li>
                 <li><a href="<?= Yii::$app->urlManager->createUrl('lk/package') ?>" class="">Тара и упаковка</a></li>
-
+                <?php if(Yii::$app->user->isGuest) { ?>
+                    <a href="#" class="main-bt" data-toggle="modal" data-target="#modalLogin">Войти</a>
+                <?php } else { ?>
                 <div class="unvisible-block-user">
                     <p class="header-links">
                         <a href="<?= Yii::$app->urlManager->createUrl(['lk/profile']) ?>">Профиль</a>
                         <a href="<?= Yii::$app->urlManager->createUrl(['site/logout', 'id' => $id]) ?>">Выход</a>
                     </p>
                 </div>
+                <?php } ?>
             </ul>
 
 

@@ -26,11 +26,11 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <!-- css -->
     <?php $this->head() ?>
-    <?php $this->registerCssFile('css/libs.min.css') ?>
-    <?php $this->registerCssFile('css/bootstrap.min.css') ?>
-    <?php $this->registerCssFile('css/jquery.fancybox.min.css') ?>
-    <?php $this->registerCssFile('css/bootstrap-datetimepicker3.min.css') ?>
-    <?php $this->registerCssFile('css/main.css') ?>
+    <?php $this->registerCssFile('/css/libs.min.css') ?>
+    <?php $this->registerCssFile('/css/bootstrap.min.css') ?>
+    <?php $this->registerCssFile('/css/jquery.fancybox.min.css') ?>
+    <?php $this->registerCssFile('/css/bootstrap-datetimepicker3.min.css') ?>
+    <?php $this->registerCssFile('/css/main.css') ?>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -107,22 +107,6 @@ AppAsset::register($this);
                     <div class="modal-body">
                         <div class="site-login">
                             <?= \app\widgets\login\LoginWidget::widget()?>
-                        <!--
-                        <form action="." class="form">
-                            <label for="n1">Логин</label>
-                            <input type="text" id="n1">
-                            <label for="n2">Пароль</label>
-                            <input type="text" id="n2">
-                            <div class="row">
-                                <div class="col-md-6 link-reg">
-                                    <a href="<?//= Yii::$app->urlManager->createUrl('site/registration') ?>">Регистрация</a>
-                                </div>
-                                <div class="col-md-6 tar">
-                                    <button class="main-bt">Войти</button>
-                                </div>
-                            </div>
-                        </form>
-                        -->
                         </div>
                     </div>
                 </div>

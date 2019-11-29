@@ -41,7 +41,7 @@ $this->render('_payment', [
                 <td>
                     Картонная коробка
                 </td>
-                <td colspan="2">
+                <td colspan="3">
                     10х10х10см
                 </td>
             </tr>
@@ -53,20 +53,34 @@ $this->render('_payment', [
                     5руб./в день
                 </td>
                 <td>
+                    <div class="select-quan">
+                        <a href="#" class="btn-plus"><span class="glyphicon glyphicon-plus"></span></a>
+                        <input type="text" class="quan-input" value="0" />
+                        <a href="#" class="btn-minus"><span class="glyphicon glyphicon-minus"></span></a>
+                    </div>
+                </td>
+                <td>
                     при хранении в «Вкладовка»  предоставляется подарок
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
-                    В аренду не сдается
+                <td colspan="4">
+                    <span class="warning">В аренду не сдается</span>
                 </td>
             </tr>
             <tr>
                 <td>
                     <a href="#" class="modal-btn">Купить</a>
                 </td>
-                <td colspan="2">
+                <td>
                     20 руб.
+                </td>
+                <td colspan="2">
+                    <div class="select-quan">
+                        <a href="#" class="btn-plus"><span class="glyphicon glyphicon-plus"></span></a>
+                        <input type="text" class="quan-input" value="0" />
+                        <a href="#" class="btn-minus"><span class="glyphicon glyphicon-minus"></span></a>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -77,7 +91,28 @@ $this->render('_payment', [
                     150 руб.
                 </td>
                 <td>
+                    <div class="select-quan">
+                        <a href="#" class="btn-plus"><span class="glyphicon glyphicon-plus"></span></a>
+                        <input type="text" class="quan-input" value="0" />
+                        <a href="#" class="btn-minus"><span class="glyphicon glyphicon-minus"></span></a>
+                    </div>
+                </td>
+                <td>
                     Для бесплатной доставки сумма заказа не менее 1000руб?
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="description-block">
+                        При аренде тара принимается обратно чистая и  в целостном виде
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="description-block">
+                        При хранении в "Вкладовка" аренда тары предоставляется бесплатно
+                    </div>
                 </td>
             </tr>
         </table>

@@ -12,6 +12,7 @@ use app\models\ContactForm;
 
 class PickupController extends Controller
 {
+    /*
     public function beforeAction($action)
     {
         $user = Yii::$app->user;
@@ -21,7 +22,7 @@ class PickupController extends Controller
         }
         return true;
     }
-
+*/
     /**
      * {@inheritdoc}
      */
