@@ -10,6 +10,10 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@cat'   => '/admin/categories',
+        '@catdel'   => 'admin/categories',
+        '@thing'   => '/admin/things',
+        '@thingdel'   => 'admin/things',
     ],
     'components' => [
         'request' => [

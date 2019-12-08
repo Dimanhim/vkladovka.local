@@ -1193,6 +1193,7 @@ footer ul.net li a {
 
 .intro-aswork b {
   font-size: 23px;
+  padding: 10px;
 }
 
 p strong {
@@ -1727,6 +1728,10 @@ span.warning {
 }
 .modal-btn {
   margin-bottom: 10px !important;
+}
+nav .container ul {
+  position: relative;
+  z-index: 30;
 }
 
 @media (max-width: 1200px) {

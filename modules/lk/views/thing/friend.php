@@ -6,20 +6,31 @@ use kartik\datetime\DateTimePicker;
 use yii\web\View;
 use yii\helpers\Url;
 
-$this->title = 'Передать другу "вещь такая то"';
-$items = 5;
+if(count($model) > 1) $many = true;
+else $many = false;
+
+if($many) $this->title = 'Передать другу '.count($model).' вещи(ей)';
+else $this->title = 'Передать другу '.$model[0]->name;
 ?>
 
 <!-- ----------------------------Хлебные крошки -->
 <ul class="bread-crumps">
     <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>"> / Личный кабинет</a></li>
-    <li> / Передать другу "Вещь такая то"</li>
+    <?php if($many) : ?>
+        <li> / Передать другу <?= count($model) ?> вещи(ей)</li>
+    <?php else : ?>
+        <li> / Передать другу <?= $model[0]->name ?></li>
+    <?php endif; ?>
 </ul>
 <!-- Хлебные крошки -->
 
 <div class="col-md-12">
-    <h2 class="tac">Передать другу "Вещь такая-то"</h2>
+    <?php if($many) : ?>
+        <h2 class="tac">Передать другу <?= count($model) ?> вещи(ей)</h2>
+    <?php else : ?>
+        <h2 class="tac">Передать другу <?= $model[0]->name ?></h2>
+    <?php endif; ?>
 </div>
 
 <div class="clearfix"></div>
@@ -33,35 +44,23 @@ $items = 5;
                 <td>
                     Название:
                 </td>
-                <?php if($_GET['all']) { ?>
-                    <td>
-                        <?php for($i = 1; $i < $items + 1; $i++) { ?>
-                            <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing']) ?>" class="thing-item-link" data-thing-item="<?= $i ?>">Вещь такая-то <?= $i ?></a><br />
-                        <?php } ?>
-                    </td>
-                <?php } else { ?>
-                    <td>
-                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing']) ?>">Вещь такая-то</a>
-                    </td>
-                <?php } ?>
+                <td>
+                    <?php foreach($model as $v) : ?>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing', 'id' => $v->id]) ?>" class="thing-item-link" data-thing-item="<?= $v->id ?>"><?= $v->name ?> <?= $v->id ?></a><br />
+                    <?php endforeach; ?>
+                </td>
             </tr>
             <tr>
                 <td>
                     Фото:
                 </td>
-                <?php if($_GET['all']) { ?>
                     <td class="thing-photo">
-                        <?php for($i = 1; $i < $items + 1; $i++) { ?>
-                            <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing']) ?>" class="thing-item-img" data-thing-item="<?= $i ?>">
-                                <img src="/img/item-<?= $i ?>.jpg" alt="" />
+                        <?php foreach($model as $v) : ?>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing', 'id' => $v->id]) ?>" class="thing-item-img" data-thing-item="<?= $v->id ?>">
+                                <img src="<?= Yii::getAlias('@thing').'/'.$v->img ?>" alt="" />
                             </a>,
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </td>
-                <?php } else { ?>
-                    <td class="thing-photo">
-                        <img src="/img/item-1.jpg" alt="" />
-                    </td>
-                <?php } ?>
             </tr>
             <tr>
                 <td>

@@ -54,6 +54,7 @@ class User extends ActiveRecord implements IdentityInterface
             'address',
             'phone',
             'email',
+            'role',
         ];
     }
 

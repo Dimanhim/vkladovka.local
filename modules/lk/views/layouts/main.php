@@ -137,11 +137,11 @@ $action = Yii::$app->controller->action->id;
             <div class="rm-ul room-nav-top">
                 <?php if($controller == "default") { ?>
                 <ul>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/return']) ?>" class="top-menu-btn select-thing">Вернуть <span>вещь</span></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/friend']) ?>" class="top-menu-btn select-thing">Передать <span>другу</span></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/rent']) ?>" class="top-menu-btn select-thing">Сдать <span>в аренду</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/return']) ?>" class="top-menu-btn select-thing" data-things="0">Вернуть <span>вещь</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/friend']) ?>" class="top-menu-btn select-thing" data-things="0">Передать <span>другу</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/rent']) ?>" class="top-menu-btn select-thing" data-things="0">Сдать <span>в аренду</span></a></li>
                     <li><a href="#" class="top-menu-btn trust-to-sell">Доверяю <span>продать</span></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/extend']) ?>" class="top-menu-btn select-thing">Продлить <span>хранение</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/extend']) ?>" class="top-menu-btn select-thing" data-things="0">Продлить <span>хранение</span></a></li>
                 </ul>
                 <?php } ?>
                 <?php if($controller == 'bank') { ?>

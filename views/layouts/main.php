@@ -71,7 +71,8 @@ AppAsset::register($this);
                                 <?= User::findOne(Yii::$app->user->id)->fio ?>
                             </a>
                         <div class="logout">
-                            <a href="<?= Yii::$app->urlManager->createUrl(['site/logout']) ?>">Выход</a>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>" style="margin-left: -25px;">Личный кабинет</a>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['site/logout']) ?>" style="margin-left: 10px;">Выход</a>
                         </div>
                     </div>
                     <?php } ?>
@@ -83,8 +84,13 @@ AppAsset::register($this);
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Как это работает</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic') ?>">Для юр. лиц</a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl('lk/profile') ?>" class="hidden-lg hidden-md">Профиль</a></li>
+                    <?php //if(Yii::$app->user->isGuest) { ?>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('lk') ?>" class="hidden-lg hidden-md">Личный кабинет</a></li>
+                    <?php //} ?>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('site/registration') ?>" class="hidden-lg hidden-md">Регистрация</a></li>
+                    <?php if(!Yii::$app->user->isGuest) : ?>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/logout') ?>" class="hidden-lg hidden-md">Выход</a></li>
+                    <?php endif; ?>
                     <!--<li><a href="<?//= Yii::$app->urlManager->createUrl('site/for-ur-lic2') ?>">Для юр. лиц 2???</a></li>-->
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Новичок в Вкладовка?</a></li>
                 </ul>
@@ -146,18 +152,21 @@ AppAsset::register($this);
         </div> -->
 
 <!-- Alert Flash -->
-        <?php if( Yii::$app->session->hasFlash('success') ): ?>
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <?php echo Yii::$app->session->getFlash('success'); ?>
-            </div>
-        <?php endif;?>
-        <?php if( Yii::$app->session->hasFlash('error') ): ?>
-            <div class="alert alert-error alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <?php echo Yii::$app->session->getFlash('error'); ?>
-            </div>
-        <?php endif;?>
+        <div class="container">
+            <?php if( Yii::$app->session->hasFlash('success') ): ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php echo Yii::$app->session->getFlash('success'); ?>
+                </div>
+            <?php endif;?>
+            <?php if( Yii::$app->session->hasFlash('error') ): ?>
+                <div class="alert alert-error alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <?php echo Yii::$app->session->getFlash('error'); ?>
+                </div>
+            <?php endif;?>
+        </div>
+
 
 
         <?= $content ?>

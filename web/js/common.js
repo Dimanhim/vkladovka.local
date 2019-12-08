@@ -192,16 +192,21 @@ $(document).ready(function(){
 		else desc.addClass('white-desc');
 		$(this).parents('.item-thing').find('.back').toggle();
 
-		/*if(isChecked() == 0) {
-			$(this).parents('.item-thing').find('.back').toggle();
-			$('.room-nav-bottom').fadeOut();
-		}
-		else {
-			$('.room-nav-bottom').fadeOut();
-			$(this).parents('.item-thing').find('.back').toggle();
-			$('.room-nav-bottom').slideToggle();
-		}*/
+
+		$('.select-thing').each(function() {
+			var href = $(this).attr('href');
+			$(this).attr('data-things', countCheckboxes());
+			//$(this).attr('href', '?id=' + countCheckboxes());
+		});
 	});
+	function countCheckboxes() {
+		var str = '';
+		$('.checkbox').each(function() {
+			var inp = $(this).find('input[type=checkbox]');
+			if(inp.is(':checked')) str = str + $(this).data('thing') + ',';
+		});
+		return str;
+	}
 
 	function isChecked() {
 		var count = 0;
@@ -223,6 +228,12 @@ $(document).ready(function(){
 			setTimeout(displayError, 6000);
 			return false;
 		}
+		else {
+			var self = $(this);
+			var href = self.attr('href');
+			var str = self.data('things');
+			self.attr('href', href + '?id=' + str);
+		}
 	});
 	function displayError() {
 		$('.error p').fadeOut();
@@ -241,7 +252,7 @@ $(document).ready(function(){
 		$('#extend').modal();
 		return false;
 	});
-	$('.modal-btn').on('click', function() {
+	$('.thing-extend').on('click', function() {
 		$('#thing-extend').modal();
 		return false;
 	});
@@ -257,6 +268,10 @@ $(document).ready(function(){
 	$('.pickup-description').on('click', function() {
 		$('#pickup-description').modal();
 		return false;
+	});
+	$('.bank-partner').on('click', function(e) {
+		e.preventDefault();
+		$('#bank-partner').modal();
 	});
 
 	$('.call-to-operator').on('click', function() {

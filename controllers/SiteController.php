@@ -80,6 +80,10 @@ class SiteController extends Controller
     {
         return $this->render('for-ur-lic');
     }
+    public function actionOrderDeparture()
+    {
+        return $this->render('order-departure');
+    }
     public function actionForUrLic2()
     {
         return $this->render('for-ur-lic2');

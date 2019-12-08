@@ -35,6 +35,11 @@ $this->title = 'Партнерская программа';
         <td>Получить код через партнера (без оплаты вступления в партнерскую программу): </td>
         <td><textarea type="text" class="form-control" placeholder="здесь я не понял что должно быть и как это работает"></textarea></td>
     </tr>
+    <tr>
+        <td>
+            <a href="#" class="bank-partner">Что это?</a>
+        </td>
+    </tr>
 </table>
 
 

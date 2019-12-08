@@ -2,6 +2,7 @@
 
 namespace app\modules\lk\controllers;
 
+use app\models\Thing;
 use yii\web\Controller;
 use Yii;
 use yii\filters\AccessControl;
@@ -44,29 +45,63 @@ class ThingController extends Controller
      * @return string
      */
 
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        return $this->render('index');
+        $model = $this->findModel($id);
+        return $this->render('index', [
+            'model' => $model,
+        ]);
     }
-    public function actionReturn()
+    public function actionReturn($id)
     {
-        return $this->render('return');
+        $model = $this->findModelDelimiter($id);
+        return $this->render('return', [
+            'model' => $model,
+        ]);
     }
-    public function actionFriend()
+    public function actionFriend($id)
     {
-        return $this->render('friend');
+        $model = $this->findModelDelimiter($id);
+        return $this->render('friend', [
+            'model' => $model,
+        ]);
     }
-    public function actionRent()
+    public function actionRent($id)
     {
-        return $this->render('rent');
+        $model = $this->findModelDelimiter($id);
+        return $this->render('rent', [
+            'model' => $model,
+        ]);
     }
-    public function actionExtend()
+    public function actionExtend($id)
     {
-        return $this->render('extend');
+        $model = $this->findModelDelimiter($id);
+        return $this->render('extend', [
+            'model' => $model,
+        ]);
     }
     public function actionExtendAll()
     {
         return $this->render('extend-all');
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Thing::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    protected function findModelDelimiter($id)
+    {
+        $things = explode(',', $id);
+        ;
+        if (($model = Thing::find()->where(['id' => $things])->all()) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 
 

@@ -1,0 +1,42 @@
+
+.admin-block {
+    padding: 20px 0;
+}
+.item {
+    margin-bottom: 20px;
+    text-align: center;
+    height: 200px;
+}
+.block-item-img {
+    border: 1px solid #ccc;
+    width: 100%;
+    height: 200px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.item-img {
+    position: relative;
+}
+.item-img img {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    z-index: 20;
+}
+.back ul {
+    padding: 20px;
+}
+.back ul li a {
+    color: #fff;
+}
+.back ul li a:hover {
+    color: #000;
+}

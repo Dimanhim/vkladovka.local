@@ -5,19 +5,31 @@
 use yii\web\View;
 use yii\helpers\Url;
 
-$this->title = 'Сдать в аренду "вещь такая то"';
+if(count($model) > 1) $many = true;
+else $many = false;
+
+if($many) $this->title = 'Сдать в аренду '.count($model).' вещи(ей)';
+else $this->title = 'Сдать в аренду '.$model[0]->name;
 ?>
 
 <!-- ----------------------------Хлебные крошки -->
 <ul class="bread-crumps">
     <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>"> / Личный кабинет</a></li>
-    <li> / Сдать в аренду "Вещь такая то"</li>
+    <?php if($many) : ?>
+        <li> / Сдать в аренду <?= count($model) ?> вещи(ей)</li>
+    <?php else : ?>
+        <li> / Сдать в аренду <?= $model[0]->name ?></li>
+    <?php endif; ?>
 </ul>
 <!-- Хлебные крошки -->
 
 <div class="col-md-12">
-    <h2 class="tac">Сдать в аренду "Вещь такая-то"</h2>
+    <?php if($many) : ?>
+        <h2 class="tac">Сдать в аренду <?= count($model) ?> вещи(ей)</h2>
+    <?php else : ?>
+        <h2 class="tac">Сдать в аренду <?= $model[0]->name ?></h2>
+    <?php endif; ?>
 </div>
 
 <div class="clearfix"></div>
@@ -32,7 +44,9 @@ $this->title = 'Сдать в аренду "вещь такая то"';
                     Название:
                 </td>
                 <td>
-                    Вещь такая-то
+                    <?php foreach($model as $v) : ?>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing', 'id' => $v->id]) ?>" class="thing-item-link" data-thing-item="<?= $v->id ?>"><?= $v->name ?> <?= $v->id ?></a><br />
+                    <?php endforeach; ?>
                 </td>
             </tr>
             <tr>
@@ -40,7 +54,11 @@ $this->title = 'Сдать в аренду "вещь такая то"';
                     Фото:
                 </td>
                 <td class="thing-photo">
-                    <img src="/img/item-1.jpg" alt="" />
+                    <?php foreach($model as $v) : ?>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing', 'id' => $v->id]) ?>" class="thing-item-img" data-thing-item="<?= $v->id ?>">
+                            <img src="<?= Yii::getAlias('@thing').'/'.$v->img ?>" alt="" />
+                        </a>,
+                    <?php endforeach; ?>
                 </td>
             </tr>
             <!--

@@ -34,7 +34,11 @@ if (Yii::$app->controller->action->id === 'login') {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href="/css/bootstrap-datetimepicker3.min.css" rel="stylesheet">
+
         <?php $this->head() ?>
+        <link href="/css/admin.css" rel="stylesheet">
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
     <?php $this->beginBody() ?>
@@ -59,6 +63,7 @@ if (Yii::$app->controller->action->id === 'login') {
     </div>
 
     <?php $this->endBody() ?>
+    <?php $this->registerJsFile('/js/admin.js') ?>
     </body>
     </html>
     <?php $this->endPage() ?>

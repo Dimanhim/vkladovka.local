@@ -2,6 +2,7 @@
 
 namespace app\modules\lk\controllers;
 
+use app\models\Thing;
 use yii\web\Controller;
 use Yii;
 use yii\filters\AccessControl;
@@ -41,7 +42,11 @@ class DefaultController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $id = Yii::$app->user->id;
+        $model = Thing::find()->where(['user' => $id])->all();
+        return $this->render('index', [
+            'model' => $model,
+        ]);
     }
 
     /**

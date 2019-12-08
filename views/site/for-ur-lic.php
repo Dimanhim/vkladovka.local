@@ -15,7 +15,7 @@ $this->title = 'Для юридических лиц';
         </p>
         <ul>
             <li><a href="#" class="quest">Рассчитать примерную стоимость услуги самостоятельно</a></li>
-            <li><a href="#" class="quest">Заказать выезд специалиста</a></li>
+            <li><a href="<?= Yii::$app->urlManager->createUrl('site/order-departure') ?>">Заказать выезд специалиста</a></li>
             <li><a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">Заказать услугу</a></li>
         </ul>
         <p>
