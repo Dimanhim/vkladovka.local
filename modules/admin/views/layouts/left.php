@@ -20,7 +20,7 @@
                     ['label' => 'Меню', 'options' => ['class' => 'header']],
                     ['label' => 'Добавить вещь', 'icon' => 'file-code-o', 'url' => ['thing/add']],
                     ['label' => 'Категории вещей', 'icon' => 'file-code-o', 'url' => ['cat/index']],
-                    ['label' => 'Пользователи', 'icon' => 'file-code-o', 'url' => ['/users']],
+                    ['label' => 'Пользователи', 'icon' => 'file-code-o', 'url' => ['users/index']],
                     ['label' => 'Заказы хранения', 'icon' => 'dashboard', 'url' => ['/debug']],
                     [
                         'label' => 'Тара/упаковка',

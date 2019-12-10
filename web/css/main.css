@@ -1733,6 +1733,22 @@ nav .container ul {
   position: relative;
   z-index: 30;
 }
+.style-list {
+  padding-left: 20px;
+}
+.style-list li {
+  list-style: circle;
+}
+.quote {
+  margin: 20px 0;
+}
+.quote p {
+  font-style: italic;
+  font-size: 12px;
+}
+.hide-content {
+  display: none;
+}
 
 @media (max-width: 1200px) {
   header .cont-top, header .rsp-top {

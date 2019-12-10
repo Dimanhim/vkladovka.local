@@ -238,6 +238,9 @@ $(document).ready(function(){
 	function displayError() {
 		$('.error p').fadeOut();
 	}
+	$('.show-content').on('click', function() {
+		$('.hide-content').slideDown();
+	});
 
 
 	$('#select-date').on('change', function() {
