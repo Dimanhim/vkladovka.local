@@ -282,14 +282,32 @@ $(document).ready(function(){
 		$('#call-to-operator').modal();
 		return false;
 	});
-	$('.add-thing').on('click', function() {
-		$.post("storage/append-thing", function(data) {
+	$('body').on('click', '.add-thing', function(e) {
+		var count = $('.append-to').length;
+		e.preventDefault(e);
+		$.get("/lk/storage/append?count=" + count, function(data) {
 			var element = $('.append-to').last();
 			$(element).after(data);
 		});
 		countAppendItems();
-		return false;
 	});
+	$('body').on('submit', '#storage-form', function(e) {
+		e.preventDefault(e);
+		var self = $(this);
+		var form = self.serialize();
+		$.ajax({
+			url: '/lk/storage/add-storage',
+			type: 'POST',
+			data: form,
+			success: function (res) {
+				console.log(res);
+			},
+			error: function () {
+				console.log('Error!');
+			}
+		});
+	});
+
 
 
 
@@ -346,6 +364,15 @@ $(document).ready(function(){
 			$('#return-price').val('Стоимость возврата расчитывается индивидуально');
 			$('.return-tr').fadeIn();
 		}
+	});
+	$('.storage-btn').on('click', function() {
+		$.get('/lk/storage/reg', function(data) {
+			if(data == 'error') {
+				$('#storage').modal('show');
+				return false;
+			}
+		});
+
 	});
 
 

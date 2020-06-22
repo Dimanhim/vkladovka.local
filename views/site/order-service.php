@@ -16,6 +16,7 @@ $this->title = 'Заказать услугу';
         <ul>
             <li><a href="#" class="quest">Пользовательское соглашение</a></li>
             <li><a href="#" class="quest">Договор хранения</a></li>
+            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/storage/index']) ?>">Рассчитать стоимость предполагаемого хранения</a></li>
         </ul>
         <form action="" class="order form-main">
             <div class="input-wp">

@@ -138,3 +138,20 @@
         </div>
     </div>
 </div>
+<!-- Заказать хранение -->
+<div class="modal fade" id="storage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Для получения данной услуги вам необходимо авторизоваться на сайте</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <a href="<?= Yii::$app->urlManager->createUrl(['site/login']) ?>" class="btn btn-primary">Войти в систему</a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['site/registration']) ?>" class="btn btn-default">Зарегистрироваться</a>
+            </div>
+        </div>
+    </div>
+</div>

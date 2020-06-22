@@ -83,7 +83,7 @@ AppAsset::register($this);
             <div class="container">
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Как это работает</a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic') ?>">Для юр. лиц</a></li>
+
                     <?php //if(Yii::$app->user->isGuest) { ?>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('lk') ?>" class="hidden-lg hidden-md">Личный кабинет</a></li>
                     <?php //} ?>
@@ -151,23 +151,7 @@ AppAsset::register($this);
            </div>
         </div> -->
 
-<!-- Alert Flash -->
-        <div class="container">
-            <?php if( Yii::$app->session->hasFlash('success') ): ?>
-                <div class="alert alert-success alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <?php echo Yii::$app->session->getFlash('success'); ?>
-                </div>
-            <?php endif;?>
-            <?php if( Yii::$app->session->hasFlash('error') ): ?>
-                <div class="alert alert-error alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <?php echo Yii::$app->session->getFlash('error'); ?>
-                </div>
-            <?php endif;?>
-        </div>
-
-
+        <?= Alert::widget() ?>
 
         <?= $content ?>
         <?= $this->render('_chat') ?>
@@ -193,6 +177,7 @@ AppAsset::register($this);
                             <li><a href="#" class="quest">Отзывы/оставить </a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/order-storage', 'id' => $id]) ?>">Заказ на хранение</a></li>
                             <li><a href="#" class="quest">Для партнеров по регионам/франшиза</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic') ?>">Для юр. лиц</a></li>
                         </ul>
                     </div>
                     <div class="col-md-4 tar">

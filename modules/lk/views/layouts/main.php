@@ -119,20 +119,6 @@ $action = Yii::$app->controller->action->id;
             </div>
         </div>
 
-<!-- Alert Flash -->
-        <?php if( Yii::$app->session->hasFlash('success') ): ?>
-            <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <?php echo Yii::$app->session->getFlash('success'); ?>
-            </div>
-        <?php endif;?>
-        <?php if( Yii::$app->session->hasFlash('error') ): ?>
-            <div class="alert alert-error alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <?php echo Yii::$app->session->getFlash('error'); ?>
-            </div>
-        <?php endif;?>
-
         <div class="container page-two room-pg">
             <div class="rm-ul room-nav-top">
                 <?php if($controller == "default") { ?>
@@ -183,7 +169,7 @@ $action = Yii::$app->controller->action->id;
                 <?php } ?>
             </ul>
 
-
+            <?= Alert::widget() ?>
             <div class="row">
                 <div class="col-lg-3 sidebar">
                     <h3>

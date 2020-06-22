@@ -34,6 +34,7 @@ class AppAsset extends AssetBundle
         'js/jquery.inputmask.js',
         'js/bootstrap-datetimepicker.min.js',
         'js/common.js',
+        '/js/storage.js',
 
     ];
     public $depends = [

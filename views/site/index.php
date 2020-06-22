@@ -28,9 +28,9 @@ $this->title = 'Вкладовка - новый способ владеть ве
         </div>
         <div class="col-xl-3 col-lg-6">
             <div class="block-in">
-                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>"><img src="images/2.jpg" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>"><img src="images/2.jpg" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">
                         Зарабатывайте <br>
                         на своих вещах
                     </a>
@@ -38,7 +38,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 <p>
                     Сдайте свои вещи в аренду, получайте за это деньги, обналичьте или потратьте на Вкладовка
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">Начать получать $</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Начать получать $</a>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
@@ -143,142 +143,142 @@ $this->title = 'Вкладовка - новый способ владеть ве
         <div class="row m-hide">
             <div class="col-xl-3 col-lg-6">
                 <div class="block-in">
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>"><img src="images/5.png" alt=""></a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>"><img src="images/5.png" alt=""></a>
                     <h4>
-                        <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                             СТАНДАРТНЫЙ <br>
                             ПУНКТ
                         </a>
                     </h4>
                     <p>
-                        <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                             От 23 руб. в месяц
                             Одежда, обувь, книги, сумки, игрушки, посуда, мелкая бытовая техника или другие предметы, которые поместились бы в вашей ручной клади.
                         </a>
                     </p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">Заказать услугу</a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать услугу</a>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6">
                 <div class="block-in">
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>"><img src="images/6.png" alt=""></a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>"><img src="images/6.png" alt=""></a>
                     <h4>
-                        <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                             БОЛЬШОЙ <br>
                             ПРЕДМЕТ
                         </a>
                     </h4>
                     <p>
-                        <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                             От 135 руб. в месяц
                             Велосипеды, гитары, лыжи, стулья, большие чемоданы, шины, коляски, телевизоры и т.п.
                         </a>
                     </p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">Заказать услугу</a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать услугу</a>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6">
                 <div class="block-in">
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>"><img src="images/7.png" alt=""></a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>"><img src="images/7.png" alt=""></a>
                     <h4>
-                        <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                             ЗАКРЫТЫЙ <br>
                             КОНТЕЙНЕР
                         </a>
                     </h4>
                     <p>
-                        <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                             От 295 руб. в месяц
                             Коробка с вещами, упакованный чемодан и т.д.
                         </a>
                     </p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">Заказать услугу</a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать услугу</a>
                 </div>
             </div>
             <div class="col-xl-3 col-lg-6">
                 <div class="block-in">
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>"><img src="images/8.png" alt=""></a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>"><img src="images/8.png" alt=""></a>
                     <h4>
-                        <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                             МЕБЕЛЬ<br />
                         </a>
                     </h4>
                     <p>
-                        <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                        <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                             При переезде и ремонте. От 200 руб. за 1куб.м/мес
                             Шкафы, столы, диваны, холодильник и т.п.
                         </a>
                     </p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">Заказать услугу</a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать услугу</a>
                 </div>
             </div>
         </div>
         <div class="owl-carousel owl-theme owl-top m-view">
             <div>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>"><img src="images/5.png" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>"><img src="images/5.png" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                         СТАНДАРТНЫЙ <br>
                         ПУНКТ
                     </a>
                 </h4>
                 <p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                         От 23 руб. в месяц
                         Одежда, обувь, книги, сумки, игрушки, посуда, мелкая бытовая техника или другие предметы, которые поместились бы в вашей ручной клади.
                     </a>
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">Заказать услугу</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать услугу</a>
             </div>
             <div>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>"><img src="images/6.png" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>"><img src="images/6.png" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                         БОЛЬШОЙ <br>
                         ПРЕДМЕТ
                     </a>
                 </h4>
                 <p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                         От 135 руб. в месяц
                         Велосипеды, гитары, лыжи, стулья, большие чемоданы, шины, коляски, телевизоры и т.п.
                     </a>
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">Заказать услугу</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать услугу</a>
             </div>
             <div>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>"><img src="images/7.png" alt=""></a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>"><img src="images/7.png" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                         ЗАКРЫТЫЙ <br>
                         КОНТЕЙНЕР
                     </a>
                 </h4>
                 <p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                         От 295 руб. в месяц
                         Коробка с вещами, упакованный чемодан и т.д.
                     </a>
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">Заказать услугу</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать услугу</a>
             </div>
             <div>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                     <img src="images/8.png" alt="">
                 </a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                         МЕБЕЛЬ ПРИ ПЕРЕЕЗДЕ <br>
                         И РЕМОНТЕ
                     </a>
                 </h4>
                 <p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">
                         От 200 руб. за 1куб.м/мес
                         Шкафы, столы, диваны, холодильник и т.п.
                     </a>
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/order-service') ?>">Заказать услугу</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать услугу</a>
             </div>
         </div>
 
@@ -289,13 +289,13 @@ $this->title = 'Вкладовка - новый способ владеть ве
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <a href="<?= Yii::$app->urlManager->createUrl('site/faq#2') ?>">
+                <a href="<?= Yii::$app->urlManager->createUrl('site/faq#1') ?>">
                     Узнать из чего еще складывается <br>
                     цена за хранение
                 </a>
             </div>
             <div class="col-md-6 bl">
-                <a href="#" class="quest">
+                <a href="<?= Yii::$app->urlManager->createUrl(['lk/storage/index']) ?>">
                     Посчитать стоимость предполагаемого <br>
                     хранения
                 </a>

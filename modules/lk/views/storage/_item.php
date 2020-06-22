@@ -1,9 +1,16 @@
+<?php
+
+/* @var $this yii\web\View */
+
+use yii\bootstrap\ActiveForm;
+
+?>
 <tr>
     <td>
         Название:
     </td>
     <td>
-        <input type="text" class="form-control" placeholder="Не более двух слов" />
+        <input type="text" id="storage-name-<?= $item ?>" class="form-control" name="StorageItems[name][<?= $item ?>]" placeholder="Не более двух слов" aria-required="true">
     </td>
 </tr>
 <tr>
@@ -11,12 +18,11 @@
         Категория вещи:
     </td>
     <td>
-        <select name="" class="form-control">
+        <select id="storage-cat_storage_id-<?= $item ?>" name="StorageItems[cat_storage_id][<?= $item ?>]" class="form-control item-cats">
             <option value="">Выбрать...</option>
-            <option value="">Стандартный предмет</option>
-            <option value="">Крупный предмет</option>
-            <option value="">Закрытый контейнер</option>
-            <option value="">Мебель</option>
+            <?php foreach($cats as $cat) : ?>
+                <option value="<?= $cat->id ?>"><?= $cat->name ?></option>
+            <?php endforeach; ?>
         </select>
     </td>
 </tr>
@@ -26,13 +32,14 @@
     </td>
 </tr>
 <tr class="size">
-    <td>
-        Примерные габариты:
+    <td class="bold">
+        Примерные габариты (в см):
+        <p>Для закрытых контейнеров и мебели</p>
     </td>
     <td>
-        <input type="text" class="form-control size-item" placeholder="Длина" />
-        <input type="text" class="form-control size-item" placeholder="Высота" />
-        <input type="text" class="form-control size-item" placeholder="Ширина" />
+        <input type="text" id="storage-length-<?= $item ?>" class="form-control size-item item-storage item-length" name="StorageItems[length][<?= $item ?>]" placeholder="Длина" aria-required="true">
+        <input type="text" id="storage-height-<?= $item ?>" class="form-control size-item item-storage item-height" name="StorageItems[height][<?= $item ?>]" placeholder="Высота" aria-required="true">
+        <input type="text" id="storage-width-<?= $item ?>" class="form-control size-item item-storage item-width" name="StorageItems[width][<?= $item ?>]" placeholder="Ширина" aria-required="true">
     </td>
 </tr>
 <tr class="size append-to">
@@ -40,6 +47,6 @@
         Примерный вес:
     </td>
     <td>
-        <input type="text" class="form-control size-item" placeholder="килограммов..." />
+        <input type="text" id="storage-weight-<?= $item ?>" class="form-control size-item item-storage item-weight" name="StorageItems[weight][<?= $item ?>]" placeholder="килограммов..." aria-required="true">
     </td>
 </tr>

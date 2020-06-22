@@ -40,6 +40,11 @@ $this->title = 'Как это работает';
         <p>
             <b>5. Если же у Вас возникла необходимость временно взять в аренду какую либо вещь, не покупая ее, Вы находите ее из предложенного ассортимента.</b>
         </p>
+        <div class="description-block">
+            Чтобы воспользоваться данными возможностями, Вам необходимо зарегистрироваться<be />
+            <a href="<?= Yii::$app->urlManager->createUrl(['site/login']) ?>" class="btn btn-primary">Войти в систему</a>
+            <a href="<?= Yii::$app->urlManager->createUrl(['site/registration']) ?>" class="btn btn-default">Зарегистрироваться</a>
+        </div>
         <p class="link-support">
             <a href="<?= Yii::$app->urlManager->createUrl('site/faq') ?>">Остались вопросы?</a>
         </p>

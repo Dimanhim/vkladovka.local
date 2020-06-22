@@ -12,7 +12,7 @@ use app\models\ContactForm;
 
 class RentController extends Controller
 {
-    public function beforeAction($action)
+    /*public function beforeAction($action)
     {
         $user = Yii::$app->user;
         if($user->isGuest AND $this->action->id !== 'login')
@@ -20,7 +20,7 @@ class RentController extends Controller
             $user->loginRequired();
         }
         return true;
-    }
+    }*/
 
     /**
      * {@inheritdoc}
