@@ -18,6 +18,11 @@ $this->title = $user->fio;
 
 <div class="col-md-12">
     <h2 class="tac">Профиль пользователя - <?= $user->fio ?></h2>
+    <?php if($user->img) : ?>
+    <div class="avatar">
+        <img src="<?= Yii::getAlias('@user').'/'.$user->img ?>" alt="">
+    </div>
+    <?php endif; ?>
     <table class="table">
         <tr>
             <td>Фамилия, имя, отчество</td>

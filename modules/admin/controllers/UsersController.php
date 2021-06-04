@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Review;
 use app\models\Thing;
 use Yii;
 use yii\web\Controller;
@@ -40,8 +41,12 @@ class UsersController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        $things = Thing::findAll(['user' => $model->id]);
+        $reviews = Review::findAll(['user_id' => $model->id]);
         return $this->render('view', [
             'model' => $model,
+            'things' => $things,
+            'reviews' => $reviews,
         ]);
     }
 

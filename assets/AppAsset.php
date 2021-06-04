@@ -27,18 +27,35 @@ class AppAsset extends AssetBundle
         //'css/main.css',
     ];
     public $js = [
-        'js/libs.min.js',
-        'js/jquery.fancybox.min.js',
-        'js/owl.carousel.min.js',
-        'js/inputmask.js',
-        'js/jquery.inputmask.js',
-        'js/bootstrap-datetimepicker.min.js',
-        'js/common.js',
-        '/js/storage.js',
 
     ];
     public $depends = [
         'yii\web\YiiAsset',
         //'yii\bootstrap\BootstrapAsset',
     ];
+    public function getCss()
+    {
+        return [
+
+        ];
+    }
+    public function getJs()
+    {
+        return [
+            'js/bootstrap.js',
+            'js/jquery.fancybox.min.js',
+            'js/owl.carousel.min.js',
+            'js/inputmask.js',
+            'js/jquery.inputmask.js',
+            //'js/bootstrap-datetimepicker.min.js',
+            'js/jquery-ui.min.js',
+            'js/common.js?v='.mt_rand(1000,100000),
+            '/js/storage.js',
+        ];
+    }
+    public function init()
+    {
+        $this->css = self::getCss();
+        $this->js = self::getJs();
+    }
 }

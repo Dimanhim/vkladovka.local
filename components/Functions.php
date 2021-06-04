@@ -2,6 +2,7 @@
 
 namespace app\components;
 
+use Da\QrCode\QrCode;
 use Yii;
 
 use yii\db\ActiveRecord;
@@ -19,6 +20,30 @@ use yii\widgets\LinkPager;
 
 class Functions
 {
+    public function qrCode($param_1, $param_2)
+    {
+        return md5($param_1.$param_2);
+    }
+    public function qrCodeImg($code)
+    {
+        if($code) {
+            $qrCode = (new QrCode($code))
+                ->setSize(100)
+                ->setMargin(5)
+                ->useForegroundColor(0, 0, 0);
+            return $qrCode->writeDataUri();
+        }
+        return '';
+    }
+
+
+
+
+
+
+
+
+
 	public function getStatus($status)
 	{
 		if($status == 3)

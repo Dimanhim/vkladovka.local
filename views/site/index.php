@@ -1,8 +1,9 @@
 <?php
 
 /* @var $this yii\web\View */
-
+use Da\QrCode\QrCode;
 $this->title = 'Вкладовка - новый способ владеть вещами';
+
 ?>
 <div class="sl-wp container">
     <img src="images/logo2.jpg" alt="" class="logo2">
@@ -30,7 +31,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
             <div class="block-in">
                 <a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>"><img src="images/2.jpg" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">
                         Зарабатывайте <br>
                         на своих вещах
                     </a>
@@ -38,7 +39,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 <p>
                     Сдайте свои вещи в аренду, получайте за это деньги, обналичьте или потратьте на Вкладовка
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Начать получать $</a>
+                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">Начать получать $</a>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
@@ -313,22 +314,22 @@ $this->title = 'Вкладовка - новый способ владеть ве
             <li><a href="<?= Yii::$app->urlManager->createUrl('site/faq#2') ?>">Узнать от чего и как складывается стоимость по пикапу</a></li>
             <li><a href="#" class="quest">​Узнать, как получить бесплатный комплект услуг по пикапу</a></li>
         </ul>
+        <?php if($trends) : ?>
         <div class="tac">
             <h3>
                 Тенденции по аренде в
             </h3>
-            <select name="" id="">
-                <option value="">Ставрополь</option>
-                <option value="">Михайловск</option>
-                <option value="">Пятигорск</option>
-                <option value="">Краснодар</option>
-                <option value="">Ростов-на-Дону</option>
+            <select name="" id="trend-select">
+                <?php foreach($trends as $trend) : ?>
+                <option value="<?= $trend->id ?>"><?= $trend->city ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div class="wp-owl-pl">
             <div class="bt-pl prev"><i class="fas fa-chevron-left"></i></div>
             <div class="bt-pl next"><i class="fas fa-chevron-right"></i></div>
-            <div class="owl-carousel owl-theme owl-pl">
+            <div id="carousel-trend"></div>
+            <!--<div class="owl-carousel owl-theme owl-pl owl-trend-items">
                 <div>
                     <img src="images/i1.jpg" alt="">
                 </div>
@@ -344,8 +345,9 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 <div>
                     <img src="images/i1.jpg" alt="">
                 </div>
-            </div>
+            </div>-->
         </div>
+        <?php endif; ?>
     </div>
 </div>
 
@@ -354,10 +356,11 @@ $this->title = 'Вкладовка - новый способ владеть ве
         Арендовать интересующий меня предмет
     </p>
     <form action=".">
-        <input type="text">
-        <button>Поиск</button>
+        <input type="text" id="search-thing">
+        <button id="btn-search-thing">Поиск</button>
     </form>
 </div>
+<div id="search-results"></div>
 
 <div class="sl-wp usl">
     <div class="container">
@@ -390,11 +393,31 @@ $this->title = 'Вкладовка - новый способ владеть ве
         </div>
     </div>
 </div>
-
+<?php if($reviews) : ?>
 <div class="rews-wp">
     <div class="container">
         <h3>Что говорят наши участники.</h3>
 
+        <div class="owl-carousel owl-theme owl-pl">
+            <?php foreach($reviews as $review) : ?>
+            <div class="rew-user">
+                <div class="user-avatar">
+                    <img src="<?= Yii::getAlias('@user').'/'.$review->user->img ?>" alt="">
+                </div>
+                <div class="user-name">
+                    <?= $review->user->fio ?>
+                </div>
+                <p>
+                    <?= $review->content ?>
+                </p>
+                <div class="date-rew">
+                    <?= $review->createdAt ?>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!--
         <div class="owl-carousel owl-theme owl-pl">
             <div class="rew-user">
                 <div class="user-avatar">
@@ -425,7 +448,9 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 </div>
             </div>
         </div>
+        -->
     </div>
 </div>
+<?php endif; ?>
 
 

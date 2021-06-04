@@ -1,13 +1,17 @@
 <?php
 
 namespace app\models;
+
+use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use Da\QrCode\QrCode;
 
 class User extends ActiveRecord implements IdentityInterface
 {
     public $authKey;
     public $accessToken;
+    public $file;
 
     /*private static $users = [
         '100' => [
@@ -42,6 +46,9 @@ class User extends ActiveRecord implements IdentityInterface
             'address' => 'Проживание (по паспорту)',
             'phone' => 'Номер телефона',
             'email' => 'Адрес электронной почты',
+            'qr_code' => 'QR код',
+            'img' => 'Аватарка',
+            'file' => 'Аватарка',
         ];
     }
     public function attributes()
@@ -54,7 +61,10 @@ class User extends ActiveRecord implements IdentityInterface
             'address',
             'phone',
             'email',
+            'qr_code',
             'role',
+            'img',
+            'file',
         ];
     }
 
@@ -138,5 +148,16 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return \Yii::$app->security->validatePassword($password, $this->password);
         //return $this->password === $password;
+    }
+
+    public static function qrCode()
+    {
+        $user = self::findOne(Yii::$app->user->id);
+        $code = $user->qr_code ? $user->qr_code : md5($user->id.$user->email);
+        $qrCode = (new QrCode($code))
+            ->setSize(100)
+            ->setMargin(5)
+            ->useForegroundColor(0, 0, 0);
+        return $qrCode->writeDataUri();
     }
 }

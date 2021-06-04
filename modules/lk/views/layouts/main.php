@@ -29,8 +29,9 @@ $action = Yii::$app->controller->action->id;
     <?php $this->registerCssFile('/css/libs.min.css') ?>
     <?php $this->registerCssFile('/css/bootstrap.min.css') ?>
     <?php $this->registerCssFile('/css/jquery.fancybox.min.css') ?>
-    <?php $this->registerCssFile('/css/bootstrap-datetimepicker3.min.css') ?>
-    <?php $this->registerCssFile('/css/main.css') ?>
+    <?php //$this->registerCssFile('/css/bootstrap-datetimepicker3.min.css') ?>
+    <?php $this->registerCssFile('/css/jquery-ui.min.css') ?>
+    <?php $this->registerCssFile('/css/main.css?v='.mt_rand(1000,10000)) ?>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -125,7 +126,7 @@ $action = Yii::$app->controller->action->id;
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/return']) ?>" class="top-menu-btn select-thing" data-things="0">Вернуть <span>вещь</span></a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/friend']) ?>" class="top-menu-btn select-thing" data-things="0">Передать <span>другу</span></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/rent']) ?>" class="top-menu-btn select-thing" data-things="0">Сдать <span>в аренду</span></a></li>
+                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/rent']) ?>" class="top-menu-btn select-thing" data-things="0" id="to-rent-thing">Сдать <span>в аренду</span></a></li>
                     <li><a href="#" class="top-menu-btn trust-to-sell">Доверяю <span>продать</span></a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/extend']) ?>" class="top-menu-btn select-thing" data-things="0">Продлить <span>хранение</span></a></li>
                 </ul>
@@ -157,6 +158,7 @@ $action = Yii::$app->controller->action->id;
                 <li><a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать хранение</a></li>
                 <li><a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>">Заказать грузоперевозку</a></li>
                 <li><a href="<?= Yii::$app->urlManager->createUrl('lk/package') ?>" class="">Тара и упаковка</a></li>
+                <li><a href="<?= Yii::$app->urlManager->createUrl('lk/documents') ?>" class="">Документы</a></li>
                 <?php if(Yii::$app->user->isGuest) { ?>
                     <a href="#" class="main-bt" data-toggle="modal" data-target="#modalLogin">Войти</a>
                 <?php } else { ?>
@@ -184,6 +186,7 @@ $action = Yii::$app->controller->action->id;
                             <li><a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>">Заказать хранение</a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>">Заказать грузоперевозку</a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('lk/package') ?>" class="">Тара и упаковка</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl('lk/documents') ?>" class="">Документы</a></li>
                         </ul>
                     </div>
 
@@ -216,10 +219,17 @@ $action = Yii::$app->controller->action->id;
 
         <div class="container">
             <div class="rm-ul bt-n room-nav-bottom">
+                <?php
+                    if($r = Yii::$app->request->get('rent')) {
+                        $rent_link = Yii::$app->urlManager->createUrl(['lk/rent', 'rent' => $r]);
+                    } else {
+                        $rent_link = Yii::$app->urlManager->createUrl(['lk/rent']);
+                    }
+                ?>
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('lk/bank') ?>" class="">Мой банк</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('lk/storage') ?>" class="">Заказать хранение</a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>" class="">Арендовать вещь</a></li>
+                    <li><a href="<?= $rent_link ?>" class="">Арендовать вещь</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>" class="">Заказать грузоперевозку</a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('lk/package') ?>" class="">Тара и упаковка</a></li>
                 </ul>
@@ -241,11 +251,11 @@ $action = Yii::$app->controller->action->id;
                 <div class="col-md-4">
                     <ul>
                         <li><a href="#" class="quest">Как с нами связаться</a></li>
-                        <li><a href="#" class="quest">Пользовательское соглашение</a></li>
+                        <li><a href="<?= Yii::$app->urlManager->createUrl('site/legal-notice') ?>">Пользовательское соглашение</a></li>
                         <li><a href="/faq.php#id50">Правила хранения</a></li>
                         <li><a href="#" class="quest">Правила аренды </a></li>
                         <li><a href="/faq.php">Часто задаваемые вопросы</a></li>
-                        <li><a href="#" class="quest">Отзывы/оставить </a></li>
+                        <li><a href="<?= Yii::$app->urlManager->createUrl('lk/review/create') ?>">Отзывы/оставить </a></li>
                         <li><a href="#" class="quest">Заказ на хранение</a></li>
                         <li><a href="#" class="quest">Для партнеров по регионам/франшиза</a></li>
                     </ul>

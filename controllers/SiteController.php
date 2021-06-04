@@ -2,6 +2,10 @@
 
 namespace app\controllers;
 
+use app\models\Review;
+use app\models\Thing;
+use app\models\TrendCity;
+use app\models\TrendImage;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -66,7 +70,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $trends = TrendCity::find()->all();
+        $reviews = Review::find()->limit(10)->orderBy(['id' => SORT_DESC])->all();
+        return $this->render('index', [
+            'reviews' => $reviews,
+            'trends' => $trends,
+        ]);
     }
     public function actionAsWork()
     {
@@ -75,6 +84,10 @@ class SiteController extends Controller
     public function actionFaq()
     {
         return $this->render('faq');
+    }
+    public function actionLegalNotice()
+    {
+        return $this->render('legal-notice');
     }
     public function actionForUrLic()
     {
@@ -91,6 +104,16 @@ class SiteController extends Controller
     public function actionOrderService()
     {
         return $this->render('order-service');
+    }
+    public function actionSearchThing()
+    {
+        if(Yii::$app->request->isAjax) {
+            $string = Yii::$app->request->post('data');
+            $model = Thing::find()->where(['like', 'name', $string])->all();
+            return $this->renderAjax('search-thing', [
+                'model' => $model,
+            ]);
+        }
     }
     public function actionRegistration()
     {
@@ -223,5 +246,12 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    public function actionAddTrendImages($id)
+    {
+        if(Yii::$app->request->isAjax) {
+            $images = TrendImage::findAll(['city_id' => $id]);
+            return $this->renderAjax('_trend_images', ['images' => $images]);
+        }
     }
 }

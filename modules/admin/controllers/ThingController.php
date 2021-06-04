@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\components\Functions;
 use yii\web\Controller;
 use Yii;
 use yii\filters\AccessControl;
@@ -70,22 +71,16 @@ class ThingController extends Controller
         $cats = CatsThing::find()->all();
         $users = User::find()->all();
         if($model->load(Yii::$app->request->post())) {
+            $model->created_at = time();
+            $model->qrCode;
             if($model->save()) {
-                $id = $model->id;
-            }
-            $model->file = UploadedFile::getInstance($model, 'img');
-            if(!$model->user) $model->user = 0;
-            if($model->file) {
-                $model->file->saveAs('admin/things/img-user-'.$model->user.'-thing-'.$id.'.'. $model->file->extension);
-                $model->img = 'img-user-'.$model->user.'-thing-'.$id.'.'. $model->file->extension;
-                if($model->save()) {
-                    Yii::$app->session->setFlash('success', "Вещь успешно добавлена!");
-                    return $this->redirect('index');
-                } else {
-                    Yii::$app->session->setFlash('error', "Произошла ошибка сохранения!");
-                    return $this->redirect('index');
+                if($model->uploadFile) {
+                    return $this->redirect('view?id='.$model->id);
                 }
+                Yii::$app->session->setFlash('success', "Вещь успешно добавлена!");
+                return $this->redirect('view?id='.$model->id);
             }
+
         }
         return $this->render('add', [
             'model' => $model,
@@ -100,10 +95,10 @@ class ThingController extends Controller
         $users = User::find()->all();
         $img = $model->img;
         if($model->load(Yii::$app->request->post())) {
+            $model->qrCode;
             $model->file = UploadedFile::getInstance($model, 'img');
             if($model->file) {
-                $model->file->saveAs('admin/things/img-user-'.$model->user.'-thing-'.$model->id.'.'. $model->file->extension);
-                $model->img = 'img-user-'.$model->user.'-thing-'.$model->id.'.'. $model->file->extension;
+                $model->uploadFile;
             }
             else {
                 $model->img = $img;
@@ -127,7 +122,9 @@ class ThingController extends Controller
         $model = $this->findModel($id);
         if($model->delete()) {
             $alias = Yii::getAlias('@thingdel').'/'.$model->img;
-            unlink($alias);
+            if(file_exists($alias)) {
+                unlink($alias);
+            }
             Yii::$app->session->setFlash('success', "Вещь успешно удалена!");
             return $this->redirect('index');
         } else {
@@ -135,6 +132,30 @@ class ThingController extends Controller
             return $this->redirect('index');
         }
     }
+
+
+    /*
+     *  AJAX
+     * */
+    public function actionAddParentCats($cat)
+    {
+        if(Yii::$app->request->isAjax) {
+            if($model = CatsThing::findAll(['parent_id' => Yii::$app->request->get('cat')])) {
+                $str = '<option value="">--Выбрать--</option>';
+                foreach($model as $value) {
+                    $str .= '<option value="'.$value->id.'">'.$value->name.'</option>';
+                }
+                return $str;
+            }
+        }
+    }
+
+
+
+
+
+
+
     protected function findModel($id)
     {
         if (($model = Thing::findOne($id)) !== null) {

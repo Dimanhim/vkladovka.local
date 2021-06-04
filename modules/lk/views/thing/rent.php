@@ -4,12 +4,14 @@
 
 use yii\web\View;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
-if(count($model) > 1) $many = true;
+if(count($things) > 1) $many = true;
 else $many = false;
 
-if($many) $this->title = 'Сдать в аренду '.count($model).' вещи(ей)';
-else $this->title = 'Сдать в аренду '.$model[0]->name;
+if($many) $this->title = 'Сдать в аренду '.count($things).' вещи(ей)';
+else $this->title = 'Сдать в аренду '.$things[0]->name;
 ?>
 
 <!-- ----------------------------Хлебные крошки -->
@@ -17,18 +19,18 @@ else $this->title = 'Сдать в аренду '.$model[0]->name;
     <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>"> / Личный кабинет</a></li>
     <?php if($many) : ?>
-        <li> / Сдать в аренду <?= count($model) ?> вещи(ей)</li>
+        <li> / Сдать в аренду <?= count($things) ?> вещи(ей)</li>
     <?php else : ?>
-        <li> / Сдать в аренду <?= $model[0]->name ?></li>
+        <li> / Сдать в аренду <?= $things[0]->name ?></li>
     <?php endif; ?>
 </ul>
 <!-- Хлебные крошки -->
 
 <div class="col-md-12">
     <?php if($many) : ?>
-        <h2 class="tac">Сдать в аренду <?= count($model) ?> вещи(ей)</h2>
+        <h2 class="tac">Сдать в аренду <?= count($things) ?> вещи(ей)</h2>
     <?php else : ?>
-        <h2 class="tac">Сдать в аренду <?= $model[0]->name ?></h2>
+        <h2 class="tac">Сдать в аренду <?= $things[0]->name ?></h2>
     <?php endif; ?>
 </div>
 
@@ -37,15 +39,17 @@ else $this->title = 'Сдать в аренду '.$model[0]->name;
     <div>
         <a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>">Вернуться на склад</a>
     </div>
-    <div class="thing-actions">
+
+    <?php $form = ActiveForm::begin(['id' => 'form-rent-thing', 'options' => ['class' => 'thing-actions']]) ?>
         <table class="table">
             <tr>
                 <td>
                     Название:
                 </td>
                 <td>
-                    <?php foreach($model as $v) : ?>
+                    <?php foreach($things as $v) : ?>
                         <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing', 'id' => $v->id]) ?>" class="thing-item-link" data-thing-item="<?= $v->id ?>"><?= $v->name ?> <?= $v->id ?></a><br />
+                    <?= $form->field($model, 'thing_ids[]', ['template' => '{input}'])->hiddenInput(['value' => $v->id]) ?>
                     <?php endforeach; ?>
                 </td>
             </tr>
@@ -54,7 +58,7 @@ else $this->title = 'Сдать в аренду '.$model[0]->name;
                     Фото:
                 </td>
                 <td class="thing-photo">
-                    <?php foreach($model as $v) : ?>
+                    <?php foreach($things as $v) : ?>
                         <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing', 'id' => $v->id]) ?>" class="thing-item-img" data-thing-item="<?= $v->id ?>">
                             <img src="<?= Yii::getAlias('@thing').'/'.$v->img ?>" alt="" />
                         </a>,
@@ -81,7 +85,7 @@ else $this->title = 'Сдать в аренду '.$model[0]->name;
                     Описание:
                 </td>
                 <td>
-                    <textarea name="" id="" cols="30" rows="4" class="form-control">вбивается текст, есть ли какие то особенности по вещи, материал, потертости, пр.)</textarea>
+                    <?= $form->field($model, 'description', ['template' => '{input}'])->textarea(['cols' => 30, 'rows' => 4, 'class' => 'form-control', 'placeholder' => 'вбивается текст, есть ли какие то особенности по вещи, материал, потертости, пр.']) ?>
                 </td>
             </tr>
             <tr>
@@ -89,7 +93,7 @@ else $this->title = 'Сдать в аренду '.$model[0]->name;
                     Особые условия:
                 </td>
                 <td>
-                    <textarea name="" id="" cols="30" rows="4" class="form-control">ограничения по аренде, залог за вещь, минимальное кол-во дней</textarea>
+                    <?= $form->field($model, 'special_conditions', ['template' => '{input}'])->textarea(['cols' => 30, 'rows' => 4, 'class' => 'form-control', 'placeholder' => 'ограничения по аренде, залог за вещь, минимальное кол-во дней']) ?>
                 </td>
             </tr>
             <tr>
@@ -97,7 +101,7 @@ else $this->title = 'Сдать в аренду '.$model[0]->name;
                     Цена в день аренды:
                 </td>
                 <td>
-                    <input type="text" name="price" class="form-control" placeholder="рублей" />
+                    <?= $form->field($model, 'price', ['template' => '{input}'])->textInput(['placeholder' => 'рублей']) ?>
                 </td>
             </tr>
             <tr>
@@ -106,6 +110,6 @@ else $this->title = 'Сдать в аренду '.$model[0]->name;
                 </td>
             </tr>
         </table>
-    </div>
+        <?php ActiveForm::end() ?>
 </div>
 

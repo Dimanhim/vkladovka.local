@@ -13,6 +13,7 @@ class CatsThing extends ActiveRecord
         return [
             [['name'], 'required', 'message' => 'Поле должно быть заполнено'],
             [['name', 'description', 'img'], 'string'],
+            [['parent_id'], 'integer'],
             [['file'], 'file'],
         ];
     }
@@ -21,6 +22,7 @@ class CatsThing extends ActiveRecord
         return [
             'id',
             'name',
+            'parent_id',
             'description',
             'img',
             'file',
@@ -30,6 +32,7 @@ class CatsThing extends ActiveRecord
     {
         return [
             'name' => 'Название',
+            'parent_id' => 'Родительская категория',
             'description' => 'Описание',
             'img' => 'Изображение',
         ];

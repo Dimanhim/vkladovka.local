@@ -2,6 +2,8 @@
 
 namespace app\modules\lk\controllers;
 
+use app\models\CatsThing;
+use app\models\Thing;
 use yii\web\Controller;
 use Yii;
 use yii\filters\AccessControl;
@@ -12,7 +14,7 @@ use app\models\ContactForm;
 
 class RentController extends Controller
 {
-    /*public function beforeAction($action)
+    public function beforeAction($action)
     {
         $user = Yii::$app->user;
         if($user->isGuest AND $this->action->id !== 'login')
@@ -20,7 +22,7 @@ class RentController extends Controller
             $user->loginRequired();
         }
         return true;
-    }*/
+    }
 
     /**
      * {@inheritdoc}
@@ -45,19 +47,41 @@ class RentController extends Controller
      */
 
 //--- АРЕНДОВАТЬ ВЕЩЬ
-    public function actionIndex()
+    public function actionIndex($parent = false)
     {
-        return $this->render('index');
+        if(($get = Yii::$app->request->get('rent')) && ($thing = Thing::findOne($get))) {
+            return $this->redirect('rent/thing?id='.$thing->id);
+        }
+        $model = $parent ? CatsThing::findAll(['parent_id' => $parent]) : CatsThing::findAll(['parent_id' => null]);
+        return $this->render('index', [
+            'model' => $model,
+            'parent' => $parent,
+        ]);
+    }
+    public function actionCat($id)
+    {
+        $model = CatsThing::findAll(['parent_id' => $id]);
+        return $this->render('cat', [
+            'model' => $model,
+        ]);
     }
 
-    public function actionTo()
+    public function actionTo($id)
     {
-        return $this->render('to');
+        $cat = CatsThing::findOne($id);
+        $model = Thing::findAll(['parent_cat' => $id]);
+        return $this->render('to', [
+            'model' => $model,
+            'cat' => $cat,
+        ]);
     }
 
-    public function actionThing()
+    public function actionThing($id)
     {
-        return $this->render('thing');
+        $model = Thing::findOne($id);
+        return $this->render('thing', [
+            'model' => $model,
+        ]);
     }
 
 

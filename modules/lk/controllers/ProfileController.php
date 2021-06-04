@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\User;
 use app\models\UserForm;
 use app\models\FormRegistration;
+use yii\web\UploadedFile;
 
 class ProfileController extends Controller
 {
@@ -57,6 +58,11 @@ class ProfileController extends Controller
             $model->passport = $form->passport;
             $model->address = $form->address;
             $model->phone = $form->phone;
+            $form->file = UploadedFile::getInstance($form, 'file');
+            if($form->file) {
+                $form->file->saveAs('admin/avatars/img-ava-'.$model->id.'.'. $form->file->extension);
+                $model->img = 'img-ava-'.$model->id.'.'. $form->file->extension;
+            }
             if($model->save()) {
                 Yii::$app->session->setFlash('success', 'Данные успешно обновлены');
                 return $this->redirect('index');

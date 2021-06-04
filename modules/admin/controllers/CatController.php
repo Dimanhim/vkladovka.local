@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Thing;
 use yii\web\Controller;
 use Yii;
 use yii\filters\AccessControl;
@@ -51,7 +52,7 @@ class CatController extends Controller
      */
     public function actionIndex()
     {
-        $model = CatsThing::find()->all();
+        $model = CatsThing::findAll(['parent_id' => null]);
         return $this->render('index', [
             'model' => $model,
         ]);
@@ -63,9 +64,27 @@ class CatController extends Controller
             'model' => $model,
         ]);
     }
-    public function actionAdd()
+    public function actionInner($id)
+    {
+        $model = CatsThing::findAll(['parent_id' => $id]);
+        return $this->render('inner', [
+            'model' => $model,
+            'parent' => $id,
+        ]);
+    }
+    public function actionThings($id)
+    {
+        $model = Thing::findAll(['parent_cat' => $id]);
+        $cat = CatsThing::findOne($id);
+        return $this->render('things', [
+            'model' => $model,
+            'cat' => $cat,
+        ]);
+    }
+    public function actionAdd($parent = false)
     {
         $model = new CatsThing();
+        if($parent) $model->parent_id = $parent;
         if($model->load(Yii::$app->request->post())) {
             if($model->save()) {
                 $cat_id = $model->id;
@@ -74,13 +93,13 @@ class CatController extends Controller
             if($model->file) {
                 $model->file->saveAs('admin/categories/img-category-'.$cat_id.'.'. $model->file->extension);
                 $model->img = 'img-category-'.$cat_id.'.'. $model->file->extension;
-                if($model->save()) {
-                    Yii::$app->session->setFlash('success', "Категория успешно добавлена!");
-                    return $this->redirect('index');
-                } else {
-                    Yii::$app->session->setFlash('error', "Произошла ошибка сохранения!");
-                    return $this->redirect('index');
-                }
+            }
+            if($model->save()) {
+                Yii::$app->session->setFlash('success', "Категория успешно добавлена!");
+                return $parent ? $this->redirect('inner?id='.$parent) : $this->redirect('index');
+            } else {
+                Yii::$app->session->setFlash('error', "Произошла ошибка сохранения!");
+                return $this->redirect('index');
             }
         }
         return $this->render('add', [

@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 	//
 
-	var pl = $('.owl-pl');
+	/*var pl = $('.owl-pl');
 
 	pl.owlCarousel({
 		loop:true,
@@ -33,7 +33,7 @@ $(document).ready(function(){
 
 	$(".bt-pl.prev").on("click", function(){
 		pl.trigger('prev.owl.carousel');
-	});
+	});*/
 
 	$(".bt-pl.next").on("click", function(){
 		pl.trigger('next.owl.carousel');
@@ -64,7 +64,6 @@ $(document).ready(function(){
 	// закрываем чат
 
 	$(".close-chat").on("click", function(){
-		console.log("e");
 		$(".global-chat-wp").removeClass("active");
 	});
 
@@ -128,7 +127,6 @@ $(document).ready(function(){
 
 	$(".selects-it li").on("click", function(){
 		var text = $(this).text();
-		console.log(text);
 		$(this).parents(".selector-ver").find("input").val(text);
 		$(".selector-ver").removeClass("active");
 	});
@@ -183,7 +181,7 @@ $(document).ready(function(){
 	});
 
 	//$('.checkbox input').on('change', function() {
-	$('.checkbox').on('click', function() {
+	$('body').on('click', '.checkbox', function() {
 		var checkbox = $(this).find('input[type=checkbox]');
 		var desc = $(this).parent('.item-thing').find('.description a');
 		if(checkbox.is(':checked')) checkbox.prop('checked', false);
@@ -221,11 +219,37 @@ $(document).ready(function(){
 	});
 
 	//if(isChecked() != 0) $('.room-nav-bottom').fadeIn();
-
-	$('.select-thing').on('click', function() {
+	$('body').on('click', '#to-rent-thing', function(e) {
+		e.preventDefault();
+		var object = $(this);
+		var get = object.attr('data-things');
 		if(isChecked() == 0) {
-			$('.error p').fadeIn();
-			setTimeout(displayError, 6000);
+			displayError('Пожалуйста, выберете хотя бы одну вещь!');
+			return false;
+		}
+		else {
+			$.get('lk/thing/ajax-things-rent', {ids: get}, function(res) {
+				if(res) {
+					displayError(res);
+					return false;
+				}
+				else {
+					var location = window.location;
+					var path = location.origin + '/lk/thing/rent?id=' + get;
+					window.location = path;
+				}
+			});
+		}
+	});
+	function displayError(message) {
+		$('.error p').text(message).fadeIn();
+		setTimeout(function() {
+			$('.error p').text(message).fadeOut()
+		}, 6000)
+	}
+	$('body').on('click', '.select-thing', function() {
+		if(isChecked() == 0) {
+			displayError('Пожалуйста, выберете хотя бы одну вещь!');
 			return false;
 		}
 		else {
@@ -235,8 +259,19 @@ $(document).ready(function(){
 			self.attr('href', href + '?id=' + str);
 		}
 	});
-	function displayError() {
-		$('.error p').fadeOut();
+	function checkDisplayed(things) {
+		$.get('lk/thing/ajax-things-rent', {ids: things}, function(res) {
+			console.log(res);
+			if(res) {
+				displayError(res);
+			}
+		});
+	}
+	function displayError(message) {
+		$('.error p').text(message).fadeIn();
+		setTimeout(function() {
+			$('.error p').text(message).fadeOut()
+		}, 6000)
 	}
 	$('.show-content').on('click', function() {
 		$('.hide-content').slideDown();
@@ -291,10 +326,12 @@ $(document).ready(function(){
 		});
 		countAppendItems();
 	});
+	/*
 	$('body').on('submit', '#storage-form', function(e) {
 		e.preventDefault(e);
 		var self = $(this);
 		var form = self.serialize();
+		console.log(form);
 		$.ajax({
 			url: '/lk/storage/add-storage',
 			type: 'POST',
@@ -307,7 +344,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-
+*/
 
 
 
@@ -365,15 +402,198 @@ $(document).ready(function(){
 			$('.return-tr').fadeIn();
 		}
 	});
-	$('.storage-btn').on('click', function() {
-		$.get('/lk/storage/reg', function(data) {
-			if(data == 'error') {
-				$('#storage').modal('show');
+
+	/*
+	$('body').on('submit', '#storage-form', function(ev) {
+		ev.preventDefault();
+		var form = $(this);
+		var data = form.serialize();
+		$.ajax({
+			url: '/lk/storage/send-storage',
+			type: 'POST',
+			data: data,
+			success: function (res) {
+				console.log(res);
 				return false;
+			},
+			error: function () {
+				alert('Error!');
 			}
 		});
+	});
+	*/
+
+	$('.date-picker').datepicker({
+		closeText: 'Закрыть',
+		prevText: 'Предыдущий',
+		nextText: 'Следующий',
+		currentText: 'Сегодня',
+		monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+		monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+		dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+		dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+		dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+		dateFormat: 'dd.mm.yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: '',
+		onSelect: function (dateText, inst) {
+
+		}
+	});
+	$('body').on('change', '.item-cats', function(e) {
+	    e.preventDefault();
+	    var val = $(this).val();
+	    if(val > 0) {
+	    	var item = $('.td-desc').eq($(this).data('count'));
+			item.find('.thing-desc').css('display', 'none');
+			item.find('.desc-'+val).fadeIn();
+			item.fadeIn();
+		} else {
+			var item = $('.td-desc').eq($(this).data('count'));
+			item.find('.thing-desc').css('display', 'none');
+			item.fadeOut();
+		}
+	    var el = $(this).parents('table').find('.dimensions-tr').eq($(this).data('count'));
+	    if((val == 3) || (val == 4)) el.fadeIn();
+	    else el.fadeOut();
+
 
 	});
+	$('body').on('change', '#thing-cat', function(e) {
+	    e.preventDefault();
+	    $.get('/admin/thing/add-parent-cats', {cat: $(this).val()}, function(data) {
+	    	$('#thing-parent_cat').html(data);
+		});
+	});
+
+	// расчет стоимости хранения
+	$('body').on('change', '#form-storage input, #form-storage select', function(e) {
+		calculateStorage();
+		//var inputs = $('#form-storage input, #form-storage select');
+		//var price = 0;
+		//var cat_storage_price_coef = []; var length = []; var height = []; var width = []; var size = [];
+		/*
+		inputs.each(function(index, element) {
+
+			if($(this).data('type') == 'cat_storage_id') {
+				var id = $(this).val();
+				cat_storage_price_coef = $(this).find('option[value="'+id+'"]').data('price');
+			}
+			if($(this).data('type') == 'length') {
+				length += Number($(this).val());
+			}
+			if($(this).data('type') == 'height') {
+				height += Number($(this).val());
+			}
+			if($(this).data('type') == 'width') {
+				width += Number($(this).val());
+			}
+			if(length > 0 && height > 0 && width > 0) {
+				size = length * height * width;
+				$('.error_message').fadeOut();
+			} else {
+				$('.error_message').fadeIn();
+			}
+
+		});
+		*/
+	});
+	function calculateStorage() {
+		var form = $('#form-storage');
+		var data = form.serialize();
+		var url = '/lk/storage/calculate-storage';
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: data,
+			success: function (json) {
+				var data = JSON.parse(json);
+				console.log(data);
+				for(var i = 0; i < data.count; i++) {
+					var span = $('tr[data-count="'+data[i].field+'"] span.error_message');
+					if(data[i].message) span.html(data[i].message).css('display', 'block');
+					else span.html('').css('display', 'none');
+					$('#storage-price_storage').val(data.price_storage);
+					$('#storage-price_pickup').val(data.price_pickup);
+					$('#storage-price_total').val(data.price_total);
+					//console.log(data.test);
+				}
+				return false;
+			},
+			error: function () {
+				alert('Error!');
+			}
+		});
+	}
+	// поиск
+	$('body').on('click', '#btn-search-thing', function(e) {
+	    e.preventDefault();
+	    var string = $(this).parents('form').find('#search-thing').val();
+	    $.post('/site/search-thing', {data: string}, function(res) {
+	    	$('#search-results').html(res);
+	    	console.log(res);
+		});
+	});
+	$('body').on('click', '.remove-storage-item', function(e) {
+	    e.preventDefault();
+	    var count = $(this).data('marker');
+	    $('tr[data-marker="'+count+'"]').remove();
+		calculateStorage();
+	});
+	$('body').on('change', '#loyalty-table input', function(e) {
+	    e.preventDefault();
+		var val = $(this).val();
+		var id = $(this).data('id');
+		var template = $(this).data('template');
+		$.post('/admin/loyalty/save-value', {id: id, val: val, template: template}, function(res) {
+			console.log(res);
+		});
+	});
+	$('body').on('click', '.show-item', function(e) {
+	    e.preventDefault();
+	    var type = $(this).data('type');
+	    var item = $('.user-dropdown[data-type="'+type+'"]');
+	    if(item.is(':hidden')) {
+	    	item.slideToggle();
+			$(this).find('span').html('Скрыть');
+		} else {
+			item.slideToggle();
+			$(this).find('span').html('Показать');
+		}
+	});
+
+
+
+
+
+	function addTrendImages() {
+		var trend = $('#trend-select').val();
+		$.get('site/add-trend-images', {id: trend}, function(res) {
+			console.log(res);
+			$('#carousel-trend').html(res);
+			/*$('.owl-carousel').owlCarousel({
+				loop:true,
+				nav:false,
+				items: 1,
+				touchDrag: false,
+				mouseDrag: false
+			})*/
+		});
+	}
+	addTrendImages();
+	$('body').on('change', '#trend-select', function(e) {
+	    e.preventDefault();
+		addTrendImages();
+	});
+	$('body').on('click', '.rent-cancel', function(e) {
+	    if(!confirm('Вы действительно хотите отменить аренду вещи?')) return false;
+	});
+	$('body').on('click', '.rent-success', function(e) {
+		if(!confirm('Вы действительно хотите сдать в аренду вещь?')) return false;
+	});
+
 
 
 });

@@ -14,6 +14,13 @@
     background-size: 100%;
     background-repeat: no-repeat;
 }
+#sortable_photoes li {
+    display: inline-block;
+    text-align: center;
+}
+
+
+
 .item-img {
     position: relative;
 }
@@ -39,4 +46,37 @@
 }
 .back ul li a:hover {
     color: #000;
+}
+.avatar {
+    text-align: center;
+    margin: 10px 0;
+}
+.avatar img {
+    width: 100px;
+}
+.img-preview {
+    width: 200px;
+}
+.balance {
+    font-weight: bold;
+}
+.balance span {
+    color: #f00;
+}
+.user-dropdown {
+    display: none;
+}
+.user-items li {
+    display: inline-block;
+    list-style: none;
+}
+.back ul li {
+    list-style: none;
+}
+.error {
+    color: #dd4b39;
+    height: 20px;
+}
+.error.success {
+    color: #008d4c;
 }

@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\Html;
 use yii\web\View;
 
 $this->title = 'Список вещей';
@@ -24,6 +25,7 @@ $this->title = 'Список вещей';
                             <ul>
                                 <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/thing/view', 'id' => $v->id]) ?>">Просмотр</a></li>
                                 <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/thing/edit', 'id' => $v->id]) ?>">Редактировать</a></li>
+                                <li><a href="<?= $v->getQrCode(true) ?>" download="" target="_blank">Распечатать QR-код</a></li>
                                 <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/thing/delete', 'id' => $v->id]) ?>" class="link-delete">Удалить</a></li>
                             </ul>
                         </div>

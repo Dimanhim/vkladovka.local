@@ -5,10 +5,10 @@
 use yii\web\View;
 use yii\helpers\Url;
 
-$this->title = 'Сдать в аренду "вещь такая то"';
+$this->title = 'Сдать в аренду "'.$model->name.'"';
 ?>
 <?= $this->render('_payment', [
-    'message' => 'Сдать в аренду "вещь такая то"'
+    'message' => 'Сдать в аренду "'.$model->name.'"'
 ]) ?>
 
 <!-- ------------------Хлебные крошки -->
@@ -16,13 +16,13 @@ $this->title = 'Сдать в аренду "вещь такая то"';
     <li><a href="<?= Yii::$app->urlManager->createUrl(['site/index']) ?>">Главная</a></li>
     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>"> / Личный кабинет</a></li>
     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/rent']) ?>"> / Арендовать вещь</a></li>
-    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/rent/to']) ?>"> / Категория "Рюкзаки"</a></li>
-    <li> / Арендовать вещь "Такая то"</li>
+    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/rent/to', 'id' => $model->categoryParent->id]) ?>"> / Категория <?= $model->categoryParent->name ?></a></li>
+    <li> / Арендовать вещь "<?= $model->name ?>"</li>
 </ul>
 <!-- Хлебные крошки -->
 
 <div class="col-md-12">
-    <h2 class="tac">Арендовать "Вещь такая-то"</h2>
+    <h2 class="tac">Арендовать "<?= $model->name ?>"</h2>
 </div>
 
 <div class="clearfix"></div>
@@ -30,6 +30,7 @@ $this->title = 'Сдать в аренду "вещь такая то"';
     <div>
         <a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>">Вернуться на склад</a>
     </div>
+    <?php if($model->is_rent) : ?>
     <div class="thing-actions">
         <table class="table">
             <tr class="adress-textarea">
@@ -89,6 +90,11 @@ $this->title = 'Сдать в аренду "вещь такая то"';
             </tr>
         </table>
     </div>
+    <?php else : ?>
+        <div class="description-block">
+            Вы не можете арендовать эту вещь, так как собственник запретил аренду
+        </div>
+    <?php endif; ?>
 </div>
 
 

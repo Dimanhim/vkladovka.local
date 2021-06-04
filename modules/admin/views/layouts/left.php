@@ -20,8 +20,10 @@
                     ['label' => 'Меню', 'options' => ['class' => 'header']],
                     ['label' => 'Добавить вещь', 'icon' => 'file-code-o', 'url' => ['thing/add']],
                     ['label' => 'Категории вещей', 'icon' => 'file-code-o', 'url' => ['cat/index']],
+                    ['label' => 'Все вещи', 'icon' => 'file-code-o', 'url' => ['thing/index']],
                     ['label' => 'Пользователи', 'icon' => 'file-code-o', 'url' => ['users/index']],
-                    ['label' => 'Заказы хранения', 'icon' => 'dashboard', 'url' => ['/debug']],
+                    ['label' => 'Заказы хранения', 'icon' => 'dashboard', 'url' => ['storage/index']],
+                    ['label' => 'Отзывы', 'icon' => 'dashboard', 'url' => ['review/index']],
                     [
                         'label' => 'Тара/упаковка',
                         'icon' => 'share',
@@ -48,6 +50,9 @@
                             ],
                         ],
                     ],
+                    ['label' => 'Таблица лояльности', 'icon' => 'dashboard', 'url' => ['loyalty/index']],
+                    ['label' => 'Настройки', 'icon' => 'file-code-o', 'url' => ['settings/index']],
+                    ['label' => 'Контент', 'icon' => 'file-code-o', 'url' => ['content/index']],
                 ],
             ]
         ) ?>

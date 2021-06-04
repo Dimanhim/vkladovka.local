@@ -21,7 +21,11 @@
         "keygenqt/yii2-image-handler": "dev-master",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "kartik-v/yii2-widget-datetimepicker": "*",
-        "dmstr/yii2-adminlte-asset": "2.*"
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "2amigos/qrcode-library": "~1.1",
+        "kartik-v/yii2-widget-fileinput": "^1.1@dev",
+        "himiklab/yii2-easy-thumbnail-image-helper": "dev-master",
+        "kartik-v/yii2-mpdf": "^1.0@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

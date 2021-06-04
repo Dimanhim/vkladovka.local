@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\web\View;
+use yii\helpers\Html;
 
 $this->title = $model->name;
 ?>
@@ -36,8 +37,28 @@ $this->title = $model->name;
                         <td><?= $model->category->name ?></td>
                     </tr>
                     <tr class="info">
+                        <td>Подкатегория</td>
+                        <td><?= $model->categoryParent->name ?></td>
+                    </tr>
+                    <tr class="info">
                         <td>Пользователь</td>
                         <td><?= $model->users->fio ?></td>
+                    </tr>
+                    <tr class="info">
+                        <td>QR код</td>
+                        <td>
+                            <a href="<?= $model->getQrCode(true) ?>" download>
+                                <?= $model->qr_code ? Html::img($model->getQrCode(true), ['alt' => 'sdf'])  : '' ?>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="info">
+                        <td><?= $model->attributeLabels()['is_rent'] ?></td>
+                        <td>
+                            <a href="<?= $model->getQrCode(true) ?>" download>
+                                <?= $model->is_rent ? 'Да' : 'Нет' ?>
+                            </a>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">

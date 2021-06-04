@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\web\View;
+use app\models\User;
 
 $this->title = 'Партнерская программа';
 ?>
@@ -47,8 +48,12 @@ $this->title = 'Партнерская программа';
 </dov>
 <table class="table">
     <tr>
-        <td>Ваш персональный код: </td>
-        <td>fb6LRI753hGf</td>
+        <td>Ваш QR код: </td>
+        <td>
+            <?php if($qr_code = User::qrCode()) : ?>
+                <img src="<?= $qr_code ?>" alt="">
+            <?php endif; ?>
+        </td>
     </tr>
     <tr>
         <td>Ввести код партнера для получения привилегий и бонусов: </td>

@@ -1,0 +1,3 @@
+_csrf=yHx824SMGgv23RDAEwc_Agji4qj3ATcXalWrFW5cHdP-GhuO_fRxTYCEXJJcYXNtcZHb4pByWCVaL8lZXzZEgA
+%3D%3D&
+StorageItems%5Bname%5D%5B0%5D=%D0%9D%D0%B0%D0%B7%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5&StorageItems%5Bcat_storage_id%5D%5B0%5D=2&StorageItems%5Blength%5D%5B0%5D=250&StorageItems%5Bheight%5D%5B0%5D=140&StorageItems%5Bwidth%5D%5B0%5D=75&StorageItems%5Bweight%5D%5B0%5D=19&Storage%5Bdate%5D=31-07-2020%2014%3A50&Storage%5Bterm%5D=20&Storage%5Bprice_storage%5D=1564&Storage%5Bprice_total%5D=2296&Storage%5Bagree%5D=0&Storage%5Bagree%5D=1&Storage%5Bpayment_method%5D=0&Storage%5Bpayment_method%5D=1&Storage%5Bpayment_method%5D=0

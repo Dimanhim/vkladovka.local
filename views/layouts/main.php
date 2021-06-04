@@ -30,7 +30,7 @@ AppAsset::register($this);
     <?php $this->registerCssFile('/css/bootstrap.min.css') ?>
     <?php $this->registerCssFile('/css/jquery.fancybox.min.css') ?>
     <?php $this->registerCssFile('/css/bootstrap-datetimepicker3.min.css') ?>
-    <?php $this->registerCssFile('/css/main.css') ?>
+    <?php $this->registerCssFile('/css/main.css?v='.mt_rand(1000,10000)) ?>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -53,8 +53,8 @@ AppAsset::register($this);
                 </div>
                 <div class="m-nav">
                     <div class="cont-top">
-                        <a href="tel:8-800-800-8888"><i class="fas fa-phone"></i> 8-800-800-8888</a> <br>
-                        <a href="mail:vkladovka@yandex.ru"><i class="far fa-envelope"></i> vkladovka@yandex.ru</a>
+                        <a href="tel:<?= Yii::$app->params['sitePhone'] ?>"><i class="fas fa-phone"></i> <?= Yii::$app->params['sitePhone'] ?></a> <br>
+                        <a href="mail:<?= Yii::$app->params['adminEmail'] ?>"><i class="far fa-envelope"></i> <?= Yii::$app->params['adminEmail'] ?></a>
                     </div>
                     <div class="rsp-top">
                         <i class="far fa-clock"></i> Время работы 8:00-20:00<br>
@@ -162,7 +162,7 @@ AppAsset::register($this);
                     <div class="col-md-4">
                         <p>
                             Служба поддержки <br>
-                            Самовывоз и доставка <br>
+                            Вывоз и обратная доставка <br>
                             С 8:00 до 20:00 <br>
                             Ежедневно
                         </p>
@@ -170,13 +170,13 @@ AppAsset::register($this);
                     <div class="col-md-4">
                         <ul>
                             <li><a href="#" class="quest">Как с нами связаться</a></li>
-                            <li><a href="#" class="quest">Пользовательское соглашение</a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl('site/legal-notice') ?>">Пользовательское соглашение</a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('site/faq#id50') ?>">Правила хранения</a></li>
                             <li><a href="#" class="quest">Правила аренды </a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl('site/faq') ?>">Часто задаваемые вопросы</a></li>
-                            <li><a href="#" class="quest">Отзывы/оставить </a></li>
+                            <li><a href="<?= Yii::$app->urlManager->createUrl('lk/review/create') ?>">Отзывы/оставить </a></li>
                             <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/order-storage', 'id' => $id]) ?>">Заказ на хранение</a></li>
-                            <li><a href="#" class="quest">Для партнеров по регионам/франшиза</a></li>
+                            <!--<li><a href="#" class="quest">Для партнеров по регионам/франшиза</a></li>-->
                             <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic') ?>">Для юр. лиц</a></li>
                         </ul>
                     </div>

@@ -2,6 +2,7 @@
 
 namespace app\modules\lk\controllers;
 
+use app\models\Rent;
 use app\models\Thing;
 use yii\web\Controller;
 use Yii;
@@ -68,8 +69,21 @@ class ThingController extends Controller
     }
     public function actionRent($id)
     {
-        $model = $this->findModelDelimiter($id);
+        $things = $this->findModelDelimiter($id);
+        $model = new Rent();
+        if($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->prepareModel;
+            if($rented_things_message = $model->validateIsRent) {
+                Yii::$app->session->setFlash('error', $rented_things_message);
+                return $this->refresh();
+            }
+            if($model->save() && $model->rentThings) {
+                Yii::$app->session->setFlash('success', 'Вещи успешно сданы в аренду. При желании, Вы сможете отменить аренду в карточке вещи');
+                return $this->redirect('/lk');
+            }
+        }
         return $this->render('rent', [
+            'things' => $things,
             'model' => $model,
         ]);
     }
@@ -85,6 +99,22 @@ class ThingController extends Controller
         return $this->render('extend-all');
     }
 
+    public function actionToRent($id, $action)
+    {
+        $model = $this->findModel($id);
+        if($action == 'rent') {
+            $model->is_rent = 1;
+            $message = 'Вещь успешно арендована';
+        }
+        elseif($action == 'cancel') {
+            $model->is_rent = 0;
+            $message = 'Вещь успешно снята с аренды';
+        }
+        if($model->save()) {
+            Yii::$app->session->setFlash('success', $message);
+            return $this->redirect(['index', 'id' => $id]);
+        }
+    }
     protected function findModel($id)
     {
         if (($model = Thing::findOne($id)) !== null) {
@@ -171,5 +201,21 @@ class ThingController extends Controller
     public function actionMyStuff()
     {
         return $this->render('my-stuff');
+    }
+    public function actionAjaxThingsRent($ids)
+    {
+        if($things = Thing::find()->where(['in', 'id', explode(',', $ids)])->all()) {
+            $thing_names = [];
+            foreach($things as $thing) {
+                if($thing->is_rent) {
+                    $thing_names[] = $thing->name;
+                }
+            }
+            if(!empty($thing_names)) {
+                $message = 'Вещи "'.implode(',', $thing_names).'" уже арендованы. Пожалуйста, сдайте в аренду неарендованные вещи';
+                return $message;
+            }
+        }
+        return false;
     }
 }

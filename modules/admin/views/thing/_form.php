@@ -1,27 +1,17 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\CatsThing;
 ?>
 <div class="container">
     <div class="row">
         <div class="form">
-            <?php $form = ActiveForm::begin(['fieldConfig' => ['options' => ['tag' => false]]]) ?>
-            <?= $form->field($model, 'barcode')->textInput(['class' => 'form-control barcode']) ?>
+            <?php $form = ActiveForm::begin() ?>
             <?= $form->field($model, 'name')->textInput() ?>
             <?= $form->field($model, 'description')->textarea() ?>
-<!-- Выбор категории -->
-            <?php
-                foreach($cats as $cat) {
-                    $items[$cat->id] = $cat->name;
-                }
-                $param = [
-                    'options' => [
-                        $model->cat => ['Selected' => 'selected']
-                    ],
-                    'prompt' => 'Выбрать...',
-                ];
-            ?>
-            <?= $form->field($model, 'cat')->dropDownList($items, $param) ?>
+            <?= $form->field($model, 'cat')->dropDownList(ArrayHelper::map(CatsThing::findAll(['parent_id' => null]), 'id', 'name'), ['prompt' => '--Выбрать--']) ?>
+            <?= $form->field($model, 'parent_cat')->dropDownList(ArrayHelper::map(CatsThing::find()->all(), 'id', 'name'), ['prompt' => '--Выбрать--']) ?>
 <!-- Выбор пользователя -->
             <?php
             $items = [];
@@ -37,7 +27,6 @@ use yii\bootstrap\ActiveForm;
             ];
             ?>
             <?= $form->field($model, 'user')->dropDownList($items, $param) ?>
-
             <?= $form->field($model, 'img')->fileInput() ?>
             <?= Html::submitButton('Сохранить', ['class' => "btn btn-primary"]) ?>
             <?php ActiveForm::end() ?>

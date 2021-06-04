@@ -19,7 +19,7 @@ $this->title = 'Рюкзаки || арендовать вещь';
 
 
 <div class="col-md-12">
-    <h2 class="tac">Рюкзаки ("Название категории")</h2>
+    <h2 class="tac"><?= $cat->name ?></h2>
 </div>
 <div>
     <a href="<?= Yii::$app->urlManager->createUrl(['lk/rent']) ?>">Вернуться к выбору категорий вещей</a>
@@ -40,18 +40,24 @@ $this->title = 'Рюкзаки || арендовать вещь';
     </div>
     <div class="thing-actions">
         <div class="row">
-            <?php for($i = 1; $i < 9; $i++) { ?>
+            <?php if($model) : ?>
+            <?php foreach($model as $value) : ?>
                 <div class="col-md-4 col-sm-4 col-xs-4">
                     <div class="cat-item">
                         <div class="cat-img">
-                            <a href="/img/item-<?= $i ?>.jpg" class="gallery">
-                                <img src="/img/item-<?= $i ?>.jpg" alt="">
+                            <a href="/admin/things/<?= $value->img ?>" class="gallery">
+                                <img src="/admin/things/<?= $value->img ?>" alt="">
                             </a>
-                            <a href="<?= Yii::$app->urlManager->createUrl(['lk/rent/thing']) ?>">Рюкзак такой-то</a>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['lk/rent/thing', 'id' => $value->id]) ?>"><?= $value->name ?></a>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php endforeach; ?>
+            <?php else : ?>
+                <div class="col-md-4 col-sm-4 col-xs-4">
+                    В данной категории вещей не найдено
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </div>

@@ -23,7 +23,7 @@ $this->title = 'Арендовать вещь';
     <a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>">Вернуться на склад</a>
 </div>
 <div class="col-md-12">
-    <h3 class="tac">Выберете категорию</h3>
+    <h3 class="tac">Выберете <?= $parent ? 'подкатегорию' : 'категорию' ?></h3>
 </div>
 
 <div class="clearfix"></div>
@@ -36,19 +36,22 @@ $this->title = 'Арендовать вещь';
         </div>
     </div>
     <div class="thing-actions">
+        <a href="<?= Yii::$app->urlManager->createUrl(['lk/rent/index']) ?>">Назад</a>
         <div class="row">
-            <?php for($i = 1; $i < 7; $i++) { ?>
-            <div class="col-md-4 col-sm-4 col-xs-4">
-                <div class="cat-item">
-                    <div class="cat-img">
-                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/rent/to']) ?>">
-                            <img src="/img/item-<?= $i ?>.jpg" alt="">
-                            <span>Рюкзаки</span>
-                        </a>
+            <?php if($model) : ?>
+                <?php foreach($model as $value) : ?>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="cat-item">
+                            <div class="cat-img">
+                                <a href="<?= $parent ? Yii::$app->urlManager->createUrl(['lk/rent/to', 'id' => $value->id]) : Yii::$app->urlManager->createUrl(['lk/rent/index', 'parent' => $value->id]) ?>">
+                                    <img src="/admin/categories/<?= $value->img ?>" alt="">
+                                    <span><?= $value->name ?></span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <?php } ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>

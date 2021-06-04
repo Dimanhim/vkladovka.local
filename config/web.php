@@ -6,6 +6,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'name' => 'Вкладовка',
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -14,6 +15,10 @@ $config = [
         '@catdel'   => 'admin/categories',
         '@thing'   => '/admin/things',
         '@thingdel'   => 'admin/things',
+        '@user'   => '/admin/avatars',
+        '@trend' => dirname(__DIR__) . '/web/images/trend',
+        '@trend_view_image' =>'/images/trend/',
+        '@pdf' => 'images/pdf/',
     ],
     'components' => [
         'request' => [
@@ -44,6 +49,13 @@ $config = [
                 'password' => 'LsHWv9',
                 'port' => '465',
                 'encryption' => 'ssl',
+            ],
+        ],
+        'assetManager' => [
+            'bundles' => [
+                'rmrevin\yii\fontawesome\AssetBundle' => [
+                    'css'=>[]
+                ],
             ],
         ],
         'log' => [

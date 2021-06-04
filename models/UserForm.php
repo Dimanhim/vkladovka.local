@@ -16,6 +16,7 @@ class UserForm extends Model
     public $address;
     public $phone;
     public $email;
+    public $file;
 
 
     /**
@@ -27,6 +28,7 @@ class UserForm extends Model
             [['fio', 'passport', 'phone', 'email'], 'required'],
             ['email', 'unique', 'targetClass' => User::className(),  'message' => 'Этот E-mail уже занят'],
             [['fio', 'passport', 'phone', 'address', 'email'], 'safe'],
+            [['file'], 'file'],
         ];
     }
 
@@ -41,6 +43,7 @@ class UserForm extends Model
             'address' => 'Проживание (по паспорту)',
             'phone' => 'Номер телефона',
             'email' => 'Адрес электронной почты',
+            'file' => 'Аватарка',
         ];
     }
 

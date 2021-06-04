@@ -2,6 +2,7 @@
 
 namespace app\modules\lk\controllers;
 
+use app\models\Settings;
 use yii\web\Controller;
 use Yii;
 use yii\filters\AccessControl;
@@ -40,8 +41,9 @@ class BankController extends Controller
 
     public function actionIndex()
     {
+        $settings = Settings::find()->one();
         return $this->render('index', [
-
+            'settings' => $settings,
         ]);
     }
     public function actionPartner()

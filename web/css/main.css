@@ -611,8 +611,20 @@ footer ul.net li a {
 }
 
 .owl-carousel .owl-item img {
-  width: auto;
+  /*width: auto;*/
+  width: 100px;
   display: inline-block;
+}
+.wp-owl-pl .owl-carousel .owl-item img {
+  /*width: auto;*/
+  height: 360px;
+  width: auto;
+}
+.owl-item.active {
+  text-align: center;
+}
+.error_message {
+  display: none;
 }
 
 .tar {
@@ -1749,6 +1761,40 @@ nav .container ul {
 .hide-content {
   display: none;
 }
+#storage-payment_method label {
+  margin-left: 10px;
+}
+.error_message {
+  color: #f00;
+  /*display: none;*/
+}
+.dimensions-tr {
+  display: none;
+}
+.td-width {
+  width: 330px;
+}
+.td-desc {
+  display: none;
+  background: #eee;
+  border: 1px solid #aaa;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 5px;
+  color: #aaa;
+}
+.thing-desc {
+  display: none;
+}
+.avatar {
+  text-align: center;
+  margin: 10px 0;
+}
+.avatar img {
+  width: 100px;
+}
 
 @media (max-width: 1200px) {
   header .cont-top, header .rsp-top {
@@ -2181,6 +2227,9 @@ nav .container ul {
   }
   .sl-wp h4 {
     font-size: 26px;
+  }
+  .owl-carousel .owl-item img {
+    width: auto;
   }
   .rews-wp h3 {
     margin-bottom: 30px;

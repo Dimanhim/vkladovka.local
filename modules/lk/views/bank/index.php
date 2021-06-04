@@ -38,6 +38,12 @@ $this->title = 'Мой банк';
             <p><a href="<?= Yii::$app->urlManager->createUrl(['lk/bank-pay-storage']) ?>">Оплатить хранение</a></p>
         </td>
     </tr>
+    <tr>
+        <td>Бонус-партнерство</td>
+        <td colspan="2">
+            <a href="#" class="btn btn-success">Оплатить <?= $settings ? $settings->bonus_partner : 0 ?> руб.</a>
+        </td>
+    </tr>
 </table>
 
 

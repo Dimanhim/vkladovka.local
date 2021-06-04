@@ -22,6 +22,7 @@ $this->title = 'Категории вещей';
                         </div>
                         <div class="back">
                             <ul>
+                                <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/cat/inner', 'id' => $v->id]) ?>">Просмотр подкатегорий</a></li>
                                 <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/cat/view', 'id' => $v->id]) ?>">Просмотр</a></li>
                                 <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/cat/edit', 'id' => $v->id]) ?>">Редактировать</a></li>
                                 <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/cat/delete', 'id' => $v->id]) ?>" class="link-delete">Удалить</a></li>
@@ -29,7 +30,7 @@ $this->title = 'Категории вещей';
                         </div>
                     </div>
                     <div class="item-desc">
-                        <a href="<?= Yii::$app->urlManager->createUrl(['admin/cat/view', 'id' => $v->id]) ?>"><?= $v->name ?></a>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['admin/cat/inner', 'id' => $v->id]) ?>"><?= $v->name ?></a>
                     </div>
                 </div>
             </div>
