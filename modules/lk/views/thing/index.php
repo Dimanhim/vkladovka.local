@@ -70,18 +70,27 @@ $this->title = $model->name;
             </tr>
             <tr>
                 <td>
-                    Аренда:
+                    Подкатегория:
+                </td>
+                <td>
+                    <?= $model->categoryParent->name ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Сдана в аренду:
+                </td>
+                <td>
+                    <?= $model->is_rent ? 'Да' : 'Нет' ?>
                 </td>
                 <td>
                     <?php if($model->is_rent) : ?>
-                        Вещь арендована
-                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/to-rent', 'id' => $model->id, 'action' => 'cancel']) ?>" class="btn btn-danger rent-cancel" style="margin-left: 20px;">Отменить аренду</a>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/delete-rent', 'id' => $model->id]) ?>" class="btn btn-danger rent-cancel" style="margin-left: 20px;">Отменить аренду</a>
                     <?php else : ?>
-                        Вещь не арендована
-                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/to-rent', 'id' => $model->id, 'action' => 'rent']) ?>" class="btn btn-success rent-success" style="margin-left: 20px;">Сдать в аренду</a>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/rent', 'id' => $model->id]) ?>" class="btn btn-success" style="margin-left: 20px;">Сдать в аренду</a>
                     <?php endif; ?>
-
                 </td>
+
             </tr>
         </table>
     </div>

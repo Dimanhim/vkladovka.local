@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\SearchForm;
 use Yii;
 use yii\web\Controller;
 use app\models\User;
@@ -32,5 +33,17 @@ class DefaultController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+    public function actionSearch()
+    {
+        $model = new SearchForm();
+        $results = [];
+        if($model->load(Yii::$app->request->post())) {
+            $results = $model->results;
+        }
+        return $this->render('search', [
+            'model' => $model,
+            'results' => $results,
+        ]);
     }
 }

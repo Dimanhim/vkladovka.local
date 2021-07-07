@@ -32,7 +32,7 @@ $this->title = $model->city;
         <ul id="sortable_photoes" class="photo-list" data-url="<?= Url::to(['sort-images']) ?>">
             <?php foreach ($model->images as $image): ?>
                 <li data-id="<?= $image->id ?>" data-path="<?= $image->link ?>">
-                    <?= EasyThumbnailImage::thumbnailImg(Yii::getAlias('@trend').'/'.$model->city.'/'.$image->link, 160, 160, EasyThumbnailImage::THUMBNAIL_OUTBOUND) ?>
+                    <?= EasyThumbnailImage::thumbnailImg($image->fullPath, 160, 160, EasyThumbnailImage::THUMBNAIL_OUTBOUND) ?>
                </li>
             <?php endforeach ?>
         </ul>

@@ -4,6 +4,8 @@
 
 use yii\web\View;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 $this->title = 'Сдать в аренду "'.$model->name.'"';
 ?>
@@ -31,19 +33,20 @@ $this->title = 'Сдать в аренду "'.$model->name.'"';
         <a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>">Вернуться на склад</a>
     </div>
     <?php if($model->is_rent) : ?>
-    <div class="thing-actions">
+    <?php $form = ActiveForm::begin(['id' => 'form-rent-thing', 'fieldConfig' => ['options' => ['tag' => false]], 'options' => ['class' => 'thing-actions']]) ?>
         <table class="table">
             <tr class="adress-textarea">
                 <td>
                     Адрес доставки:<br />
                 </td>
                 <td>
-                    <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder=""></textarea>
+                    <?= $form->field($rent, 'address', ['template' => '{input}'])->textarea(['cols' => 30, 'rows' => 4, ]) ?>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    Заберу сам <input type="checkbox" name="" class="hide-textarea" />
+                    <?= $form->field($rent, 'take_myself')->checkbox(['labelOptions' => ['style' => 'font-weight: normal']]) ?>
+                    <!--<input type="checkbox" name="" class="hide-textarea" />-->
                 </td>
             </tr>
             <tr class="adress-textarea">
@@ -51,7 +54,7 @@ $this->title = 'Сдать в аренду "'.$model->name.'"';
                     Время доставки:<br />
                 </td>
                 <td>
-                    <input class="form-control" />
+                    <?= $form->field($rent, 'delivery_time', ['template' => '{input}'])->textInput(['class' => 'form-control select-time']) ?>
                 </td>
             </tr>
             <tr>
@@ -59,7 +62,7 @@ $this->title = 'Сдать в аренду "'.$model->name.'"';
                     На какой срок (в днях):<br />
                 </td>
                 <td>
-                    <input class="form-control" placeholder="" />
+                    <?= $form->field($rent, 'term', ['template' => '{input}'])->textInput() ?>
                 </td>
             </tr>
             <tr>
@@ -69,27 +72,49 @@ $this->title = 'Сдать в аренду "'.$model->name.'"';
             </tr>
             <tr>
                 <td>
-                    <input class="form-control" placeholder="сумма в рублях" />
+                    Депозит
                 </td>
                 <td>
-                    Депозит
+                    <div class="td-desc" style="display: block;">
+                        <?= $model->deposit ?> руб.
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input class="form-control" />
+                    Аренда, включая доставку
                 </td>
                 <td>
-                    Аренда, включая доставку
+                    <?= $form->field($rent, 'price', ['template' => '{input}'])->textInput(['readonly' => true, 'value' => $model->findRent->price, 'data-price' => $model->findRent->price]) ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Описание
+                </td>
+                <td colspan="2">
+                    <div class="td-desc" style="display: block;">
+                        <?= $thing_rent->description ?>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Особые условия
+                </td>
+                <td colspan="2">
+                    <div class="td-desc" style="display: block;">
+                        <?= $thing_rent->special_conditions ?>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <button class="btn btn-primary modal-btn">Арендовать вещь</button>
+                    <?= Html::submitButton('Арендовать вещь', ['class' => "btn btn-primary modal-btn"]) ?>
                 </td>
             </tr>
         </table>
-    </div>
+    <?php ActiveForm::end() ?>
     <?php else : ?>
         <div class="description-block">
             Вы не можете арендовать эту вещь, так как собственник запретил аренду

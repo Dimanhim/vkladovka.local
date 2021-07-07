@@ -1,6 +1,10 @@
 <?php
 $this->title = 'Заказы хранения';
 ?>
+<div class="container-fluid admin-block">
+    <a href="<?= Yii::$app->urlManager->createUrl(['admin/storage/create']) ?>" class="btn btn-success">Добавить заказ хранения</a>
+
+</div>
 <table class="table table-stripped table-bordered">
     <tr>
         <th>Когда удобно забрать</th>
@@ -12,7 +16,7 @@ $this->title = 'Заказы хранения';
     </tr>
     <?php if($model) : ?>
         <?php foreach($model as $item) : ?>
-            <tr>
+            <tr <?= $item->proceesItem ? ' class="warning-item"' : '' ?>>
                 <td><?= date('d.m.Y', $item->date) ?></td>
                 <td><?= $item->term ?></td>
                 <td><?= $item->price_storage ?></td>

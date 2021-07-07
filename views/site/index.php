@@ -31,7 +31,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
             <div class="block-in">
                 <a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>"><img src="images/2.jpg" alt=""></a>
                 <h4>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">
+                    <a href="<?= Yii::$app->urlManager->createUrl(['lk', 'highlight' => true]) ?>">
                         Зарабатывайте <br>
                         на своих вещах
                     </a>
@@ -39,7 +39,15 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 <p>
                     Сдайте свои вещи в аренду, получайте за это деньги, обналичьте или потратьте на Вкладовка
                 </p>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">Начать получать $</a>
+                <a href="<?= Yii::$app->urlManager->createUrl(['lk', 'highlight' => true]) ?>">Начать получать $</a>
+                <?php if(Yii::$app->user->isGuest) : ?>
+                <p style="font-style: italic; margin-top: 10px; height: auto;">
+                    Услуга доступна только зарегистированным пользователям
+                </p>
+                <p style="height: auto;">
+                    <a href="<?= Yii::$app->urlManager->createUrl(['site/registration']) ?>" class="btn btn-xs btn-primary" style="color: #fff">Регистрация</a>
+                </p>
+                <?php endif; ?>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
@@ -57,6 +65,14 @@ $this->title = 'Вкладовка - новый способ владеть ве
                     Найдите интересующий Вас предмет, арендуйте и наслаждайтесь
                 </p>
                 <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>">Арендовать вещь</a>
+                <?php if(Yii::$app->user->isGuest) : ?>
+                    <p style="font-style: italic; margin-top: 10px; height: auto;">
+                        Услуга доступна только зарегистированным пользователям
+                    </p>
+                    <p style="height: auto;">
+                        <a href="<?= Yii::$app->urlManager->createUrl(['site/registration']) ?>" class="btn btn-xs btn-primary" style="color: #fff">Регистрация</a>
+                    </p>
+                <?php endif; ?>
             </div>
         </div>
         <div class="col-xl-3 col-lg-6">
@@ -90,7 +106,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
         <div>
             <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>"><img src="images/2.jpg" alt=""></a>
             <h4>
-                <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">
+                <a href="<?= Yii::$app->urlManager->createUrl(['lk', 'highlight' => true]) ?>">
                     Зарабатывайте <br>
                     на своих вещах
                 </a>
@@ -99,6 +115,14 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 Сдайте свои вещи в аренду, получайте за это деньги, обналичьте или потратьте на Вкладовка
             </p>
             <a href="<?= Yii::$app->urlManager->createUrl('lk') ?>">Начать получать $</a>
+            <?php if(Yii::$app->user->isGuest) : ?>
+                <p style="font-style: italic; margin-top: 10px; height: auto;">
+                    Услуга доступна только зарегистированным пользователям
+                </p>
+                <p style="height: auto;">
+                    <a href="<?= Yii::$app->urlManager->createUrl(['site/registration']) ?>" class="btn btn-xs btn-primary" style="color: #fff">Регистрация</a>
+                </p>
+            <?php endif; ?>
         </div>
         <div>
             <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>"><img src="images/3.jpg" alt=""></a>
@@ -112,6 +136,14 @@ $this->title = 'Вкладовка - новый способ владеть ве
                 Найдите интересующий Вас предмет, арендуйте и наслаждайтесь
             </p>
             <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>">Арендовать вещь</a>
+            <?php if(Yii::$app->user->isGuest) : ?>
+                <p style="font-style: italic; margin-top: 10px; height: auto;">
+                    Услуга доступна только зарегистированным пользователям
+                </p>
+                <p style="height: auto;">
+                    <a href="<?= Yii::$app->urlManager->createUrl(['site/registration']) ?>" class="btn btn-xs btn-primary" style="color: #fff">Регистрация</a>
+                </p>
+            <?php endif; ?>
         </div>
         <div>
             <a href="<?= Yii::$app->urlManager->createUrl('lk/pickup') ?>"><img src="images/4.jpg" alt=""></a>
@@ -387,7 +419,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
                             Готовые решения
                         </a>
                     </p>
-                    <a href="<?= Yii::$app->urlManager->createUrl('lk/rent') ?>">Арендовать/купить</a>
+                    <a href="<?= Yii::$app->urlManager->createUrl('lk/package') ?>">Арендовать/купить</a>
                 </div>
             </div>
         </div>

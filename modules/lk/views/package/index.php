@@ -28,11 +28,19 @@ $this->title = 'Тара и упаковка';
     </div>
     <div class="thing-actions">
         <h3>Выберите нужное:</h3>
-        <ul class="package-list">
-            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/package/tara']) ?>" class="btn btn-primary">Тара</a></li>
-            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/package/package']) ?>" class="btn btn-primary">Упаковка</a></li>
-            <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/package/other']) ?>" class="btn btn-primary">Прочие расходники</a></li>
-        </ul>
+        <div class="package-list">
+            <div class="row">
+                <?php foreach($model->types as $k => $v) : ?>
+                    <div class="col-md-4">
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/package/items', 'type' => $k]) ?>" class="">
+                            <div class="block-package">
+                                <?= $v ?>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </div>
 </div>
 

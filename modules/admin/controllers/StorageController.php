@@ -92,19 +92,42 @@ class StorageController extends Controller
         }
         return $str;
     }
-    public function actionAddThing($id, $name, $category_id, $child_category_id)
+    public function actionAddThing($id, $name, $category_id, $child_category_id, $user_id)
     {
         $model = new Thing();
         $model->name = $name;
         $model->cat = $category_id;
         $model->parent_cat = $child_category_id;
         $model->created_at = time();
+        $model->user = $user_id;
         if($model->save()) {
             $storageItem = StorageItems::findOne($id);
             $storageItem->thing_id = $model->id;
+            $storageItem->is_proceess = 1;
             return $storageItem->save();
         }
         return false;
+    }
+    public function actionCreate()
+    {
+        $model = new Storage();
+
+        if($model->load(Yii::$app->request->post())) {
+            $model->date = strtotime($model->date);
+            if($model->save()) {
+                if($model->saveItems) {
+                    Yii::$app->session->setFlash('success', 'Успешно сохранено!');
+                    return $this->redirect('index');
+                }
+            }
+        }
+
+        $cats = CatsStorage::find()->all();
+        return $this->render('create', [
+            'model' => $model,
+            'cats' => $cats,
+            'items' => $items,
+        ]);
     }
     protected function findModel($id)
     {

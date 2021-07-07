@@ -42,7 +42,9 @@ $this->title = $model->name;
                     </tr>
                     <tr class="info">
                         <td>Пользователь</td>
-                        <td><?= $model->users->fio ?></td>
+                        <td>
+                            <?= Html::a($model->users->fio, Yii::$app->urlManager->createUrl(['/admin/users/view', 'id' => $model->users->id])) ?>
+                        </td>
                     </tr>
                     <tr class="info">
                         <td>QR код</td>
@@ -58,6 +60,15 @@ $this->title = $model->name;
                             <a href="<?= $model->getQrCode(true) ?>" download>
                                 <?= $model->is_rent ? 'Да' : 'Нет' ?>
                             </a>
+                        </td>
+                    </tr>
+                    <tr class="info">
+                        <td>Депозит</td>
+                        <td><?= $model->deposit ? $model->deposit.' руб.' : '---' ?></td>
+                    </tr>
+                    <tr class="info">
+                        <td colspan="2">
+                            <?= Html::a('Скачать договор заказа хранения с этой вещью', Yii::$app->urlManager->createUrl(['lk/documents/agreement-storage', 'id' => $model->storageId])) ?>
                         </td>
                     </tr>
                     <tr>

@@ -52,6 +52,11 @@ $this->title = 'Мой склад';
     <div class="product-one col-4 product-one">
         <div class="">
             <div class="item-thing">
+                <?php if($v->is_rent) : ?>
+                <div class="item-thing-rent">
+                    Арендована
+                </div>
+                <?php endif; ?>
                 <div class="item-img">
                     <img src="<?= Yii::getAlias('@thing').'/'.$v->img ?>" alt=""/>
                 </div>
@@ -73,4 +78,10 @@ $this->title = 'Мой склад';
         </p>
     </div>
 <?php endif; ?>
-
+<?php if(Yii::$app->request->get('highlight')) : ?>
+<script>
+    setTimeout(function() {
+        $('.show-content').trigger('click');
+    }, 2000);
+</script>
+<?php endif; ?>

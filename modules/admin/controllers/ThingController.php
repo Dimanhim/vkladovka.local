@@ -14,6 +14,7 @@ use app\models\CatsThing;
 use app\models\Thing;
 use app\models\User;
 use yii\web\UploadedFile;
+use app\modules\admin\models\ThingSearch;
 
 class ThingController extends Controller
 {
@@ -53,6 +54,16 @@ class ThingController extends Controller
      */
     public function actionIndex()
     {
+        $searchModel = new ThingSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
+
+
+
         $model = Thing::find()->all();
         return $this->render('index', [
             'model' => $model,

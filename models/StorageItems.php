@@ -12,7 +12,7 @@ class StorageItems extends ActiveRecord
     {
         return [
             //[['name'], 'required', 'message' => 'Поле должно быть заполнено'],
-            [['storage_id', 'cat_storage_id', 'length', 'height', 'width', 'weight', 'thing_id'], 'integer'],
+            [['storage_id', 'cat_storage_id', 'length', 'height', 'width', 'weight', 'thing_id', 'is_proceess'], 'integer'],
             [['name'], 'string'],
         ];
     }
@@ -28,6 +28,7 @@ class StorageItems extends ActiveRecord
             'height' => 'Высота',
             'width' => 'Ширина',
             'weight' => 'Примерный вес',
+            'is_proceess' => 'Обработано',
         ];
     }
     public function getStorage()

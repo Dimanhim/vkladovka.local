@@ -17,6 +17,8 @@ $config = [
         '@thingdel'   => 'admin/things',
         '@user'   => '/admin/avatars',
         '@trend' => dirname(__DIR__) . '/web/images/trend',
+        '@package' => dirname(__DIR__) . '/web/admin/package',
+        '@package_view' => '/admin/package',
         '@trend_view_image' =>'/images/trend/',
         '@pdf' => 'images/pdf/',
     ],

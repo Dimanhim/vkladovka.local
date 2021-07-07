@@ -5,6 +5,8 @@
 use yii\web\View;
 use yii\helpers\Url;
 use kartik\datetime\DateTimePicker;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 $this->title = 'Заказать грузоперевозку';
 ?>
@@ -29,84 +31,45 @@ $this->title = 'Заказать грузоперевозку';
     <div>
         <a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>">Вернуться на склад</a>
     </div>
+
     <div class="thing-actions">
-        <table class="table">
-            <form action="">
-                <tr>
-                    <td>
-                        Описание (в общих словах):
-                    </td>
-                    <td>
-                        <textarea name="1" id="" cols="30" rows="4" class="form-control"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <a href="#" class="pickup-description">Посмотреть пример описания вещей</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Когда удобно забрать:
-                    </td>
-                    <td>
-                        <?= DateTimePicker::widget([
-                            'name' => 'check_issue_date',
-                            'value' => date('d-m-Y H:i'),
-                            'options' => ['placeholder' => 'Выберете дату ...'],
-                            'pluginOptions' => [
-                                'format' => 'dd-mm-yyyy h:i',
-                                'todayHighlight' => true
-                            ]
-                        ]); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Адрес:
-                    </td>
-                    <td>
-                        <textarea name="2" id="" cols="30" rows="4" class="form-control"></textarea>
-                    </td>
-                </tr>
-                <?php if(Yii::$app->user->isGuest) { ?>
-                <tr>
-                    <td>
-                        Контакты:
-                    </td>
-                    <td>
-                        <input name="2" class="form-control phone" placeholder="Телефон" /><br />
-                        <input name="2" class="form-control" placeholder="E-mail" />
-                    </td>
-                </tr>
-                <?php } ?>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="3" /> Нужны грузчики <br />
-                        <input type="checkbox" name="5" /> Есть лифт
-                    </td>
-                    <td class="bold">
-                        <h4>Общие расценки:</h4>
-                        <ul>
-                            <li>Грузовой автомобиль: 550 руб/час</li>
-                            <li>Грузчики- 550 руб/час</li>
-                            <li>При отсутствии лифта – 150руб-этаж, начиная со 2-го</li>
-                        </ul>
-                        <p>Итоговая сумма за грузоперевозку(пикап) определяется по факту потраченного времени и условий по выгрузки.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="4" /> Согласен
-                    </td>
-                    <td>
-                        <!-- Поменять на button -->
-                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/manager', 'id' => $id]) ?>" class="btn btn-primary" name="order">Заказать грузоперевозку</a>
-                    </td>
-                </tr>
-            </form>
-        </table>
+        <?php $form = ActiveForm::begin(['id' => 'form-pickup']) ?>
+        <?= $form->field($model, 'description')->textarea(['cols' => 30, 'rows' => 4]) ?>
+        <div class="form-group">
+            <a href="#" class="pickup-description">Посмотреть пример описания вещей</a>
+        </div>
+        <?= $model->attributeLabels()['date_time'] ?>
+        <div class="row">
+            <div class="col-md-6">
+                <?= $form->field($model, 'pickup_date')->textInput(['placeholder' => 'Выберете дату ...', 'data-type' => 'date', 'class' => 'form-control date-picker']) ?>
+            </div>
+            <div class="col-md-6">
+                <?= $form->field($model, 'pickup_time')->textInput(['placeholder' => 'Выберете время ...', 'data-type' => 'date', 'class' => 'form-control select-time']) ?>
+            </div>
+        </div>
+
+
+        <?= $form->field($model, 'address')->textarea(['cols' => 30, 'rows' => 4]) ?>
+        <?php if(Yii::$app->user->isGuest) { ?>
+            <?= $form->field($model, 'phone')->textInput(['placeholder' => "Телефон", 'class' => 'form-control phone']) ?><br />
+            <?= $form->field($model, 'email')->textInput(['placeholder' => "E-mail", 'type' => 'email']) ?>
+        <?php } ?>
+        <div class="form-group">
+            <h4>Общие расценки:</h4>
+            <ul>
+                <li>Грузовой автомобиль: 550 руб/час</li>
+                <li>Грузчики- 550 руб/час</li>
+                <li>При отсутствии лифта – 150руб-этаж, начиная со 2-го</li>
+            </ul>
+            <p>Итоговая сумма за грузоперевозку(пикап) определяется по факту потраченного времени и условий по выгрузки.</p>
+        </div>
+        <?= $form->field($model, 'movers')->checkbox() ?><br />
+        <?= $form->field($model, 'lift')->checkbox() ?>
+        <?= $form->field($model, 'agree')->checkbox() ?>
+        <?= Html::submitButton('Заказать грузоперевозку', ['class' => "btn btn-primary"]) ?>
+        <?php ActiveForm::end() ?>
     </div>
+
 </div>
 
 

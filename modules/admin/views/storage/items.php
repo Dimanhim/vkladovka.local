@@ -1,9 +1,15 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = 'Заказ хранения №'.$model->id;
 ?>
 <?php if($model) : ?>
         <table class="table table-bordered">
             <tr>
+                <th>
+                    Пользователь
+                </th>
                 <th>
                     На какой срок, дней
                 </th>
@@ -21,6 +27,9 @@ $this->title = 'Заказ хранения №'.$model->id;
                 </th>
             </tr>
             <tr>
+                <td id="user_id" data-id="<?= $model->user->id ?>">
+                    <?= Html::a($model->user->fio, Yii::$app->urlManager->createUrl(['/admin/users/view', 'id' => $model->user->id])) ?>
+                </td>
                 <td><?= $model->term ?></td>
                 <td><?= $model->paymentName ?></td>
                 <td><?= date('d.m.Y', $model->date) ?></td>
@@ -32,6 +41,7 @@ $this->title = 'Заказ хранения №'.$model->id;
                 </td>
             </tr>
         </table>
+        <?= Html::a('Скачать договор хранения вещей', Yii::$app->urlManager->createUrl(['lk/documents/agreement-storage', 'id' => $model->id])) ?>
         <?php if($storageItems = $model->storageItems) : ?>
             <h3>Наименования:</h3>
             <p class="error"></p>

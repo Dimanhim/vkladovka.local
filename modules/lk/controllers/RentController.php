@@ -3,6 +3,8 @@
 namespace app\modules\lk\controllers;
 
 use app\models\CatsThing;
+use app\models\Rent;
+use app\models\RentThing;
 use app\models\Thing;
 use yii\web\Controller;
 use Yii;
@@ -69,7 +71,7 @@ class RentController extends Controller
     public function actionTo($id)
     {
         $cat = CatsThing::findOne($id);
-        $model = Thing::findAll(['parent_cat' => $id]);
+        $model = Thing::findAll(['is_rent' => 1, 'parent_cat' => $id]);
         return $this->render('to', [
             'model' => $model,
             'cat' => $cat,
@@ -79,8 +81,20 @@ class RentController extends Controller
     public function actionThing($id)
     {
         $model = Thing::findOne($id);
+        $thing_rent = $model->findRent;
+        $rent = new RentThing();
+        if($rent->load(Yii::$app->request->post()) && $rent->validate()) {
+            $rent->thing_id = $model->id;
+            $rent->user_id = Yii::$app->user->id;
+            if($rent->save()) {
+                Yii::$app->session->setFlash('success', ' Вещь "'.$model->name.'" успешно Вами арендована');
+                return $this->refresh();
+            }
+        }
         return $this->render('thing', [
             'model' => $model,
+            'rent' => $rent,
+            'thing_rent' => $thing_rent,
         ]);
     }
 

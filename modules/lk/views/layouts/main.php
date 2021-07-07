@@ -81,6 +81,11 @@ $action = Yii::$app->controller->action->id;
                         <a href="<?= Yii::$app->urlManager->createUrl(['lk/profile']) ?>" class="user-name"> <?= User::findOne(Yii::$app->user->id)->fio ?></a>
                         <div class="logout">
                             <a href="<?= Yii::$app->urlManager->createUrl(['site/logout']) ?>">Выход</a>
+
+                            <?php if(User::isAdmin(Yii::$app->user->id)) : ?>
+                            <a href="<?= Yii::$app->urlManager->createUrl(['/admin']) ?>" style="margin-left: 20px;">В админку</a>
+                            <?php endif; ?>
+
                         </div>
                     </div>
                     <?php } ?>
@@ -126,7 +131,11 @@ $action = Yii::$app->controller->action->id;
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/return']) ?>" class="top-menu-btn select-thing" data-things="0">Вернуть <span>вещь</span></a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/friend']) ?>" class="top-menu-btn select-thing" data-things="0">Передать <span>другу</span></a></li>
-                    <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/rent']) ?>" class="top-menu-btn select-thing" data-things="0" id="to-rent-thing">Сдать <span>в аренду</span></a></li>
+                    <li>
+                        <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/rent']) ?>" class="top-menu-btn select-thing<?= Yii::$app->request->get('highlight') ? ' highlight-block' : '' ?>" data-things="0" id="to-rent-thing">
+                            Сдать <span>в аренду</span>
+                        </a>
+                    </li>
                     <li><a href="#" class="top-menu-btn trust-to-sell">Доверяю <span>продать</span></a></li>
                     <li><a href="<?= Yii::$app->urlManager->createUrl(['lk/thing/extend']) ?>" class="top-menu-btn select-thing" data-things="0">Продлить <span>хранение</span></a></li>
                 </ul>

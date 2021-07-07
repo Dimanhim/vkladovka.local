@@ -74,10 +74,11 @@ $(document).ready(function(){
         var parent = self.parents('tr');
         if(parent.find('.select-thing-category').val() && parent.find('.select-thing-child-category').val()) {
             var id = parent.data('id');
+            var user_id = $('#user_id').data('id');
             var name = parent.find('input[data-field="name"]').val();
             var category_id = parent.find('.select-thing-category').val();
             var child_category_id = parent.find('.select-thing-child-category').val();
-            $.get('/admin/storage/add-thing', {id: id, name: name, category_id: category_id, child_category_id: child_category_id}, function(res) {
+            $.get('/admin/storage/add-thing', {id: id, name: name, category_id: category_id, child_category_id: child_category_id, user_id: user_id}, function(res) {
                 if(res) {
                     displayMessage(true);
                     self.removeClass('add-storage-item').attr('disabled', 'disabled').text('Добавлено');

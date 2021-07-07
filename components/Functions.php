@@ -2,6 +2,11 @@
 
 namespace app\components;
 
+use app\models\Feedback;
+use app\models\PackageOrder;
+use app\models\Pickup;
+use app\models\ReturnThing;
+use app\models\StorageItems;
 use Da\QrCode\QrCode;
 use Yii;
 
@@ -35,8 +40,82 @@ class Functions
         }
         return '';
     }
+    public function getNotifications()
+    {
+        $arr = [];
+        if($storages = StorageItems::find()->all()) {
+            foreach($storages as $storage) {
+                if(!$storage->inStorage) {
+                    $arr[] = [
+                        'title' => 'Новый <b>заказ хранения</b> на '.$storage->name,
+                        'link' => Yii::$app->urlManager->createUrl(['admin/storage/items', 'id' => $storage->storage_id]),
+                        'icon' => 'fa fa-shopping-cart text-green',
+                    ];
+                }
+            }
+        }
+        if($returns = ReturnThing::findAll(['seen' => null])) {
+            foreach($returns as $return) {
+                $arr[] = [
+                    'title' => 'Заявка на <b>возврат </b> от '.$return->user->fio,
+                    'link' => Yii::$app->urlManager->createUrl(['admin/return/view', 'id' => $return->id]),
+                    'icon' => 'fa fa-shopping-cart text-green',
+                ];
+            }
+        }
+        if($feedbacks = Feedback::findAll(['seen' => 0])) {
+            foreach($feedbacks as $feedback) {
+                $arr[] = [
+                    'title' => 'Задан вопрос на сайте',
+                    'link' => Yii::$app->urlManager->createUrl(['admin/feedback/view', 'id' => $feedback->id]),
+                    'icon' => 'fa fa-shopping-cart text-green',
+                ];
+
+            }
+        }
+        if($pickups = Pickup::findAll(['seen' => 0])) {
+            foreach($pickups as $pickup) {
+                $arr[] = [
+                    'title' => 'Заказ на грузоперевозку',
+                    'link' => Yii::$app->urlManager->createUrl(['admin/pickup/view', 'id' => $pickup->id]),
+                    'icon' => 'fa fa-shopping-cart text-green',
+                ];
+            }
+        }
+        if($packageOrders = PackageOrder::findAll(['seen' => 0])) {
+            foreach($packageOrders as $packageOrder) {
+                $arr[] = [
+                    'title' => 'Заказ на тару/упаковку',
+                    'link' => Yii::$app->urlManager->createUrl(['admin/package-order/view', 'id' => $packageOrder->id]),
+                    'icon' => 'fa fa-shopping-cart text-green',
+                ];
+            }
+        }
 
 
+
+
+
+        return $arr;
+    }
+    public static function getSecondsInTime($time)
+    {
+        $seconds = 0;
+        $arr = explode(':', $time);
+        $seconds += $arr[0] * 60 * 60;
+        $seconds += $arr[1] * 60;
+        return $seconds;
+    }
+    public static function getTimeAsString($time)
+    {
+        if($time) {
+            $hours = floor($time / 60 / 60);
+            $diff = $time - $hours * 60 * 60;
+            $minutes = floor($diff / 60);
+            return str_pad($hours, 2, 0, STR_PAD_LEFT).':'.str_pad($minutes, 2, 0, STR_PAD_LEFT);
+        }
+        return 0;
+    }
 
 
 

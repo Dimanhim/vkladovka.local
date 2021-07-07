@@ -30,7 +30,7 @@ class Storage extends ActiveRecord
     public function rules()
     {
         return [
-            [['term', 'agree', 'payment_method', 'user_id'], 'integer'],
+            [['term', 'agree', 'payment_method', 'user_id', 'is_proceess'], 'integer'],
             [['date', 'm_cat_storage_id', 'm_length', 'm_height', 'm_width', 'm_weight', 'm_name', 'price_storage', 'price_total', 'delivery', 'price_pickup'], 'safe'],
         ];
     }
@@ -59,7 +59,12 @@ class Storage extends ActiveRecord
 
             'delivery' => 'Доставка',
             'user_id' => 'Пользователь',
+            'is_proceess' => 'Обработано',
         ];
+    }
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
     public function getSaveItems()
     {
@@ -453,6 +458,15 @@ class Storage extends ActiveRecord
                 ],
             ],
         ];
+    }
+    public function getProceesItem()
+    {
+        if($storageItems = StorageItems::findAll(['storage_id' => $this->id])) {
+            foreach($storageItems as $storageItem) {
+                if(!$storageItem->inStorage) return true;
+            }
+        }
+        return false;
     }
 
 

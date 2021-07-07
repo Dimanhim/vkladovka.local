@@ -1,8 +1,10 @@
 <?php
 use app\models\Settings;
-$created_at = $thing->created_at ? $thing->created_at : strtotime(date('d.m.Y')) ;
+use app\modules\lk\models\Documents;
+
+$created_at = $document->storage ? $document->storage->date : strtotime(date('d.m.Y')) ;
 ?>
-<h1 style="text-align: center;">ДОГОВОР ОТВЕТСТВЕННОГО ХРАНЕНИЯ №<?= $model->agreementNumber ?></h1>
+<h1 style="text-align: center;">ДОГОВОР ОТВЕТСТВЕННОГО ХРАНЕНИЯ №<?= $document->agreementNumber ?></h1>
 (неотапливаемое помещение)
 <p>
     Ставрополь	«<?= date('d', $created_at) ?>»  <span style="text-decoration: underline;"><?= Settings::monthString($created_at) ?></span> <?= date('Y', $created_at) ?> года
@@ -89,7 +91,7 @@ $created_at = $thing->created_at ? $thing->created_at : strtotime(date('d.m.Y'))
         3.	ПЛАТА ЗА ХРАНЕНИЕ ПО ДОГОВОРУ
         <ul>
             <li>
-                3.1.	Для целей настоящего Договора расчетным периодом признается один календарных день вначале оказания услуг Исполнителем и два календарных дня на последующие продления услуг Исполнителя. С учетом изложенного плата за хранение  <?= $thing->storagePrice ?> (________________) руб. за <?= $thing->term ?> календарных дней. НДС не облагается в связи с применением Исполнителем УСН.
+                3.1.	Для целей настоящего Договора расчетным периодом признается один календарных день вначале оказания услуг Исполнителем и два календарных дня на последующие продления услуг Исполнителя. С учетом изложенного плата за хранение  <?= $document->storage->price_total ?> (<span style="text-decoration: underline"><?= Documents::number2string($document->storage->price_total) ?></span>) за <?= $document->storage->term ?> календарных дней. НДС не облагается в связи с применением Исполнителем УСН.
             </li>
             <li>
                 3.2.	Начисление платы за хранение производится с момента передачи Вещей на хранение согласно Акту приема-передачи (приложение 1 настоящего договора) до даты фактического возврата Вещей по Акту приема-передачи.
@@ -312,26 +314,32 @@ $created_at = $thing->created_at ? $thing->created_at : strtotime(date('d.m.Y'))
         10. АДРЕСА, РЕКВИЗИТЫ И ПОДПИСИ СТОРОН
     </li>
 </ul>
-
-<p>Исполнитель: <?= $settings->organization_name ?></p>
-<p>Заказчик: <?= $user->fio ?></p>
-
-
-<p>директор - <?= $settings->director_name ?></p>
-<p>_________________</p>
-
+<table width="100%" style="margin-top: 30px;">
+    <tr>
+        <td>
+            <p>Исполнитель: <?= $settings->organization_name ?></p>
+            <p>директор - <?= $settings->director_name ?></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>_________________</p>
+        </td>
+        <td style="text-aling: right">
+            <p>Заказчик: <?= $user->fio ?></p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p style="margin-top: 40px;">_________________</p>
+        </td>
+    </tr>
+</table>
 <p>М.П.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div style="page-break-before: always;"></div>
+<?=
+$this->render('_storage_pdf', [
+    'model' => $document,
+    'created_at' => $created_at,
+    'things' => $things,
+    'settings' => $settings,
+    'user' => $user,
+]);
+?>

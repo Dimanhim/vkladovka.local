@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Feedback;
 use app\models\Review;
 use app\models\Thing;
 use app\models\TrendCity;
@@ -253,5 +254,17 @@ class SiteController extends Controller
             $images = TrendImage::findAll(['city_id' => $id]);
             return $this->renderAjax('_trend_images', ['images' => $images]);
         }
+    }
+    public function actionChatForm()
+    {
+        $responce = ['result' => false, 'message' => 'Ошибка отправки данных. Пожалуйста, попробуйте позднее'];
+        $model = new Feedback();
+        if($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->user_id = Yii::$app->user->id;
+            $model->created_at = time();
+            if($model->save())
+                $responce = ['result' => true, 'message' => 'Ваш вопрос успешно отправлен!'];
+        }
+        return json_encode($responce);
     }
 }

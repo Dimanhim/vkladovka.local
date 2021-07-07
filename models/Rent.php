@@ -15,6 +15,7 @@ use Yii;
  */
 class Rent extends \yii\db\ActiveRecord
 {
+    public $deposit;
     /**
      * {@inheritdoc}
      */
@@ -31,7 +32,7 @@ class Rent extends \yii\db\ActiveRecord
         return [
             //[['thing_ids'], 'required'],
             [['description', 'special_conditions'], 'string'],
-            [['price'], 'integer'],
+            [['price', 'deposit', 'user_id'], 'integer'],
             [['thing_ids'], 'safe'],
         ];
     }
@@ -47,6 +48,7 @@ class Rent extends \yii\db\ActiveRecord
             'description' => 'Description',
             'special_conditions' => 'Special Conditions',
             'price' => 'Price',
+            'user_id' => 'Пользователь',
         ];
     }
     public function getPrepareModel()
@@ -61,7 +63,6 @@ class Rent extends \yii\db\ActiveRecord
     {
         if($thing_ids = explode(',', $this->thing_ids)) {
             if($things = Thing::find()->where(['in', 'id', $thing_ids])->all()) {
-                $rented_names = [];
                 foreach($things as $thing) {
                     if($thing->is_rent) $rented_ids[] = $thing->name;
                 }
@@ -78,6 +79,7 @@ class Rent extends \yii\db\ActiveRecord
             if($things = Thing::find()->where(['in', 'id', $thing_ids])->all()) {
                 foreach($things as $thing) {
                     $thing->is_rent = 1;
+                    if($this->deposit) $thing->deposit = $this->deposit;
                     $thing->save();
                 }
                 return true;

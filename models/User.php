@@ -160,4 +160,11 @@ class User extends ActiveRecord implements IdentityInterface
             ->useForegroundColor(0, 0, 0);
         return $qrCode->writeDataUri();
     }
+    public function isAdmin($user_id)
+    {
+        if($user = self::findOne($user_id)) {
+            if($user->role == 'admin') return true;
+        }
+        return false;
+    }
 }

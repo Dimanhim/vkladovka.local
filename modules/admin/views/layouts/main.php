@@ -37,6 +37,7 @@ if (Yii::$app->controller->action->id === 'login') {
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
         <link href="/css/bootstrap-datetimepicker3.min.css" rel="stylesheet">
         <link href="/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/jquery-ui.min.css" rel="stylesheet">
 
         <?php $this->head() ?>
         <link href="/css/admin.css?v=<?= mt_rand(1000, 100000) ?>" rel="stylesheet">

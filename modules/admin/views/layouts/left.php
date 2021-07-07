@@ -23,9 +23,24 @@
                     ['label' => 'Все вещи', 'icon' => 'file-code-o', 'url' => ['thing/index']],
                     ['label' => 'Пользователи', 'icon' => 'file-code-o', 'url' => ['users/index']],
                     ['label' => 'Заказы хранения', 'icon' => 'dashboard', 'url' => ['storage/index']],
+                    ['label' => 'Возвраты', 'icon' => 'dashboard', 'url' => ['return/index']],
+                    ['label' => 'Обратная связь', 'icon' => 'dashboard', 'url' => ['feedback/index']],
                     ['label' => 'Отзывы', 'icon' => 'dashboard', 'url' => ['review/index']],
+                    ['label' => 'Грузоперевозки', 'icon' => 'dashboard', 'url' => ['pickup/index']],
                     [
                         'label' => 'Тара/упаковка',
+                        'icon' => 'share',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Просмотр', 'icon' => 'file-code-o', 'url' => ['package/index'],],
+                            ['label' => 'Заказы', 'icon' => 'dashboard', 'url' => ['package-orders/index'],],
+                        ],
+                    ],
+                    ['label' => 'Таблица лояльности', 'icon' => 'dashboard', 'url' => ['loyalty/index']],
+                    ['label' => 'Настройки', 'icon' => 'file-code-o', 'url' => ['settings/index']],
+                    ['label' => 'Контент', 'icon' => 'file-code-o', 'url' => ['content/index']],
+                    [
+                        'label' => 'Системные функции',
                         'icon' => 'share',
                         'url' => '#',
                         'items' => [
@@ -50,9 +65,6 @@
                             ],
                         ],
                     ],
-                    ['label' => 'Таблица лояльности', 'icon' => 'dashboard', 'url' => ['loyalty/index']],
-                    ['label' => 'Настройки', 'icon' => 'file-code-o', 'url' => ['settings/index']],
-                    ['label' => 'Контент', 'icon' => 'file-code-o', 'url' => ['content/index']],
                 ],
             ]
         ) ?>

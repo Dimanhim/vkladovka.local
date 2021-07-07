@@ -1,46 +1,77 @@
 <?php
 
-/* @var $this yii\web\View */
-
+use yii\grid\GridView;
 use yii\helpers\Html;
-use yii\web\View;
+
+/* @var $this yii\web\View */
+/* @var $searchModel backend\models\PagesSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $type string */
 
 $this->title = 'Список вещей';
 ?>
-<div class="container-fluid admin-block">
-    <a href="<?= Yii::$app->urlManager->createUrl(['admin/thing/add']) ?>" class="btn btn-success">Добавить вещь</a>
-</div>
+
 <div class="container">
     <div class="row">
-        <?php $count = 0 ?>
-        <?php foreach($model as $v) { ?>
-            <div class="col-md-3">
-                <div class="item">
-                    <div class="item-img">
-                        <?php $alias = Yii::getAlias('@thing').'/'.$v->img ?>
-                        <div class="block-item-img" style="background-image: url(<?= $alias ?>)">
-
-                        </div>
-                        <div class="back">
-                            <ul>
-                                <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/thing/view', 'id' => $v->id]) ?>">Просмотр</a></li>
-                                <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/thing/edit', 'id' => $v->id]) ?>">Редактировать</a></li>
-                                <li><a href="<?= $v->getQrCode(true) ?>" download="" target="_blank">Распечатать QR-код</a></li>
-                                <li><a href="<?= Yii::$app->urlManager->createUrl(['admin/thing/delete', 'id' => $v->id]) ?>" class="link-delete">Удалить</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="item-desc">
-                        <a href="<?= Yii::$app->urlManager->createUrl(['admin/thing/view', 'id' => $v->id]) ?>"><?= $v->name ?></a>
-                    </div>
-                </div>
-            </div>
-            <?php $count++ ?>
-            <?php if($count%4 == 0) :?>
-            <div class="clearfix"></div>
-            <?php endif; ?>
-        <?php } ?>
+        <h1><?= Html::encode($this->title) ?></h1>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+                [
+                    'attribute' => 'img',
+                    'format' => 'raw',
+                    'filter' => false,
+                    'value' => function($data) {
+                        $img = $data->img ? Html::img(Yii::getAlias('@thing').'/'.$data->img, ['class' => 'thing-img-grid']) : '';
+                        return $img ? Html::a($img, Yii::$app->urlManager->createUrl(['admin/thing/view', 'id' => $data->id])) : '---';
+                    }
+                ],
+                [
+                    'attribute' => 'cat',
+                    'value' => function($data) {
+                        return $data->category ? $data->category->name : '';
+                    }
+                ],
+                [
+                    'attribute' => 'parent_cat',
+                    'filter' => false,
+                    'value' => function($data) {
+                        return $data->categoryParent ? $data->categoryParent->name : '';
+                    }
+                ],
+                [
+                    'attribute' => 'is_rent',
+                    'value' => function($data) {
+                        return $data->is_rent ? 'Да' : 'Нет';
+                    },
+                    'filter' => [0 => 'Нет', 1 => 'Да'],
+                ],
+                [
+                    'attribute' => 'user',
+                    'format' => 'raw',
+                    'value' => function($data) {
+                        return $data->users ? Html::a($data->users->fio, Yii::$app->urlManager->createUrl(['admin/users/view', 'id' => $data->users->id])) : '';
+                    }
+                ],
+                'name',
+                [
+                    'header' => 'Действия',
+                    'format' => 'raw',
+                    'value' => function($data) {
+                        $str = Html::a('Договор', Yii::$app->urlManager->createUrl(['lk/documents/agreement-storage', 'id' => $data->storageId]));
+                        $str .= '<br>';
+                        $str .= Html::a('QR-код', $data->getQrCode(true));
+                        return $str;
+                    }
+                ],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{view}{edit}',
+                    'buttonOptions' => ['class' => 'action-btn action-btn-2x'],
+                ],
+            ],
+        ]); ?>
     </div>
 </div>
-
-

@@ -754,7 +754,7 @@ footer ul.net li a {
   border: 2px solid #fac400;
   -webkit-animation: chat 7s infinite ease-in-out;
           animation: chat 7s infinite ease-in-out;
-  z-index: 5;
+  z-index: 99;
 }
 
 .global-chat-wp .avatar-adm-top, .global-chat-wp .avatar-adm-icon {
@@ -1489,7 +1489,6 @@ p strong {
   display: inline-block;
   margin-top: 5px;
 }
-
 .bt-n {
   /*margin-top: 60px;
   margin-bottom: 90px;*/
@@ -1511,6 +1510,19 @@ p strong {
 .item-thing {
   position: relative;
   margin-bottom: 30px;
+}
+.item-thing-rent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #f00;
+  border: 1px solid #f00;
+  padding: 1px 2px;
+  text-align: center;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-size: 11px;
 }
 .item-thing:hover {
   opacity: 0.9;
@@ -1795,6 +1807,37 @@ nav .container ul {
 .avatar img {
   width: 100px;
 }
+.highlight-block {
+  box-shadow: 1px 1px 5px #f00, -1px -1px 5px #f00;
+}
+.required label:after {
+  content: "*";
+  color: red;
+}
+.block-package {
+  padding: 10px 20px;
+  text-align: center;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 1px 1px 2px #ccc, -1px -1px 2px #ccc;
+  -moz-box-shadow: 1px 1px 2px #ccc, -1px -1px 2px #ccc;
+  box-shadow: 1px 1px 2px #ccc, -1px -1px 2px #ccc;
+}
+.block-package:hover {
+  -webkit-box-shadow: 3px 3px 5px #ccc, -3px -3px 5px #ccc;
+  -moz-box-shadow: 3px 3px 5px #ccc, -3px -3px 5px #ccc;
+  box-shadow: 3px 3px 5px #ccc, -3px -3px 5px #ccc;
+}
+.package-list a {
+  color: rgb(51,51,51);
+}
+.package-list a:hover {
+  text-decoration: none;
+}
+
+
+
 
 @media (max-width: 1200px) {
   header .cont-top, header .rsp-top {
@@ -2265,6 +2308,10 @@ nav .container ul {
   }
   .middle-links a {
     font-size: 18px;
+  }
+  .item-thing-rent {
+    top: -15px;
+    font-size: 8px;
   }
   @media (max-width: 470px) {
     .description {

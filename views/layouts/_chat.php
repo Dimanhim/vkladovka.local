@@ -1,3 +1,7 @@
+<?php
+use yii\widgets\ActiveForm;
+Use yii\helpers\Html;
+?>
 <div class="global-chat-wp">
     <div class="close-chat"><i class="far fa-times-circle"></i></div>
     <div class="avatar-adm-icon">
@@ -41,17 +45,21 @@
                 <p>
                     Наша команда всегда готова помочь Вам.
                 </p>
-                <div class="form-welcome-chat">
+
+                <?//= Html::submitButton('Отправить', ['class' => "btn"]) ?>
+
+                <?php $form = ActiveForm::begin(['id' => 'form-chat', 'action' => '/site/chat-form', 'options' => ['class' => 'form-welcome-chat']]) ?>
                     <div class="selector-ver">
-                        <input type="text" placeholder="Начните поиск">
-                        <ul class="selects-it">
+                        <?= $form->field($model, 'phone', ['template' => "{input}"])->textInput(['placeholder' => "Номер телефона", 'class' => 'phone']) ?>
+                        <!--<ul class="selects-it">
                             <li>Lorem ipsum.</li>
                             <li>Dolor sit amet.</li>
                             <li>Consectetur adipisicing</li>
-                        </ul>
+                        </ul>-->
                     </div>
-                    <textarea placeholder="Задать вопрос"></textarea>
-                </div>
+                    <?= $form->field($model, 'question', ['template' => "{input}"])->textarea(['placeholder' => "Ваш вопрос", 'class' => '']) ?>
+                    <?= Html::submitButton('Задать вопрос', ['class' => 'btn btn-xs btn-default']) ?>
+                <?php ActiveForm::end() ?>
             </div>
         </div>
     </div>

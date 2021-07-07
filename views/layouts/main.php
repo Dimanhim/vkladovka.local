@@ -12,6 +12,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\models\User;
 use app\models\LoginForm;
+use app\models\Feedback;
 
 AppAsset::register($this);
 ?>
@@ -154,7 +155,8 @@ AppAsset::register($this);
         <?= Alert::widget() ?>
 
         <?= $content ?>
-        <?= $this->render('_chat') ?>
+
+        <?= $this->render('_chat', ['model' => new Feedback()]) ?>
     </div>
         <div class="page-footer">
             <footer class="container">
@@ -195,6 +197,7 @@ AppAsset::register($this);
             </footer>
         </div>
     </div>
+<?= $this->render('_modals') ?>
 
 <?php $this->endBody() ?>
 </body>

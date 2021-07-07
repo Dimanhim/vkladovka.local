@@ -2,6 +2,8 @@
 
 namespace app\modules\lk\controllers;
 
+use app\models\Package;
+use app\models\PackageOrder;
 use yii\web\Controller;
 use Yii;
 use yii\filters\AccessControl;
@@ -40,8 +42,20 @@ class PackageController extends Controller
 
     public function actionIndex()
     {
+        $model = new Package();
         return $this->render('index', [
-
+           'model' => $model,
+        ]);
+    }
+    public function actionItems($type = false)
+    {
+        $model = Package::findAll(['type' => $type]);
+        $package = new Package();
+        $package->type = $type;
+        $typeName = $package->typeName;
+        return $this->render('view', [
+            'model' => $model,
+            'typeName' => $typeName,
         ]);
     }
     public function actionTara()
@@ -62,10 +76,32 @@ class PackageController extends Controller
 
         ]);
     }
-    public function actionItem()
+    public function actionItem($id)
     {
+        $model = $this->findModel($id);
+        $order = new PackageOrder();
+        if($order->load(Yii::$app->request->post())) {
+            $order->created_at = time();
+            if(!Yii::$app->user->isGuest) {
+                $order->user_id = Yii::$app->user->id;
+            }
+            if($order->save()) {
+                Yii::$app->session->setFlash('success', 'Ваш Заказ успешно принят');
+                return $this->refresh();
+            }
+        }
         return $this->render('item', [
-
+            'model' => $model,
+            'order' => $order,
         ]);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Package::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }

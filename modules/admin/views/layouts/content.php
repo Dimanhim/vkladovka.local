@@ -1,9 +1,10 @@
 <?php
 use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
-
+use app\models\SearchForm;
 ?>
-<div class="content-wrapper">
+<div class="content-wrapper" style="min-height: 1150px">
+    <?= $this->render('_search', ['model' => new SearchForm()]) ?>
     <section class="content-header">
         <?php if (isset($this->blocks['content-header'])) { ?>
             <h1><?= $this->blocks['content-header'] ?></h1>

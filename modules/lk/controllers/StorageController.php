@@ -57,7 +57,7 @@ class StorageController extends Controller
 
         if($model->load(Yii::$app->request->post())) {
             $model->date = strtotime($model->date);
-            $model->user_id = Yii::$app->user->id;
+            $model->user_id = null;
             if($model->save()) {
                 if($model->saveItems) {
                     Yii::$app->session->setFlash('success', 'Успешно сохранено!');

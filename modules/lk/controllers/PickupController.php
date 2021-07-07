@@ -2,47 +2,35 @@
 
 namespace app\modules\lk\controllers;
 
-use yii\web\Controller;
+use app\components\Functions;
 use Yii;
-use yii\filters\AccessControl;
-use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\Pickup;
 
-class PickupController extends Controller
+class PickupController extends \yii\web\Controller
 {
-    /*
-    public function beforeAction($action)
-    {
-        $user = Yii::$app->user;
-        if($user->isGuest AND $this->action->id !== 'login')
-        {
-            $user->loginRequired();
-        }
-        return true;
-    }
-*/
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
+        $model = new Pickup();
+        if($model->load(Yii::$app->request->post())) {
+            $model->date_time = ($model->pickup_date && $model->pickup_time) ? (strtotime($model->pickup_date) + Functions::getSecondsInTime($model->pickup_time)) : 0;
+            $model->user_id = Yii::$app->user->id;
+            $model->created_at = time();
+            $model->phone = $model->phone ? $model->phone : '---';
+            if(!$model->agree) {
+                Yii::$app->session->setFlash('error', 'Необходимо согласиться с условиями');
+            }
+            if(!$model->user_id && !$model->phone) {
+                Yii::$app->session->setFlash('error', 'Укажите номер телефона');
+                return $this->refresh();
+            }
+            if(/*$model->validate() && */$model->save()) {
+                Yii::$app->session->setFlash('success', 'Грузоперевозка успешно заказана. Наш менеджер свяжется с Вами в ближайшее время');
+                return $this->refresh();
+            }
+        }
         return $this->render('index', [
-
+            'model' => $model,
         ]);
     }
+
 }

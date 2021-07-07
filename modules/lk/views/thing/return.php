@@ -5,6 +5,8 @@
 use yii\web\View;
 use yii\helpers\Url;
 use kartik\datetime\DateTimePicker;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 if(count($model) > 1) $many = true;
 else $many = false;
@@ -54,7 +56,9 @@ foreach($model as $v) {
     <div>
         <a href="<?= Yii::$app->urlManager->createUrl(['lk']) ?>">Вернуться на склад</a>
     </div>
-    <div class="thing-actions">
+
+
+    <?php $form = ActiveForm::begin(['id' => 'form-return-thing', 'options' => ['class' => 'thing-actions']]) ?>
         <table class="table">
             <tr>
                 <td>
@@ -63,6 +67,7 @@ foreach($model as $v) {
                 <td>
                     <?php foreach($model as $v) : ?>
                     <a href="<?= Yii::$app->urlManager->createUrl(['lk/thing', 'id' => $v->id]) ?>" class="thing-item-link" data-thing-item="<?= $v->id ?>"><?= $v->name ?><?= $v->id ?></a><br />
+                    <?= $form->field($model_form, "things_ids[]", ['template' => '{input}'])->hiddenInput(['value' => $v->id]) ?>
                     <?php endforeach; ?>
                 </td>
             </tr>
@@ -80,16 +85,10 @@ foreach($model as $v) {
             </tr>
             <tr>
                 <td>
-                    Вернуть в течение:
+                    Вернуть в течение*:
                 </td>
                 <td>
-                    <select name="" id="select-date" class="form-control">
-                        <option value="">Выбрать...</option>
-                        <option value="1">1 часа (800 руб.)</option>
-                        <option value="2">2-3 часов (от 350 руб. за каждую вещь)</option>
-                        <option value="3">в течение дня (200 руб.)</option>
-                        <option value="10">в другой день</option>
-                    </select>
+                    <?= $form->field($model_form, 'return_value', ['template' => '{input}'])->dropDownList($model_form->returnValuesArray, ['prompt' => '--Выбрать--', 'id' => 'select-date', 'required' => true]) ?>
                     <p style="font-style: italic">Время доставки ежедневно с 8 до 20ч. За рамками это времени тариф+50%.</p>
                 </td>
             </tr>
@@ -107,15 +106,15 @@ foreach($model as $v) {
                     Вернуть в течение:
                 </td>
                 <td>
-                    <?= DateTimePicker::widget([
-                    'name' => 'check_issue_date',
-                    'value' => date('d-m-Y H:i'),
-                    'options' => ['placeholder' => 'Выберете дату ...'],
-                    'pluginOptions' => [
-                        'format' => 'dd-mm-yyyy h:i',
-                        'todayHighlight' => true
-                    ]
-                    ]); ?>
+                    <?= $form->field($model_form, 'return_time', ['template' => '{input}'])->widget(DateTimePicker::className(), [
+                        'name' => 'check_issue_date',
+                        'value' => date('d-m-Y H:i'),
+                        'options' => ['placeholder' => 'Выберете дату ...'],
+                        'pluginOptions' => [
+                            'format' => 'dd-mm-yyyy h:i',
+                            'todayHighlight' => true
+                        ]
+                    ]) ?>
                 </td>
             </tr>
             <tr class="select-date">
@@ -125,10 +124,10 @@ foreach($model as $v) {
             </tr>
             <tr>
                 <td>
-                    По адресу:
+                    По адресу*:
                 </td>
                 <td>
-                    <textarea name="" id="" cols="30" rows="4" class="form-control">Здесь по умолчанию будет адрес, указанный в договоре, можно менять</textarea>
+                    <?= $form->field($model_form, 'address', ['template' => "{input}"])->textarea(['cols' => 30, 'rows' => 4, 'required' => true]) ?>
                 </td>
             </tr>
             <?php if($none_furniture) : ?>
@@ -137,7 +136,7 @@ foreach($model as $v) {
                     Цена за срочную доставку: <span class="danger-span"></span>
                 </td>
                 <td>
-                    <input id="return-price" type="text" name="price" class="form-control" placeholder="Выберете в течение какого срока вернуть" disabled />
+                    <?= $form->field($model_form, 'price', ['template' => '{input}'])->textInput(['placeholder' => 'Выберете в течение какого срока вернуть', 'id' => 'return-price', 'readonly' => true]) ?>
                 </td>
             </tr>
             <?php endif; ?>
@@ -154,10 +153,10 @@ foreach($model as $v) {
             <?php endif; ?>
             <tr>
                 <td colspan="2">
-                    <button class="btn btn-primary">Вернуть вещь</button>
+                    <?= Html::submitButton('Вернуть вещь', ['class' => "btn btn-primary"]) ?>
                 </td>
             </tr>
         </table>
-    </div>
+    <?php ActiveForm::end() ?>
 </div>
 

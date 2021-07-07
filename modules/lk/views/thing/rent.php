@@ -105,6 +105,14 @@ else $this->title = 'Сдать в аренду '.$things[0]->name;
                 </td>
             </tr>
             <tr>
+                <td>
+                    Депозит:
+                </td>
+                <td>
+                    <?= $form->field($model, 'deposit', ['template' => '{input}'])->textInput(['placeholder' => 'рублей']) ?>
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">
                     <button class="btn btn-primary">Сдать в аренду</button>
                 </td>

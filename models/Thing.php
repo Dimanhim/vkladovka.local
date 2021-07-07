@@ -16,7 +16,7 @@ class Thing extends ActiveRecord
     {
         return [
             [['name', 'cat', 'parent_cat'], 'required', 'message' => 'Поле должно быть заполнено'],
-            [['barcode', 'cat', 'parent_cat', 'user', 'is_rent', 'storage_items_id', 'created_at'], 'integer'],
+            [['barcode', 'cat', 'parent_cat', 'user', 'is_rent', 'storage_items_id', 'deposit', 'created_at'], 'integer'],
             [['name', 'description', 'img', 'qr_code'], 'string'],
             [['file'], 'file'],
         ];
@@ -37,6 +37,7 @@ class Thing extends ActiveRecord
             'is_rent',
             'storage_items_id',
             'created_at',
+            'deposit',
         ];
     }
     public function attributeLabels()
@@ -52,6 +53,7 @@ class Thing extends ActiveRecord
             'qr_code' => 'QR код',
             'is_rent' => 'Возможность сдать в аренду',
             'created_at' => 'Дата создания',
+            'deposit' => 'Депозит',
         ];
     }
     public function getCategory(){
@@ -62,6 +64,16 @@ class Thing extends ActiveRecord
     }
     public function getUsers(){
         return $this->hasOne(User::className(), ['id' => 'user']);
+    }
+    public function getRent()
+    {
+        if($rents = Rent::findAll(['user_id' => $this->user])) {
+            foreach($rents as $rent) {
+                $things = explode(',', $rent->thing_ids);
+                if(in_array($this->id, $things)) return $rent;
+            }
+        }
+        return false;
     }
     public function getQrCode($img = false)
     {
@@ -114,6 +126,58 @@ class Thing extends ActiveRecord
             return $storage_items->storage ? $storage_items->storage->term : 0;
         }
         return 0;
+    }
+    public function getFindRent()
+    {
+        if($rents = Rent::find()->all()) {
+            foreach ($rents as $rent) {
+                $thing_ids = explode(',', $rent->thing_ids);
+                if(in_array($this->id, $thing_ids)) return $rent;
+            }
+        }
+        return false;
+    }
+    public function getStorageId()
+    {
+        if($storageItem = StorageItems::findOne(['thing_id' => $this->id])) {
+            return $storageItem->storage_id;
+        }
+        return false;
+    }
+    public function getUnsetRent()
+    {
+        $this->is_rent = 0;
+        $this->save();
+        if($rents = Rent::findAll(['user_id' => $this->user])) {
+            foreach($rents as $rent) {
+                $things = explode(',', $rent->thing_ids);
+                if(in_array($this->id, $things)) {
+                    if(count($things) == 1) {
+                        if($rent->delete() /*&& $this->deleteStorageItems && $this->delete()*/) return true;
+                    } else {
+                        $new_things = [];
+                        foreach($things as $thing) {
+                            if($thing != $this->id) $new_things[] = $thing;
+                        }
+                        $rent->thing_ids = implode(',', $new_things);
+                        if($rent->save() /*&& $this->deleteStorageItems && $this->delete()*/) return true;
+                    }
+                }
+            }
+        }
+    }
+    public function getDeleteStorageItems()
+    {
+        $success = false;
+        if($storageItem = StorageItems::findOne(['thing_id' => $this->id])) {
+            $storageId = $storageItem->storage_id;
+            if($success = $storageItem->delete()) {
+                if($storage = Storage::findOne($storageId)) {
+                    if(count($storage) == 1) $success = $storage->delete();
+                }
+            }
+        }
+        return $success;
     }
 
 }

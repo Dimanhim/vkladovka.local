@@ -12,6 +12,62 @@ $(document).ready(function(){
 		}
 	});
 
+	$('body').on('submit', '#form-chat', function(e) {
+		e.preventDefault();
+		console.log('submit');
+		var form = $(this);
+		var data = form.serialize();
+		$.ajax({
+			url: form.attr('action'),
+			type: 'POST',
+			data: data,
+			success: function (json) {
+				var res = JSON.parse(json);
+				$('#chat-modal .chat-message').text(res.message);
+				$('#chat-modal').modal('show');
+				return false;
+			},
+			error: function () {
+				console.log('Error!');
+			}
+		});
+	});
+	function setPackageTotalPrice() {
+		$('#packageorder-total_price').val(0);
+		var delivery_price = Number($('#package-price-delivery').text());
+		var sale_price = Number($('#package-price-sale').text());
+		var rent_price = Number($('#package-price-rent').text());
+		var type = $('#packageorder-type').val();
+		var qty = $('#packageorder-qty').val();
+		var total_price;
+		if(type == 1) {
+			total_price = rent_price * qty + delivery_price;
+		} else {
+			total_price = sale_price * qty;
+		}
+		$('#packageorder-total_price').val(total_price);
+	}
+	$('body').on('click', '.modal-package-order', function(e) {
+	    e.preventDefault();
+	    var self = $(this);
+	    var message_1 = self.data('message');
+	    var message_2 = $('#package-name').text();
+	    var full_message = message_1 + ' "' + message_2 + '"';
+	    var type = self.data('type');
+	    var qty_rent = $('#package-count-rent').val();
+	    var qty_sale = $('#package-count-sale').val();
+
+	    $('#packageorder-type').val(type);
+	    $('#full-message').text(full_message);
+	    if(type == 1) {
+			$('#packageorder-qty').val(qty_rent);
+		} else {
+			$('#packageorder-qty').val(qty_sale);
+		}
+		setPackageTotalPrice();
+	    $('#package-order').modal('show');
+	});
+
 	function controlBars() {
 		if ($(window).width() > 991) $(".m-nav, nav").show();
 		else $(".m-nav, nav").hide();
@@ -21,6 +77,13 @@ $(document).ready(function(){
 	$(window).resize(function(){
 		controlBars();
 	});
+
+	if($('.alert-success').length) {
+		setTimeout(function() {
+			$('.alert-success').slideDown();
+			$('.alert-success').remove();
+		}, 2000);
+	}
 
 	//
 
@@ -55,9 +118,10 @@ $(document).ready(function(){
 
 	// открываем диалог
 
-	$(".global-chat-wp").on("click", function(event){
-		if ($(this).hasClass("active") || $(event.target).hasClass("close-chat") || $(event.target).hasClass("fa-times-circle")) return false;
-		$(this).addClass("active");
+	$("body").on("click", ".avatar-adm-icon", function(event){
+		var item = $(this).parents('.global-chat-wp');
+		if (item.hasClass("active") || $(event.target).hasClass("close-chat") || $(event.target).hasClass("fa-times-circle")) return false;
+		item.addClass("active");
 		$("#message-area").focus();
 	});
 
@@ -228,7 +292,7 @@ $(document).ready(function(){
 			return false;
 		}
 		else {
-			$.get('lk/thing/ajax-things-rent', {ids: get}, function(res) {
+			$.get('/lk/thing/ajax-things-rent', {ids: get}, function(res) {
 				if(res) {
 					displayError(res);
 					return false;
@@ -278,9 +342,9 @@ $(document).ready(function(){
 	});
 
 
-	$('#select-date').on('change', function() {
+	/*$('#select-date').on('change', function() {
 		if($(this).val() == 10) $('.select-date').fadeIn();
-	});
+	});*/
 
 	$('.gallery').fancybox();
 	$('.hide-textarea').on('click', function() {
@@ -358,12 +422,15 @@ $(document).ready(function(){
 		var input = $(this).parents('.select-quan').find('input.quan-input');
 		var count = Number(input.val());
 		input.val(count+1);
+		console.log('plus');
+		setPackageTotalPrice();
 		return false;
 	});
 	$('.btn-minus span').on('click', function() {
 		var input = $(this).parents('.select-quan').find('input.quan-input');
 		var count = Number(input.val());
 		if(count != 0) input.val(count-1);
+		setPackageTotalPrice();
 		return false;
 	});
 	$('.thing-item-link').on('mouseover', function() {
@@ -383,23 +450,30 @@ $(document).ready(function(){
 			[3, 200],
 			[999, 400]
 		]);
-		var select = Number($('#select-date').val());
-		var thing_item_link = $('.thing-item-link')
+		var select = Number($(this).val());
+		var thing_item_link = $('.thing-item-link');
 		var count = Number(thing_item_link.length);
 		if(select != 10) {
-			if(count > 2) {
-				if(select == 2) {
-					tariffs.set(2, 350);
+			if(select) {
+				$('.select-date').fadeOut();
+				if(count > 1) {
+					if(select == 2) {
+						tariffs.set(2, 350);
+					}
+					$('#return-price').val((tariffs.get(select) * count) + ' руб.');
 				}
-				$('#return-price').val((tariffs.get(select) * count) + ' руб.');
-			}
-			else {
-				$('#return-price').val(tariffs.get(select) + ' руб.');
+				else {
+					$('#return-price').val(tariffs.get(select) + ' руб.');
+				}
+			} else {
+				$('.select-date').fadeOut();
+				$('#return-price').val('');
 			}
 		}
 		else {
 			$('#return-price').val('Стоимость возврата расчитывается индивидуально');
 			$('.return-tr').fadeIn();
+			$('.select-date').fadeIn();
 		}
 	});
 
@@ -563,15 +637,9 @@ $(document).ready(function(){
 			$(this).find('span').html('Показать');
 		}
 	});
-
-
-
-
-
 	function addTrendImages() {
 		var trend = $('#trend-select').val();
 		$.get('site/add-trend-images', {id: trend}, function(res) {
-			console.log(res);
 			$('#carousel-trend').html(res);
 			/*$('.owl-carousel').owlCarousel({
 				loop:true,
@@ -592,6 +660,16 @@ $(document).ready(function(){
 	});
 	$('body').on('click', '.rent-success', function(e) {
 		if(!confirm('Вы действительно хотите сдать в аренду вещь?')) return false;
+	});
+	$(".select-time").inputmask({"mask": "99:99"});
+
+	$('body').on('change', '#rentthing-term', function(e) {
+	    e.preventDefault();
+	    var price = $('#rentthing-price').data('price');
+	    var days = $(this).val();
+	    var total_price = price * days;
+		$('#rentthing-price').val(total_price);
+
 	});
 
 
