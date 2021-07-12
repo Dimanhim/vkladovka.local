@@ -51,13 +51,25 @@ class RentController extends Controller
 //--- АРЕНДОВАТЬ ВЕЩЬ
     public function actionIndex($parent = false)
     {
+        $formModel = new Thing();
         if(($get = Yii::$app->request->get('rent')) && ($thing = Thing::findOne($get))) {
             return $this->redirect('rent/thing?id='.$thing->id);
         }
-        $model = $parent ? CatsThing::findAll(['parent_id' => $parent]) : CatsThing::findAll(['parent_id' => null]);
+        if($formModel->load(Yii::$app->request->post()) && $formModel->request) {
+            $model = Thing::find()->where(['is_rent' => 1])->andWhere(['like', 'name', $formModel->request])->all();
+            return $this->render('to', [
+                'model' => $model,
+                'cat' => false,
+                'formModel' => $formModel,
+            ]);
+        }
+        else {
+            $model = $parent ? CatsThing::findAll(['parent_id' => $parent]) : CatsThing::findAll(['parent_id' => null]);
+        }
         return $this->render('index', [
             'model' => $model,
             'parent' => $parent,
+            'formModel' => $formModel,
         ]);
     }
     public function actionCat($id)
@@ -71,10 +83,22 @@ class RentController extends Controller
     public function actionTo($id)
     {
         $cat = CatsThing::findOne($id);
-        $model = Thing::findAll(['is_rent' => 1, 'parent_cat' => $id]);
+        $formModel = new Thing();
+        if($formModel->load(Yii::$app->request->post()) && $formModel->request) {
+            $model = Thing::find()->where(['is_rent' => 1])->andWhere(['like', 'name', $formModel->request])->all();
+            return $this->render('to', [
+                'model' => $model,
+                'cat' => false,
+                'formModel' => $formModel,
+            ]);
+        }
+        else {
+            $model = Thing::findAll(['is_rent' => 1, 'parent_cat' => $id]);
+        }
         return $this->render('to', [
             'model' => $model,
             'cat' => $cat,
+            'formModel' => $formModel,
         ]);
     }
 
@@ -86,6 +110,7 @@ class RentController extends Controller
         if($rent->load(Yii::$app->request->post()) && $rent->validate()) {
             $rent->thing_id = $model->id;
             $rent->user_id = Yii::$app->user->id;
+            $rent->created_at = time();
             if($rent->save()) {
                 Yii::$app->session->setFlash('success', ' Вещь "'.$model->name.'" успешно Вами арендована');
                 return $this->refresh();

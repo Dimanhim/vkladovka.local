@@ -30,7 +30,7 @@ class RentThing extends \yii\db\ActiveRecord
     {
         return [
             [['address'], 'string'],
-            [['take_myself', 'term', 'thing_id', 'price'], 'integer'],
+            [['take_myself', 'term', 'thing_id', 'price', 'seen', 'created_at'], 'integer'],
             [['delivery_time'], 'string', 'max' => 255],
         ];
     }
@@ -42,11 +42,19 @@ class RentThing extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'address' => 'Address',
+            'user_id' => 'Заказчик',
+            'address' => 'Адрес',
+            'thing_id' => 'Вещь',
             'take_myself' => 'Заберу сам',
-            'delivery_time' => 'Delivery Time',
-            'term' => 'Term',
+            'delivery_time' => 'Время доставки',
+            'term' => 'На какой срок',
+            'price' => 'Цена за день аренды',
+            'created_at' => 'Дата создания',
         ];
+    }
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
     public function getThing()
     {

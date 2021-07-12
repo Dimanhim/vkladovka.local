@@ -319,6 +319,8 @@ $created_at = $document->storage ? $document->storage->date : strtotime(date('d.
         <td>
             <p>Исполнитель: <?= $settings->organization_name ?></p>
             <p>директор - <?= $settings->director_name ?></p>
+            <p>реквизиты:</p>
+            <p><?= $settings->requisites ?></p>
             <p>&nbsp;</p>
             <p>&nbsp;</p>
             <p>_________________</p>

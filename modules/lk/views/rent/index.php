@@ -4,6 +4,8 @@
 
 use yii\web\View;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 $this->title = 'Арендовать вещь';
 ?>
@@ -30,8 +32,14 @@ $this->title = 'Арендовать вещь';
 <div class="col-md-12">
     <div class="search-category">
         <div class="row">
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Поиск по категориям">
+            <div class="col-md-6">
+                <?php $form = ActiveForm::begin(['id' => 'form-reserve-1', 'options' => ['class' => 'search-form']]) ?>
+                <span class="search-form-icon">
+                    <i class="fa fa-lg fa-search"></i>
+                </span>
+                <?= $form->field($formModel, 'request', ['template' => "{input}"])->textInput(['placeholder' => "Введите название вещи"]) ?>
+                <?= Html::submitButton('Поиск', ['class' => "btn btn-success search-form-submit"]) ?>
+                <?php ActiveForm::end() ?>
             </div>
         </div>
     </div>

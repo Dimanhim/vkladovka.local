@@ -1,4 +1,7 @@
 <?php
+
+use yii\helpers\Html;
+
 $this->title = 'Заказы хранения';
 ?>
 <div class="container-fluid admin-block">
@@ -8,6 +11,7 @@ $this->title = 'Заказы хранения';
 <table class="table table-stripped table-bordered">
     <tr>
         <th>Когда удобно забрать</th>
+        <th>Заказчик</th>
         <th>На какой срок, дней</th>
         <th>Стоимость хранения, руб.</th>
         <th>Итого к оплате, руб.</th>
@@ -18,6 +22,7 @@ $this->title = 'Заказы хранения';
         <?php foreach($model as $item) : ?>
             <tr <?= $item->proceesItem ? ' class="warning-item"' : '' ?>>
                 <td><?= date('d.m.Y', $item->date) ?></td>
+                <td><?= $item->user ? Html::a($item->user->fio, Yii::$app->urlManager->createUrl(['admin/users/view', 'id' => $item->user->id]))  : ''?></td>
                 <td><?= $item->term ?></td>
                 <td><?= $item->price_storage ?></td>
                 <td><?= $item->price_total ?></td>

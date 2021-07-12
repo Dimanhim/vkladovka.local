@@ -32,7 +32,7 @@ class Rent extends \yii\db\ActiveRecord
         return [
             //[['thing_ids'], 'required'],
             [['description', 'special_conditions'], 'string'],
-            [['price', 'deposit', 'user_id'], 'integer'],
+            [['price', 'deposit', 'user_id', 'seen', 'created_at'], 'integer'],
             [['thing_ids'], 'safe'],
         ];
     }
@@ -44,12 +44,17 @@ class Rent extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'thing_ids' => 'Thing Ids',
-            'description' => 'Description',
-            'special_conditions' => 'Special Conditions',
-            'price' => 'Price',
+            'thing_ids' => 'Вещи',
+            'description' => 'Описание',
+            'special_conditions' => 'Специальные условия',
+            'price' => 'Стоимость',
             'user_id' => 'Пользователь',
+            'created_at' => 'Дата создания'
         ];
+    }
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
     public function getPrepareModel()
     {
@@ -58,6 +63,14 @@ class Rent extends \yii\db\ActiveRecord
             $str = implode(',', $this->thing_ids);
         }
         $this->thing_ids = $str;
+    }
+    public function getThings()
+    {
+        $ids = explode(',', $this->thing_ids);
+        if($things = Thing::find()->where(['in', 'id', $ids])->all()) {
+            return $things;
+        }
+        return false;
     }
     public function getValidateIsRent()
     {

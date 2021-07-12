@@ -2,10 +2,12 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\Html;
 use yii\web\View;
 use yii\helpers\Url;
-
-$this->title = 'Рюкзаки || арендовать вещь';
+use yii\widgets\ActiveForm;
+$title = $cat ? $cat->name : 'Результаты поиска';
+$this->title = $title.' || арендовать вещь';
 ?>
 
 <!-- ----------------Хлебные крошки -->
@@ -19,7 +21,7 @@ $this->title = 'Рюкзаки || арендовать вещь';
 
 
 <div class="col-md-12">
-    <h2 class="tac"><?= $cat->name ?></h2>
+    <h2 class="tac"><?= $title ?></h2>
 </div>
 <div>
     <a href="<?= Yii::$app->urlManager->createUrl(['lk/rent']) ?>">Вернуться к выбору категорий вещей</a>
@@ -33,8 +35,14 @@ $this->title = 'Рюкзаки || арендовать вещь';
 
     <div class="search-category">
         <div class="row">
-            <div class="col-md-4">
-                <input type="text" class="form-control" placeholder="Поиск по категории">
+            <div class="col-md-6">
+                <?php $form = ActiveForm::begin(['id' => 'form-reserve-1', 'options' => ['class' => 'search-form']]) ?>
+                <span class="search-form-icon">
+                    <i class="fa fa-lg fa-search"></i>
+                </span>
+                <?= $form->field($formModel, 'request', ['template' => "{input}"])->textInput(['placeholder' => "Введите название вещи"]) ?>
+                <?= Html::submitButton('Поиск', ['class' => "btn btn-success search-form-submit"]) ?>
+                <?php ActiveForm::end() ?>
             </div>
         </div>
     </div>

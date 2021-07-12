@@ -11,13 +11,14 @@ use yii\web\UploadedFile;
 class Thing extends ActiveRecord
 {
     public $file;
+    public $request;
 
     public function rules()
     {
         return [
             [['name', 'cat', 'parent_cat'], 'required', 'message' => 'Поле должно быть заполнено'],
             [['barcode', 'cat', 'parent_cat', 'user', 'is_rent', 'storage_items_id', 'deposit', 'created_at'], 'integer'],
-            [['name', 'description', 'img', 'qr_code'], 'string'],
+            [['name', 'description', 'img', 'qr_code', 'request'], 'string'],
             [['file'], 'file'],
         ];
     }

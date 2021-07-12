@@ -5,6 +5,8 @@ namespace app\components;
 use app\models\Feedback;
 use app\models\PackageOrder;
 use app\models\Pickup;
+use app\models\Rent;
+use app\models\RentThing;
 use app\models\ReturnThing;
 use app\models\StorageItems;
 use Da\QrCode\QrCode;
@@ -87,6 +89,24 @@ class Functions
                 $arr[] = [
                     'title' => 'Заказ на тару/упаковку',
                     'link' => Yii::$app->urlManager->createUrl(['admin/package-order/view', 'id' => $packageOrder->id]),
+                    'icon' => 'fa fa-shopping-cart text-green',
+                ];
+            }
+        }
+        if($rents = Rent::findAll(['seen' => 0])) {
+            foreach($rents as $rent) {
+                $arr[] = [
+                    'title' => 'Заказ на аренду',
+                    'link' => Yii::$app->urlManager->createUrl(['admin/rent/view', 'id' => $rent->id]),
+                    'icon' => 'fa fa-shopping-cart text-green',
+                ];
+            }
+        }
+        if($rentThings = RentThing::findAll(['seen' => 0])) {
+            foreach($rentThings as $rentThing) {
+                $arr[] = [
+                    'title' => 'Заказ на сдачу в аренду',
+                    'link' => Yii::$app->urlManager->createUrl(['admin/rent-thing/view', 'id' => $rentThing->id]),
                     'icon' => 'fa fa-shopping-cart text-green',
                 ];
             }
