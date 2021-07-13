@@ -84,7 +84,7 @@ AppAsset::register($this);
             <div class="container">
                 <ul>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('site/as-work') ?>">Как это работает</a></li>
-
+                    <li><a href="<?= Yii::$app->urlManager->createUrl('site/for-ur-lic') ?>">Для юр. лиц</a></li>
                     <?php //if(Yii::$app->user->isGuest) { ?>
                     <li><a href="<?= Yii::$app->urlManager->createUrl('lk') ?>" class="hidden-lg hidden-md">Личный кабинет</a></li>
                     <?php //} ?>

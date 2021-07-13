@@ -81,11 +81,6 @@ $action = Yii::$app->controller->action->id;
                         <a href="<?= Yii::$app->urlManager->createUrl(['lk/profile']) ?>" class="user-name"> <?= User::findOne(Yii::$app->user->id)->fio ?></a>
                         <div class="logout">
                             <a href="<?= Yii::$app->urlManager->createUrl(['site/logout']) ?>">Выход</a>
-
-                            <?php if(User::isAdmin(Yii::$app->user->id)) : ?>
-                            <a href="<?= Yii::$app->urlManager->createUrl(['/admin']) ?>" style="margin-left: 20px;">В админку</a>
-                            <?php endif; ?>
-
                         </div>
                     </div>
                     <?php } ?>
