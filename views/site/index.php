@@ -161,8 +161,8 @@ $this->title = 'Вкладовка - новый способ владеть ве
     </div>
 </div>
 
-<div class="sl2-wp" id="categories">
-    <div class="container">
+<div class="sl2-wp">
+    <div id="categories" class="container">
         <h2>
             Получите больше от своих вещей с помощью вкладовка
         </h2>
@@ -344,7 +344,7 @@ $this->title = 'Вкладовка - новый способ владеть ве
         </h2>
         <ul>
             <li><a href="<?= Yii::$app->urlManager->createUrl('site/faq#2') ?>">Узнать от чего и как складывается стоимость по пикапу</a></li>
-            <li><a href="#" class="quest">​Узнать, как получить бесплатный комплект услуг по пикапу</a></li>
+            <li><a href="#" id="free-service-btn">​Узнать, как получить бесплатный комплект услуг по пикапу</a></li>
         </ul>
         <?php if($trends) : ?>
         <div class="tac">
@@ -484,5 +484,32 @@ $this->title = 'Вкладовка - новый способ владеть ве
     </div>
 </div>
 <?php endif; ?>
+
+<!-- Modal free service -->
+<div class="modal fade" id="free-service" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Бесплатный комплект услуг по пикапу Вы сможете получить при:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ol>
+                    <li>
+                        При сдаче на хранение 10 и более вещей одновременно
+                    </li>
+                    <li>
+                        при сдаче на хранение 5 и более крупных вещей одновременно
+                    </li>
+                    <li>
+                        При сдаче на хранение 2 и более закрытых контейнеров одновременно
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 
 

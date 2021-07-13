@@ -49,6 +49,7 @@ class Rent extends \yii\db\ActiveRecord
             'special_conditions' => 'Специальные условия',
             'price' => 'Стоимость',
             'user_id' => 'Пользователь',
+            'deposit' => 'Депозит',
             'created_at' => 'Дата создания'
         ];
     }

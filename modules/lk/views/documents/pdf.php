@@ -326,7 +326,8 @@ $created_at = $document->storage ? $document->storage->date : strtotime(date('d.
             <p>_________________</p>
         </td>
         <td style="text-aling: right">
-            <p>Заказчик: <?= $user->fio ?></p>
+            <p>Заказчик:</p>
+            <p><?= $user->requizites ?></p>
             <p>&nbsp;</p>
             <p>&nbsp;</p>
             <p>&nbsp;</p>

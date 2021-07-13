@@ -4,7 +4,7 @@ use app\components\Functions;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-$this->title = 'Заказ на аренду';
+$this->title = 'Заказ на взятие в аренду';
 
 ?>
 <div class="container">
@@ -35,12 +35,7 @@ $this->title = 'Заказ на аренду';
                     }
                 ],
                 'price',
-                [
-                    'attribute' => 'delivery_time',
-                    'value' => function($data) {
-                        return $data->delivery_time ? Functions::getTimeAsString($data->delivery_time) : '---';
-                    }
-                ],
+                'delivery_time',
                 'term',
                 [
                     'attribute' => 'created_at',

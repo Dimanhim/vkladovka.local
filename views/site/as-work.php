@@ -8,6 +8,10 @@ $this->title = 'Как это работает';
 ?>
 <div class="container page-two">
     <h2 class="tac">Как это работает</h2>
+    <div class="video-block">
+        <iframe src="https://player.vimeo.com/video/168095373" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <p><a href="https://vimeo.com/168095373">Meet Omni: The Concierge for Your Stuff</a> from <a href="https://vimeo.com/beomni">Omni</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+    </div>
     <p class='intro-aswork'>
         <b>Приветствуем Вас! <br> С этой минуты Ваша жизнь станет еще более комфортной! <br> Почему? Спросите Вы </b>
     </p>
@@ -40,11 +44,13 @@ $this->title = 'Как это работает';
         <p>
             <b>5. Если же у Вас возникла необходимость временно взять в аренду какую либо вещь, не покупая ее, Вы находите ее из предложенного ассортимента.</b>
         </p>
+        <?php if(Yii::$app->user->isGuest) : ?>
         <div class="description-block">
             Чтобы воспользоваться данными возможностями, Вам необходимо зарегистрироваться<be />
             <a href="<?= Yii::$app->urlManager->createUrl(['site/login']) ?>" class="btn btn-primary">Войти в систему</a>
             <a href="<?= Yii::$app->urlManager->createUrl(['site/registration']) ?>" class="btn btn-default">Зарегистрироваться</a>
         </div>
+        <?php endif; ?>
         <p class="link-support">
             <a href="<?= Yii::$app->urlManager->createUrl('site/faq') ?>">Остались вопросы?</a>
         </p>

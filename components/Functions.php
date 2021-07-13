@@ -96,7 +96,7 @@ class Functions
         if($rents = Rent::findAll(['seen' => 0])) {
             foreach($rents as $rent) {
                 $arr[] = [
-                    'title' => 'Заказ на аренду',
+                    'title' => 'Заказ на сдачу в аренду',
                     'link' => Yii::$app->urlManager->createUrl(['admin/rent/view', 'id' => $rent->id]),
                     'icon' => 'fa fa-shopping-cart text-green',
                 ];
@@ -105,7 +105,7 @@ class Functions
         if($rentThings = RentThing::findAll(['seen' => 0])) {
             foreach($rentThings as $rentThing) {
                 $arr[] = [
-                    'title' => 'Заказ на сдачу в аренду',
+                    'title' => 'Заказ на взятие в аренду',
                     'link' => Yii::$app->urlManager->createUrl(['admin/rent-thing/view', 'id' => $rentThing->id]),
                     'icon' => 'fa fa-shopping-cart text-green',
                 ];

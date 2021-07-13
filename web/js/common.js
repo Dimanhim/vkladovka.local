@@ -542,6 +542,11 @@ $(document).ready(function(){
 		});
 	});
 
+	$('body').on('click', '#free-service-btn', function(e) {
+	    e.preventDefault();
+	    $('#free-service').modal('show');
+	});
+
 	// расчет стоимости хранения
 	$('body').on('change', '#form-storage input, #form-storage select', function(e) {
 		calculateStorage();

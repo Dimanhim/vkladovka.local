@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-$this->title = 'Заказ на аренду';
+$this->title = 'Заказ на сдачу в аренду';
 
 ?>
 <div class="container">
@@ -39,6 +39,13 @@ $this->title = 'Заказ на аренду';
                 ],
                 'description',
                 'special_conditions',
+                'price',
+                [
+                    'attribute' => 'deposit',
+                    'value' => function($data) {
+                        return $data->things ? $data->things[0]->deposit : '---';
+                    }
+                ],
                 [
                     'attribute' => 'created_at',
                     'value' => function($data) {

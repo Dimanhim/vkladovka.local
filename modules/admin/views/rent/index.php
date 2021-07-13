@@ -10,7 +10,7 @@ use yii\web\View;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $type string */
 
-$this->title = 'Заказы на грузоперевозку';
+$this->title = 'Заказы на сдачу в аренду';
 ?>
 
 <div class="container">

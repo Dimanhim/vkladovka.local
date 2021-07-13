@@ -11,7 +11,7 @@ use app\components\Functions;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $type string */
 
-$this->title = 'Заказы на грузоперевозку';
+$this->title = 'Заказы на взятие в аренду';
 ?>
 
 <div class="container">
@@ -47,12 +47,7 @@ $this->title = 'Заказы на грузоперевозку';
                     }
                 ],
                 'price',
-                [
-                    'attribute' => 'delivery_time',
-                    'value' => function($data) {
-                        return $data->delivery_time ? Functions::getTimeAsString($data->delivery_time) : '---';
-                    }
-                ],
+                'delivery_time',
                 'term',
                 [
                     'attribute' => 'created_at',

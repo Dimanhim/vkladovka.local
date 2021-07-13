@@ -167,4 +167,11 @@ class User extends ActiveRecord implements IdentityInterface
         }
         return false;
     }
+    public function getRequizites()
+    {
+        $str = $this->fio;
+        if($this->address) $str .= ', проживающий по адресу: '.$this->address;
+        if($this->passport) $str .= ', паспорт '.$this->passport;
+        return $str;
+    }
 }
